@@ -16,7 +16,7 @@ public class Main extends Application {
         try {
 //            BorderPane root = new BorderPane();
             Group root = new Group();
-            Scene scene = new Scene(root, 400, 400, Color.Black);
+            Scene scene = new Scene(root, 400, 400, Color.BLACK);
 //            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             primaryStage.setTitle("Supermarket Stock Management System");
 
