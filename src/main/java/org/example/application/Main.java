@@ -1,6 +1,7 @@
 package org.example.application;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -28,9 +29,17 @@ public class Main extends Application {
           //  Image icon = new Image("/main/java/org/example/application/icon.png");
           //  primaryStage.getIcons().add(icon);
 
-            primaryStage.setFullScreen(true);
-            primaryStage.setFullScreenExitHint("YOU CAN'T EXIT FULLSCREEN MODE");
-            primaryStage.setFullScreenExitKeyCombination(KeyCombination.valueOf("Ctrl+X"));
+            Button button = new Button("Button 1");
+            EventHandler listener = new MyEventHandler();
+            button.setOnAction(listener);
+
+            public class MyEventHandler implements EventHandler{
+                @Override
+                public void handle(ActionEvent event) {
+                    System.out.println("Button clicked");
+                }
+            }
+
 
             primaryStage.setScene(scene);
             primaryStage.show();
