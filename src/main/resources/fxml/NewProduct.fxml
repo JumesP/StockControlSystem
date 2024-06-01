@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.NewProduct">
+   <children>
+      <MenuButton layoutX="214.0" layoutY="29.0" mnemonicParsing="false" popupSide="TOP" text="Food" AnchorPane.bottomAnchor="346.0" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="287.0" AnchorPane.topAnchor="29.0">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Ambient"/>
+          <MenuItem mnemonicParsing="false" text="Chilled"/>
+          <MenuItem mnemonicParsing="false" text="Frozen"/>
+          <MenuItem mnemonicParsing="false" text="Home and Entertainment" />
+          <MenuItem mnemonicParsing="false" text="Laundry and Household" />
+          <MenuItem mnemonicParsing="false" text="Toiletries and Beauty" />
+        </items>
+      </MenuButton>
+      <TextField layoutX="14.0" layoutY="60.0" promptText="Product Name" />
+      <TextField layoutX="14.0" layoutY="102.0" promptText="Product Quantity" />
+      <TextField layoutX="14.0" layoutY="145.0" promptText="Product Sale Price" />
+   </children>
+</AnchorPane>

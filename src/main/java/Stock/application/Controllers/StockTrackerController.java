@@ -1,0 +1,83 @@
+package Stock.application.Controllers;
+
+import Stock.application.Models.ProductModel;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import Stock.classes.All_Products;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+public class StockTrackerController implements Initializable {
+    public ProductModel productModel = new ProductModel();
+
+    @FXML private TableView<All_Products> tableView;
+    @FXML private TableColumn<All_Products, String> Product_ID;
+    @FXML private TableColumn<All_Products, String> Product_Name;
+    @FXML private TableColumn<All_Products, String> Product_Price;
+    @FXML private TableColumn<All_Products, String> Product_Quantity;
+    @FXML private TableColumn<All_Products, String> Last_Stocked;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+        Product_ID.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_ID"));
+        Product_Name.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Name"));
+        Product_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Price"));
+        Product_Quantity.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Quantity"));
+        Last_Stocked.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Last_Stocked"));
+
+        System.out.println(productModel.FetchData());
+
+        tableView.getItems().setAll(productModel.FetchData());
+    }
+
+    public void switchToHomepage(ActionEvent event) {
+        Stage stage;
+        Scene scene;
+        Parent root;
+
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Homepage.fxml"));
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchToNewProduct(ActionEvent event) {
+
+        Stage stage;
+        Scene scene;
+        Parent root;
+
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/NewProduct.fxml"));
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+//        private List<products> productsList = productModel.FetchData();
+}

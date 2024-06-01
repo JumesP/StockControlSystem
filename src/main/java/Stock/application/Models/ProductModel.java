@@ -1,4 +1,5 @@
-package Stock.application;
+package Stock.application.Models;
+import Stock.application.SqliteConnection;
 import Stock.classes.All_Products;
 
 import java.sql.*;
@@ -24,7 +25,7 @@ public class ProductModel {
     }
 
     public List<All_Products> FetchData() {
-        String query = "SELECT * FROM products";
+        String query = "SELECT * FROM products ORDER BY Product_ID ASC";
         Statement statement;
         ResultSet resultSet;
 

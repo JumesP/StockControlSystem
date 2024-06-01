@@ -1,4 +1,4 @@
-package Stock.application;
+package Stock.application.Controllers;
 
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
