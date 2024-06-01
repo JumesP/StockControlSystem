@@ -36,4 +36,41 @@ public class SceneController {
             e.printStackTrace();
         }
     }
+
+    public void switchToUpcomingDeliveries(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/UpcomingDeliveries.fxml"));
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void switchToDepartmentEditor(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/DepartmentEditor.fxml"));
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchToRecentDeliveries(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/RecentDeliveries.fxml"));
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -2,18 +2,19 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Stock.application.StockTrackerController">
    <children>
-      <TableView layoutX="5.0" layoutY="40.0" prefHeight="599.0" prefWidth="889.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-          <TableColumn prefWidth="75.0" text="C3" />
-          <TableColumn prefWidth="75.0" text="C4" />
-        </columns>
+      <TableView layoutX="6.0" layoutY="34.0" prefHeight="599.0" prefWidth="889.0" fx:id="tableView">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" fx:id="Product_ID"/>
+            <TableColumn prefWidth="75.0" text="C2" fx:id="Product_Name" />
+            <TableColumn prefWidth="75.0" text="C3" fx:id="Product_Price" />
+            <TableColumn prefWidth="75.0" text="C4" fx:id="Product_Quantity" />
+            <TableColumn prefWidth="75.0" text="C5" fx:id="Last_Stocked" />
+         </columns>
       </TableView>
    </children>
-</Pane>
+</AnchorPane>
