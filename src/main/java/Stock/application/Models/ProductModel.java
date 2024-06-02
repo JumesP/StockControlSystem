@@ -39,7 +39,40 @@ public class ProductModel {
                 System.out.println(resultSet.getInt("Product_ID"));
                 data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Price"), resultSet.getInt("Product_Quantity"), resultSet.getString("Last_Stocked")));
             }
+            resultSet.close();
             return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<All_Products> FetchSearchedData(String search) {
+        String query;
+        PreparedStatement PreparedStatement;
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            if (search.equals("")) {
+                query = "SELECT * FROM products ORDER BY Product_ID ASC";
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
+            } else {
+                query = "SELECT * FROM products WHERE Product_Name LIKE ? ORDER BY Product_ID ASC";
+                PreparedStatement = connection.prepareStatement(query);
+                PreparedStatement.setString(1, "%" + search + "%");
+                resultSet = PreparedStatement.executeQuery();
+                PreparedStatement.close();
+            }
+            List<All_Products> searchResults = new ArrayList<>();
+            while (resultSet.next()) {
+                searchResults.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Price"), resultSet.getInt("Product_Quantity"), resultSet.getString("Last_Stocked")));
+            }
+
+            resultSet.close();
+            connection.close();
+            return searchResults;
         } catch (Exception e) {
             e.printStackTrace();
         }

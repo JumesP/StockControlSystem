@@ -15,11 +15,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class StockTrackerController implements Initializable {
     public ProductModel productModel = new ProductModel();
+    public TextField Search;
 
     @FXML private TableView<All_Products> tableView;
     @FXML private TableColumn<All_Products, String> Product_ID;
@@ -42,6 +46,12 @@ public class StockTrackerController implements Initializable {
         tableView.getItems().setAll(productModel.FetchData());
     }
 
+    public void search(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            tableView.getItems().setAll(productModel.FetchSearchedData(Search.getText()));
+        }
+    }
+
     public void switchToHomepage(ActionEvent event) {
         Stage stage;
         Scene scene;
@@ -59,7 +69,6 @@ public class StockTrackerController implements Initializable {
     }
 
     public void switchToNewProduct(ActionEvent event) {
-
         Stage stage;
         Scene scene;
         Parent root;
@@ -73,7 +82,11 @@ public class StockTrackerController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+
+
+
 
 
 
