@@ -41,7 +41,7 @@ public class StockTrackerController implements Initializable {
         Product_Quantity.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Quantity"));
         Last_Stocked.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Last_Stocked"));
 
-        System.out.println(productModel.FetchData());
+//        System.out.println(productModel.FetchData());
 
         tableView.getItems().setAll(productModel.FetchData());
     }
