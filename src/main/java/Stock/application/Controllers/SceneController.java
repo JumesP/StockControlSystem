@@ -73,4 +73,16 @@ public class SceneController {
             e.printStackTrace();
         }
     }
+
+    public void switchToSignin(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Login/LoginPage.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
