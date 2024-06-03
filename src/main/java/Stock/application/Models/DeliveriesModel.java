@@ -41,7 +41,7 @@ public class DeliveriesModel {
             List<Deliveries> data = new ArrayList<>();
             List<int[][]> listOfArrays = new ArrayList<>();
             while (resultSet.next()) {
-                System.out.println(resultSet);
+//                System.out.println(resultSet);
 //                int[][] twoDArray = convertTo2DArray(resultSet.getArray("Ordered_Products"));
 //                listOfArrays.add(twoDArray);
 
@@ -55,7 +55,7 @@ public class DeliveriesModel {
 //                    deliveredProduct.setProduct_Quantity(s[1]);
 //                }
 
-                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company"), listOfArrays));
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company"), resultSet.getString("Ordered_Products")));
             }
             resultSet.close();
 
@@ -65,20 +65,6 @@ public class DeliveriesModel {
         }
         return null;
     }
-
-//    public int[][] convertTo2DArray(Array array) {
-//        String[] rows = array.split("},");
-//        int[][] twoDArray = new int[rows.length][];
-//        for (int i = 0; i < rows.length; i++) {
-//            String[] columns = rows[i].split(",");
-//            twoDArray[i] = new int[columns.length];
-//            for (int j = 0; j < columns.length; j++) {
-//                twoDArray[i][j] = Integer.parseInt(columns[j]);
-//            }
-//        }
-//        return twoDArray;
-//    }
-
 
     public List<Deliveries> FetchPastDeliveryData() {
         String query = "SELECT * FROM Deliveries ORDER BY Delivery_ID ASC"; //MAKE ALL Past PRODUCTS
@@ -105,7 +91,7 @@ public class DeliveriesModel {
 //                    deliveredProduct.setProduct_Quantity(s[1]);
 //                }
 
-                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company"), listOfArrays));
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company"), resultSet.getString("Ordered_Products")));
             }
             resultSet.close();
 

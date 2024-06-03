@@ -7,9 +7,9 @@ public class Deliveries {
     private String Delivery_Name;
     private String Delivery_Date;
     private String Delivery_Company;
-    private List<int[][]> Ordered_Products;
+    private String Ordered_Products;
 
-    public Deliveries(Integer Delivery_ID, String Delivery_Name, String Delivery_Date, String Delivery_Company, List<int[][]> Ordered_Products) {
+    public Deliveries(Integer Delivery_ID, String Delivery_Name, String Delivery_Date, String Delivery_Company, String Ordered_Products) {
         this.Delivery_ID = Delivery_ID;
         this.Delivery_Name = Delivery_Name;
         this.Delivery_Date = Delivery_Date;
@@ -33,7 +33,7 @@ public class Deliveries {
         return Delivery_Company;
     }
 
-    public List<int[][]> getOrdered_Products() {
+    public String getOrdered_Products() {
         return Ordered_Products;
     }
 
@@ -53,7 +53,7 @@ public class Deliveries {
         this.Delivery_Company = Delivery_Company;
     }
 
-    public void setOrdered_Products(List<int[][]> Ordered_Products) {
+    public void setOrdered_Products(String Ordered_Products) {
         this.Ordered_Products = Ordered_Products;
     }
 }
