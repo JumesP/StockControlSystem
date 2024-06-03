@@ -96,9 +96,7 @@ public class NewDeliveryController {
         }
     }
 
-
     public void submitDelivery(ActionEvent event) {
-
         String deliveryName = Delivery_Name.getText();
         String deliveryDate = Delivery_Date.getText();
         String deliveryCompany = Delivery_Supplier.getText();
@@ -118,10 +116,24 @@ public class NewDeliveryController {
             orderedProducts.add(subproduct);
         }
 
-        newDeliveryModel.Add(deliveryName, deliveryDate, deliveryCompany, orderedProducts);
-
+        newDeliveryModel.Add(deliveryName, deliveryCompany, deliveryDate, orderedProducts);
+        IncreaseStock(orderedProducts);
         switchToHomepage(event);
     }
 
+    public void IncreaseStock(ArrayList<ArrayList<String>> orderedProducts) {
+        // Increase stock of product
+        for (ArrayList<String> product : orderedProducts) {
+
+            String productIDandName = product.get(0);
+            String[] productIDandNameArray = productIDandName.split(": ");
+
+            int productID = Integer.parseInt(productIDandNameArray[0]);
+            int productNewQuantity = Integer.parseInt(product.get(1));
+
+            newDeliveryModel.ProductAdd(productID, productNewQuantity);
+        }
+
+    }
 
 }

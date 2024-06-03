@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Stock.application.Controllers.NewDeliveryController">
    <children>
@@ -28,6 +29,11 @@
                   </Pane>
                   <Button fx:id="AddAnother" layoutX="263.0" layoutY="289.0" mnemonicParsing="false" onAction="#change" text="Add Another Product" />
                   <Button fx:id="submitDelivery" layoutX="263.0" layoutY="321.0" mnemonicParsing="false" onAction="#submitDelivery" prefHeight="25.0" prefWidth="130.0" text="Submit Delivery" />
+                  <Label layoutX="263.0" layoutY="264.0" text="Stock Increased on Submit">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </content>

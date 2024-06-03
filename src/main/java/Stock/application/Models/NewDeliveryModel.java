@@ -54,13 +54,14 @@ public class NewDeliveryModel {
 //    }
 
     public List<String> getProducts() {
+        //Get all products from the database, used to name the products in the dropdown menu on the New Delivery page.
         List<String> products = new ArrayList<>();
         String query = "SELECT * FROM Products";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                products.add(resultSet.getString("Product_Name"));
+                products.add(resultSet.getString("Product_ID") + ": " + resultSet.getString("Product_Name"));
             }
             resultSet.close();
             statement.close();
@@ -104,8 +105,36 @@ public class NewDeliveryModel {
 //            System.out.println(PreparedStatement);
             PreparedStatement.executeUpdate();
             PreparedStatement.close();
-            connection.close();
+//            connection.close();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void ProductAdd(int Product_ID, int Product_Quantity) {
+        //Add a products updated quantity to the database
+        String query;
+        PreparedStatement PreparedStatement;
+        ResultSet resultSet;
+
+        try {
+            query = "SELECT Product_Quantity FROM Products WHERE Product_ID = ?";
+            PreparedStatement = connection.prepareStatement(query);
+            PreparedStatement.setInt(1, Product_ID);
+            resultSet = PreparedStatement.executeQuery();
+            int ProductQuantity = resultSet.getInt(1);
+            resultSet.close();
+            PreparedStatement.close();
+
+            query = "UPDATE Products SET Product_Quantity = ? WHERE Product_ID = ?";
+            PreparedStatement = connection.prepareStatement(query);
+            PreparedStatement.setInt(1, ProductQuantity + Product_Quantity);
+            PreparedStatement.setInt(2, Product_ID);
+            PreparedStatement.executeUpdate();
+            PreparedStatement.close();
+//            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
