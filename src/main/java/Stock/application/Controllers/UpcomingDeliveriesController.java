@@ -64,4 +64,20 @@ public class UpcomingDeliveriesController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void switchToNewDeliveries(ActionEvent event) {
+        Stage stage;
+        Scene scene;
+        Parent root;
+
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/NewDelivery.fxml"));
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

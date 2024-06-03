@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Stock.application.Controllers.NewDeliveryController">
+   <children>
+      <TextField fx:id="Delivery_Name" layoutX="35.0" layoutY="75.0" promptText="Delivery Name" />
+      <Label layoutX="35.0" layoutY="32.0" text="New Delivery" />
+      <TextField fx:id="Delivery_Supplier" layoutX="35.0" layoutY="110.0" promptText="Delivery Supplier" />
+      <TextField fx:id="Delivery_Date" layoutX="35.0" layoutY="145.0" promptText="Delivery Date" />
+      <Line endX="100.0" layoutX="136.0" layoutY="188.0" startX="-100.0" />
+      <Button fx:id="backButton" layoutX="836.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Back" />
+      <ScrollPane fx:id="productScrollPane" layoutX="34.0" layoutY="233.0" prefHeight="364.0" prefWidth="408.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="403.0">
+               <children>
+                  <Pane fx:id="productPane" layoutX="14.0" layoutY="8.0" prefHeight="31.0" prefWidth="249.0">
+                     <children>
+                        <Arc fill="DODGERBLUE" layoutX="24.0" layoutY="34.0" length="270.0" radiusX="10.0" radiusY="9.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Pane>
+                  <Button fx:id="AddAnother" layoutX="263.0" layoutY="289.0" mnemonicParsing="false" onAction="#change" text="Add Another Product" />
+                  <Button fx:id="submitDelivery" layoutX="263.0" layoutY="321.0" mnemonicParsing="false" onAction="#submitDelivery" prefHeight="25.0" prefWidth="130.0" text="Submit Delivery" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
