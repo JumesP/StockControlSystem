@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="StockDBv2">
-  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.52">
+<dataSource name="StockDBv2v2">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.51">
     <root id="1">
       <ServerVersion>3.45.1</ServerVersion>
     </root>
@@ -499,7 +499,7 @@
     </routine>
     <schema id="191" parent="1" name="main">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-05-29.23:53:54</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-06-05.15:03:17</LastIntrospectionLocalTimestamp>
     </schema>
     <argument id="192" parent="16">
       <ArgumentDirection>R</ArgumentDirection>
@@ -1590,66 +1590,118 @@
     <argument id="554" parent="190">
       <Position>1</Position>
     </argument>
-    <table id="555" parent="191" name="departments"/>
-    <table id="556" parent="191" name="products"/>
-    <table id="557" parent="191" name="sqlite_master">
+    <table id="555" parent="191" name="Deliveries"/>
+    <table id="556" parent="191" name="departments"/>
+    <table id="557" parent="191" name="products"/>
+    <table id="558" parent="191" name="sqlite_master">
       <System>1</System>
     </table>
-    <column id="558" parent="555" name="Department_ID">
+    <table id="559" parent="191" name="users"/>
+    <column id="560" parent="555" name="Delivery_ID">
+      <DasType>integer|0s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="561" parent="555" name="Delivery_Name">
+      <DasType>TEXT|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="562" parent="555" name="Delivery_Company">
+      <DasType>TEXT|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="563" parent="555" name="Ordered_Products">
+      <DasType>ANY|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="564" parent="555" name="Delivery_Date">
+      <DasType>TEXT|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <key id="565" parent="555">
+      <ColNames>Delivery_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="566" parent="556" name="Department_ID">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="559" parent="555" name="Department_Name">
+    <column id="567" parent="556" name="Department_Name">
       <DasType>VarChar(20)|0s</DasType>
       <Position>2</Position>
     </column>
-    <index id="560" parent="555" name="sqlite_autoindex_departments_1">
+    <index id="568" parent="556" name="sqlite_autoindex_departments_1">
       <ColNames>Department_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="561" parent="555">
+    <key id="569" parent="556">
       <ColNames>Department_ID</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_departments_1</UnderlyingIndexName>
     </key>
-    <column id="562" parent="556" name="Product_ID">
+    <column id="570" parent="557" name="Product_ID">
       <DasType>int|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="563" parent="556" name="Product_Name">
+    <column id="571" parent="557" name="Product_Name">
       <DasType>VarChar(20)|0s</DasType>
       <Position>2</Position>
     </column>
-    <index id="564" parent="556" name="sqlite_autoindex_products_1">
+    <column id="572" parent="557" name="Product_Price">
+      <DasType>integer|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="573" parent="557" name="Product_Quantity">
+      <DasType>integer|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="574" parent="557" name="Last_Stocked">
+      <DasType>ANY|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <index id="575" parent="557" name="sqlite_autoindex_products_1">
       <ColNames>Product_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="565" parent="556">
+    <key id="576" parent="557">
       <ColNames>Product_ID</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>sqlite_autoindex_products_1</UnderlyingIndexName>
     </key>
-    <column id="566" parent="557" name="type">
+    <column id="577" parent="558" name="type">
       <DasType>TEXT|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="567" parent="557" name="name">
+    <column id="578" parent="558" name="name">
       <DasType>TEXT|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="568" parent="557" name="tbl_name">
+    <column id="579" parent="558" name="tbl_name">
       <DasType>TEXT|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="569" parent="557" name="rootpage">
+    <column id="580" parent="558" name="rootpage">
       <DasType>INT|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="570" parent="557" name="sql">
+    <column id="581" parent="558" name="sql">
       <DasType>TEXT|0s</DasType>
       <Position>5</Position>
+    </column>
+    <column id="582" parent="559" name="Username">
+      <DasType>TEXT|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="583" parent="559" name="Password">
+      <DasType>TEXT|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="584" parent="559" name="Admin">
+      <DasType>TEXT|0s</DasType>
+      <Position>3</Position>
     </column>
   </database-model>
 </dataSource>
