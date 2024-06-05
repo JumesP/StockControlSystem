@@ -1,7 +1,13 @@
 package Stock.application.Controllers;
 
 import Stock.classes.All_Products;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
 public class SpecificProductController {
@@ -11,14 +17,26 @@ public class SpecificProductController {
     @FXML private Label Last_Stocked;
 
     public void setProduct(All_Products product) {
-        String Name = product.getProduct_Name();
-        String Price = product.getProduct_Price().toString();
-        String Quantity = product.getProduct_Quantity().toString();
-        String LastStocked = product.getLast_Stocked();
-        System.out.println(Name + " " + Price + " " + Quantity + " " + LastStocked);
-        Product_Name.setText(Name);
-        Product_Price.setText(Price);
-        Product_Quantity.setText(Quantity);
-        Last_Stocked.setText(LastStocked);
+        Product_Name.setText(product.getProduct_Name());
+        Product_Price.setText("£ " + product.getProduct_Price().toString());
+        Product_Quantity.setText(product.getProduct_Quantity().toString() + " units");
+        Last_Stocked.setText(product.getLast_Stocked());
+    }
+
+    public void switchToStockTracker(ActionEvent event) {
+        Stage stage;
+        Scene scene;
+        Parent root;
+
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/StockTracker.fxml"));
+            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
+

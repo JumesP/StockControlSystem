@@ -22,7 +22,6 @@ public class SceneController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void switchToHomepage(ActionEvent event) {
