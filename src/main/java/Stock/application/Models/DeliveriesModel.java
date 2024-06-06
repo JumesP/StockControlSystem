@@ -62,8 +62,8 @@ public class DeliveriesModel {
             return data;
         } catch (Exception e) {
             e.printStackTrace();
+            return new ArrayList<>(); // database doesnt work so return empty list to load page
         }
-        return null;
     }
 
     public List<Deliveries> FetchPastDeliveryData() {

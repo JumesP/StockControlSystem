@@ -43,8 +43,9 @@ public class ProductModel {
             return data;
         } catch (Exception e) {
             e.printStackTrace();
+            return new ArrayList<>(); // database doesnt work so return empty list to load page
         }
-        return null;
+//        return null;
     }
 
     public List<All_Products> FetchSearchedData(String search) {
