@@ -40,3 +40,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+.*
+
+### Keep Github ###
+!.gitignore
+!.gitattributes
+!.gitmodules
