@@ -7,17 +7,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.awt.*;
 
 public class LoginPageController {
     LoginPageModel loginPageModel = new LoginPageModel();
-//    LoginPageModel loginPageModel = new LoginPageModel();
 
     public TextField Username;
-    public PasswordField Password;
-    public Button submit;
+    public TextField Password;
+    public Button Submit;
 
     public void login(ActionEvent event) {
         if (loginPageModel.isLogin(Username.getText(), Password.getText())) {
