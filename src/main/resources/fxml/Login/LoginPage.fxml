@@ -6,26 +6,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Stock.application.Controllers.LoginPageController">
+<AnchorPane fx:id="AnchorPane" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Stock.application.Controllers.LoginPageController">
    <children>
-      <TextField fx:id="Username" layoutX="183.0" layoutY="131.0">
+      <TextField fx:id="Username" layoutX="304.0" layoutY="172.0" prefHeight="65.0" prefWidth="298.0">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <TextField fx:id="Password" layoutX="185.0" layoutY="206.0">
+      <TextField fx:id="Password" layoutX="300.0" layoutY="326.0" prefHeight="66.0" prefWidth="303.0">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <Button fx:id="Submit" layoutX="273.0" layoutY="266.0" mnemonicParsing="false" onAction="#login" text="Submit" />
-      <Label layoutX="226.0" layoutY="45.0" text="Sign Into Your Account">
+      <Button fx:id="Submit" layoutX="422.0" layoutY="424.0" mnemonicParsing="false" onAction="#login" text="Submit" />
+      <Label layoutX="330.0" layoutY="40.0" text="Sign Into Your Account">
          <font>
-            <Font size="15.0" />
+            <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="CreateAnAccount" layoutX="243.0" layoutY="344.0" mnemonicParsing="false" onAction="#switchToCreateAnAccount" text="Create an Account" />
-      <Label layoutX="191.0" layoutY="108.0" text="Username:" />
-      <Label layoutX="191.0" layoutY="183.0" text="Password:" />
+      <Button fx:id="CreateAnAccount" layoutX="386.0" layoutY="543.0" mnemonicParsing="false" onAction="#switchToCreateAnAccount" text="Create an Account" />
+      <Label layoutX="320.0" layoutY="134.0" text="Username:">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="319.0" layoutY="284.0" text="Password:">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label fx:id="Result" alignment="CENTER" layoutX="245.0" layoutY="472.0" prefHeight="48.0" prefWidth="417.0" />
    </children>
 </AnchorPane>

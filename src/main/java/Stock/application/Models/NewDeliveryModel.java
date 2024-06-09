@@ -84,28 +84,67 @@ public class NewDeliveryModel {
 
 //        Ordered_Products = Ordered_Products.toArray();
 
-        JSONArray Ordered_Products_Array = new JSONArray(Ordered_Products);
-        String Ordered_Products_String = Ordered_Products_Array.toString();
+//        JSONArray Ordered_Products_Array = new JSONArray(Ordered_Products);
+//        String Ordered_Products_String = Ordered_Products_Array.toString();
 
         try {
+            // Delivery ID
             query = "SELECT COUNT(*) FROM Deliveries";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             int Delivery_ID = resultSet.getInt(1);
             resultSet.close();
 
-            query = "INSERT INTO Deliveries (Delivery_Name, Delivery_ID, Delivery_Company, Delivery_Date, Ordered_Products) VALUES (?, ?, ?, ?, ?)";
+            // Add Delivery to Deliveries table
+            query = "INSERT INTO deliveries (Delivery_Name, Delivery_ID, Delivery_Company, Delivery_Date) VALUES (?, ?, ?, ?)";
             PreparedStatement = connection.prepareStatement(query);
             PreparedStatement.setString(1, Delivery_Name);
             PreparedStatement.setInt(2, Delivery_ID);
             PreparedStatement.setString(3, Delivery_Company);
             PreparedStatement.setString(4, Delivery_Date);
-            PreparedStatement.setString(5, Ordered_Products_String);
+//            PreparedStatement.setString(5, Ordered_Products_String);
             System.out.println("PreparedStatement value: " + PreparedStatement);
 //            System.out.println(PreparedStatement);
             PreparedStatement.executeUpdate();
             PreparedStatement.close();
 //            connection.close();
+
+            // Add Ordered Products to Order table
+            for (ArrayList<String> product : Ordered_Products) {
+
+                String productIDandName = product.get(0);
+                String[] productIDandNameArray = productIDandName.split(": ");
+
+                System.out.println("Product: " + product);
+                System.out.println("Product 0: " + product.get(0));
+                System.out.println("Product 1: " + product.get(1));
+//                System.out.println("Product 2: " + product.get(2));
+
+                String Product_ID = productIDandNameArray[0];
+                String Product_Quantity = product.get(1);
+                String Product_Name = productIDandNameArray[1];
+
+                System.out.println("Delivery ID: " + Delivery_ID);
+                System.out.println("Product ID: " + Product_ID);
+                System.out.println("Product Name: " + Product_Name);
+                System.out.println("Product Quantity: " + Product_Quantity);
+
+
+                try {
+                    query = "INSERT INTO orders (Delivery_ID, Product_ID, Product_Name, Product_Quantity) VALUES (?, ?, ?, ?)";
+                    PreparedStatement = connection.prepareStatement(query);
+                    PreparedStatement.setInt(1, Delivery_ID);
+                    PreparedStatement.setInt(2, Integer.parseInt(Product_ID));
+                    PreparedStatement.setString(3, Product_Name);
+                    PreparedStatement.setInt(4, Integer.parseInt(Product_Quantity));
+                    PreparedStatement.executeUpdate();
+                    PreparedStatement.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

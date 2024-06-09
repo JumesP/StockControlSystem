@@ -6,13 +6,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView layoutX="465.0" layoutY="96.0" prefHeight="437.0" prefWidth="349.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="75.0" text="Product ID" />
+          <TableColumn prefWidth="75.0" text="Product Name" />
+            <TableColumn prefWidth="75.0" text="Product Quantity" />
         </columns>
       </TableView>
       <ImageView fitHeight="292.0" fitWidth="394.0" layoutX="35.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />

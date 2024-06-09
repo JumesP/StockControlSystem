@@ -26,6 +26,7 @@ public class NewProductModel {
         ResultSet resultSet;
 
         try {
+            //Product ID
             query = "SELECT COUNT(*) FROM products";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);

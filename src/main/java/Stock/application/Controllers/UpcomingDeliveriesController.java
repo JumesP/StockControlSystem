@@ -1,8 +1,10 @@
 package Stock.application.Controllers;
 
 import Stock.application.Models.DeliveriesModel;
+import Stock.application.Models.SpecificDeliveryModel;
 import Stock.classes.Deliveries.Deliveries;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -24,7 +27,11 @@ import java.util.ResourceBundle;
 
 public class UpcomingDeliveriesController implements Initializable {
     public DeliveriesModel deliveriesModel = new DeliveriesModel();
-//    public TextField Search;
+
+    Stage stage;
+    Scene scene;
+    Parent root;
+
 
     @FXML
     private TableView<Deliveries> tableView;
@@ -32,7 +39,6 @@ public class UpcomingDeliveriesController implements Initializable {
     @FXML private TableColumn<Deliveries, String> Delivery_Name;
     @FXML private TableColumn<Deliveries, String> Delivery_Date;
     @FXML private TableColumn<Deliveries, String> Delivery_Company;
-    @FXML private TableColumn<Deliveries, String> Ordered_Products;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,7 +47,7 @@ public class UpcomingDeliveriesController implements Initializable {
         Delivery_Name.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Delivery_Name"));
         Delivery_Date.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Delivery_Date"));
         Delivery_Company.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Delivery_Company"));
-        Ordered_Products.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Ordered_Products"));
+//        Ordered_Products.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Ordered_Products"));
 
 //        System.out.println(DeliveriesModel.FetchDeliveryData());
 
@@ -79,5 +85,27 @@ public class UpcomingDeliveriesController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void viewSpecificDelivery(MouseEvent event) throws IOException {
+        Deliveries deliveries = tableView.getSelectionModel().getSelectedItem();
+        System.out.println(deliveries.getDelivery_ID());
+        System.out.println(deliveries.getDelivery_Name());
+
+        // Switch to the specific delivery page
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SpecificDelivery.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        SpecificDeliveryController specificDeliveryController = loader.getController();
+        specificDeliveryController.setDelivery(deliveries);
+
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

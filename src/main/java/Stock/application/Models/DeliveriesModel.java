@@ -1,15 +1,12 @@
 package Stock.application.Models;
 
 import Stock.application.SqliteConnection;
-import Stock.classes.Deliveries.Delivered_Items;
 import Stock.classes.Deliveries.Deliveries;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DeliveriesModel {
@@ -55,7 +52,7 @@ public class DeliveriesModel {
 //                    deliveredProduct.setProduct_Quantity(s[1]);
 //                }
 
-                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company"), resultSet.getString("Ordered_Products")));
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company")));
             }
             resultSet.close();
 
@@ -91,7 +88,7 @@ public class DeliveriesModel {
 //                    deliveredProduct.setProduct_Quantity(s[1]);
 //                }
 
-                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company"), resultSet.getString("Ordered_Products")));
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company")));
             }
             resultSet.close();
 
@@ -105,4 +102,5 @@ public class DeliveriesModel {
     public void Add() {
 //        String query = "insert into Deliveries(delivery_id, delivery_name, delivery_company, ordered_products) VALUES (1,'Chilled Delivery', 'Spencers', json_array(json_array(0,15),json_array(1,20)))"
     }
+
 }
