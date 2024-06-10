@@ -51,6 +51,7 @@ public class StockTrackerController implements Initializable {
 
     public void search(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
+            System.out.println(Search.getText());
             tableView.getItems().setAll(productModel.FetchSearchedData(Search.getText()));
         }
     }

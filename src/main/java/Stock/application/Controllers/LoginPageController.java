@@ -27,6 +27,7 @@ public class LoginPageController {
         if (loginPageModel.isLogin(Username.getText(), Password.getText())) {
             System.out.println("Login successful");
             Result.setText("Login successful");
+            switchToHomepage(event);
         } else {
             System.out.println("Login failed");
             Result.setText("Incorrect Username and Password combination.\nPlease enter a valid Username and Password");
