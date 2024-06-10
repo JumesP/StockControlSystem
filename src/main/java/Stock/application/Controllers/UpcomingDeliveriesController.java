@@ -4,6 +4,8 @@ import Stock.application.Models.DeliveriesModel;
 import Stock.application.Models.SpecificDeliveryModel;
 import Stock.classes.Deliveries.Deliveries;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,9 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -24,6 +28,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class UpcomingDeliveriesController implements Initializable {
     public DeliveriesModel deliveriesModel = new DeliveriesModel();
@@ -32,9 +37,8 @@ public class UpcomingDeliveriesController implements Initializable {
     Scene scene;
     Parent root;
 
-
-    @FXML
-    private TableView<Deliveries> tableView;
+    @FXML private Button NewDeliveries;
+    @FXML private TableView<Deliveries> tableView;
     @FXML private TableColumn<Deliveries, String> Delivery_ID;
     @FXML private TableColumn<Deliveries, String> Delivery_Name;
     @FXML private TableColumn<Deliveries, String> Delivery_Date;
@@ -52,6 +56,18 @@ public class UpcomingDeliveriesController implements Initializable {
 //        System.out.println(DeliveriesModel.FetchDeliveryData());
 
         tableView.getItems().setAll(deliveriesModel.FetchDeliveryData());
+
+        File file = new File("src/main/java/Stock/backend/cookie.txt");
+        Scanner scanner = null;
+        try { scanner = new Scanner(file); } catch (FileNotFoundException e) { throw new RuntimeException(e); }
+
+        if (scanner.hasNext()) {
+            String data = scanner.nextLine();
+            if (!data.equals("admin")) {
+                NewDeliveries.setDisable(true);
+                NewDeliveries.setCursor(Cursor.CLOSED_HAND);
+            }
+        }
     }
 
     public void switchToHomepage(ActionEvent event) {

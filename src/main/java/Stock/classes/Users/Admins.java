@@ -3,10 +3,10 @@ package Stock.classes.Users;
 import Stock.classes.Users.Users;
 
 public class Admins extends Users{
-    private Boolean isAdmin;
+    private Boolean isAdmin = true;
 
-    public Admins(String username, String password, Boolean isAdmin) {
-        super(username, password);
+    public Admins(int User_ID, String username, String password, Boolean isAdmin) {
+        super(User_ID, username, password);
         this.isAdmin = isAdmin;
     }
 

@@ -20,7 +20,7 @@
          </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Home" />
-      <Button layoutX="80.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchToNewProduct" text="Add" />
+      <Button fx:id="add" layoutX="80.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchToNewProduct" text="Add" />
       <TextField id="Search" fx:id="Search" layoutX="684.0" layoutY="9.0" onKeyPressed="#search" prefHeight="25.0" prefWidth="202.0" promptText="Search Via Name" />
       <MenuButton fx:id="DepartmentSelector" contentDisplay="BOTTOM" layoutX="536.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Department">
          <items>

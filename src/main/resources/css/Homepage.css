@@ -13,7 +13,7 @@ TilePane {
     -fx-border-width: 2;
     -fx-border-radius: 5;
     -fx-box-shadow: 10;
-    -fx-cursor: closed_hand;
+    -fx-cursor: auto;
 }
 
 Button {

@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.FileWriter;
 
 public class LoginPageController {
     LoginPageModel loginPageModel = new LoginPageModel();
@@ -27,6 +28,13 @@ public class LoginPageController {
         if (loginPageModel.isLogin(Username.getText(), Password.getText())) {
             System.out.println("Login successful");
             Result.setText("Login successful");
+
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             switchToHomepage(event);
         } else {
             System.out.println("Login failed");

@@ -2,9 +2,12 @@ package Stock.application.Controllers;
 
 import Stock.application.Models.ProductModel;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import Stock.classes.All_Products;
 import javafx.event.ActionEvent;
@@ -14,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
@@ -25,6 +29,7 @@ import javafx.stage.Stage;
 public class StockTrackerController implements Initializable {
     public ProductModel productModel = new ProductModel();
     public TextField Search;
+    public Button add;
 
     Stage stage;
     Scene scene;
@@ -47,6 +52,17 @@ public class StockTrackerController implements Initializable {
         Last_Stocked.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Last_Stocked"));
 
         tableView.getItems().setAll(productModel.FetchData());
+
+        File file = new File("src/main/java/Stock/backend/cookie.txt");
+        Scanner scanner = null;
+        try { scanner = new Scanner(file); } catch (FileNotFoundException e) { throw new RuntimeException(e); }
+
+        if (scanner.hasNext()) {
+            String data = scanner.nextLine();
+            if (!data.equals("admin")) {
+                add.setDisable(true);
+            }
+        }
     }
 
     public void search(KeyEvent event) {

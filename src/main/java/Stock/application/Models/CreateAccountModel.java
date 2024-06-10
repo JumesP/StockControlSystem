@@ -5,6 +5,7 @@ import Stock.application.SqliteConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class CreateAccountModel {
     Connection connection;
@@ -26,21 +27,27 @@ public class CreateAccountModel {
     public boolean isCreateAccount(String user, String pass, boolean admin) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-//        String query = "INSERT INTO Users (Username, Password, Admin) VALUES (?, ?, ?)";
-
-
-        String query;
-        if (admin) {
-            query = "INSERT INTO Users (Username, Password, Admin) VALUES (?, ?, 1)";
-        } else {
-            query = "INSERT INTO Users (Username, Password, Admin) VALUES (?, ?, 0)";
-        }
-
 
         try {
+            String query = "SELECT COUNT(*) FROM users";
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            Integer User_ID = resultSet.getInt(1);
+            resultSet.close();
+            statement.close();
+
+            if (admin) {
+                query = "INSERT INTO Users (User_ID, Username, Password, Admin, Approved) VALUES (?, ?, ?, 1, 0)";
+                // requests approval, but is stored as admin
+            } else {
+                query = "INSERT INTO Users (User_ID, Username, Password, Admin, Approved) VALUES (?, ?, ?, 0, 1)";
+                // does not request approval, but is stored as user
+            }
+
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, user);
-            preparedStatement.setString(2, pass);
+            preparedStatement.setString(1, String.valueOf(User_ID));
+            preparedStatement.setString(2, user);
+            preparedStatement.setString(3, pass);
 
             preparedStatement.executeUpdate();
 //            System.out.println("Account created successfully");

@@ -2,6 +2,7 @@ package Stock.application.Models;
 
 import Stock.application.SqliteConnection;
 
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,6 +36,13 @@ public class LoginPageModel {
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                FileWriter myWriter = new FileWriter("src/main/java/Stock/backend/cookie.txt");
+                if (resultSet.getString("Admin").equals("1")) {
+                    myWriter.write("admin");
+                } else {
+                    myWriter.write("user");
+                }
+                myWriter.close();
                 return true;
             } else {
                 return false;

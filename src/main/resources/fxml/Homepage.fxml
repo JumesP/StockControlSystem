@@ -8,24 +8,25 @@
    <children>
       <TilePane layoutX="136.0" layoutY="79.0" prefHeight="200.0" prefWidth="156.0" stylesheets="@../css/Homepage.css">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToDepartmentEditor" prefHeight="225.0" prefWidth="225.0" stylesheets="@../css/Homepage.css" text="Department Editor" />
+            <Button fx:id="DepartmentEditor" mnemonicParsing="false" onAction="#switchToDepartmentEditor" prefHeight="225.0" prefWidth="225.0" stylesheets="@../css/Homepage.css" text="Department Editor" />
          </children>
       </TilePane>
       <TilePane layoutX="136.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToRecentDeliveries" prefHeight="225.0" prefWidth="225.0" text="Recent Deliveries" />
+            <Button fx:id="RecentDeliveries" mnemonicParsing="false" onAction="#switchToRecentDeliveries" prefHeight="225.0" prefWidth="225.0" text="Recent Deliveries" />
          </children>
       </TilePane>
       <TilePane layoutX="552.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToUpcomingDeliveries" prefHeight="225.0" prefWidth="225.0" text="Upcoming Deliveries" />
+            <Button fx:id="UpcomingDeliveries" mnemonicParsing="false" onAction="#switchToUpcomingDeliveries" prefHeight="225.0" prefWidth="225.0" text="Upcoming Deliveries" />
          </children>
       </TilePane>
       <TilePane layoutX="552.0" layoutY="79.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToStockTracker" prefHeight="225.0" prefWidth="225.0" stylesheets="@../css/Homepage.css" text="Stock Tracker" />
+            <Button fx:id="StockTracker" mnemonicParsing="false" onAction="#switchToStockTracker" prefHeight="225.0" prefWidth="225.0" stylesheets="@../css/Homepage.css" text="Stock Tracker" />
          </children>
       </TilePane>
-      <Button fx:id="Signin" layoutX="826.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToSignin" text="Button" />
+      <Button fx:id="Signin" layoutX="757.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToSignin" prefHeight="26.0" prefWidth="127.0" text="Login" />
+      <Button fx:id="switchToApproveAdmins" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#switchToApproveAdmins" text="Approve Admins" />
    </children>
 </Pane>
