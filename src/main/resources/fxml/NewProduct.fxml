@@ -22,7 +22,7 @@
       <TextField fx:id="Product_Name" layoutX="14.0" layoutY="60.0" promptText="Product Name" />
       <TextField fx:id="Product_Quantity" layoutX="14.0" layoutY="102.0" promptText="Product Quantity" />
       <TextField fx:id="Product_Price" layoutX="14.0" layoutY="145.0" promptText="Product Sale Price" />
-      <TextField fx:id="Last_Stocked" layoutX="15.0" layoutY="188.0" promptText="Last Restocked" />
+      <TextField fx:id="Last_Stocked" layoutX="15.0" layoutY="188.0" promptText="DDmmYYYY" />
       <Button fx:id="submit" layoutX="62.0" layoutY="310.0" mnemonicParsing="false" onAction="#addProduct" text="Submit" />
       <Label fx:id="error" layoutX="14.0" layoutY="251.0" />
       <Button fx:id="back" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Back" />

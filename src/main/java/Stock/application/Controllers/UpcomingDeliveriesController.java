@@ -53,8 +53,6 @@ public class UpcomingDeliveriesController implements Initializable {
         Delivery_Company.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Delivery_Company"));
 //        Ordered_Products.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Ordered_Products"));
 
-//        System.out.println(DeliveriesModel.FetchDeliveryData());
-
         tableView.getItems().setAll(deliveriesModel.FetchDeliveryData());
 
         File file = new File("src/main/java/Stock/backend/cookie.txt");

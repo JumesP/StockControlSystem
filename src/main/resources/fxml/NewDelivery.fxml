@@ -15,7 +15,7 @@
       <TextField fx:id="Delivery_Name" layoutX="35.0" layoutY="75.0" promptText="Delivery Name" />
       <Label layoutX="35.0" layoutY="32.0" text="New Delivery" />
       <TextField fx:id="Delivery_Supplier" layoutX="35.0" layoutY="110.0" promptText="Delivery Supplier" />
-      <TextField fx:id="Delivery_Date" layoutX="35.0" layoutY="145.0" promptText="Delivery Date" />
+      <TextField fx:id="Delivery_Date" layoutX="35.0" layoutY="145.0" promptText="DDmmYYYY" />
       <Line endX="100.0" layoutX="136.0" layoutY="188.0" startX="-100.0" />
       <Button fx:id="backButton" layoutX="836.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Back" />
       <ScrollPane fx:id="productScrollPane" layoutX="34.0" layoutY="233.0" prefHeight="364.0" prefWidth="408.0">

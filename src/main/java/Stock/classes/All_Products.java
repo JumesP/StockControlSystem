@@ -54,4 +54,11 @@ public class All_Products {
     public void setLast_Stocked(String Last_Stocked) {
         this.Last_Stocked = Last_Stocked;
     }
+
+    public String formatDateToSort() {
+        // from DD-MM-YYYY to YYYYMMDD
+        String[] date = Last_Stocked.split("-");
+        Last_Stocked = date[2] + date[1] + date[0];
+        return Last_Stocked;
+    }
 }
