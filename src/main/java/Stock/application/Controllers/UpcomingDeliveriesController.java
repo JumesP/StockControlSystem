@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,17 +18,13 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class UpcomingDeliveriesController implements Initializable {
     public DeliveriesModel deliveriesModel = new DeliveriesModel();
@@ -43,6 +39,7 @@ public class UpcomingDeliveriesController implements Initializable {
     @FXML private TableColumn<Deliveries, String> Delivery_Name;
     @FXML private TableColumn<Deliveries, String> Delivery_Date;
     @FXML private TableColumn<Deliveries, String> Delivery_Company;
+    @FXML private Label date;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,6 +63,9 @@ public class UpcomingDeliveriesController implements Initializable {
                 NewDeliveries.setCursor(Cursor.CLOSED_HAND);
             }
         }
+
+        int date = date();
+        System.out.println(date);
     }
 
     public void switchToHomepage(ActionEvent event) {
@@ -121,5 +121,30 @@ public class UpcomingDeliveriesController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public int date() {
+        Calendar calendar = Calendar.getInstance();
+
+        Date currentDate = calendar.getTime();
+
+        String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+        if (day.length() == 1) { day = "0" + day; }
+        String month = Integer.toString(calendar.get(Calendar.MONTH)+1);
+        if (month.length() == 1) { month = "0" + month; }
+        String currentDateTime = currentDate.toString();
+        String year = Integer.toString(calendar.get(Calendar.YEAR));
+
+        int sortableDate = Integer.parseInt(year + month + day);
+
+        System.out.println("Day: " + day);
+        System.out.println("Month: " + month);
+        System.out.println("Year: " + year);
+        System.out.println(currentDateTime);
+        System.out.println("Sortable Date: " + sortableDate);
+
+        date.setText(day + "/" + month + "/" + year);
+
+        return sortableDate;
     }
 }

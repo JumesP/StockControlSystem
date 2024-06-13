@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class DeliveriesModel {
@@ -91,14 +93,12 @@ public class DeliveriesModel {
                 data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company")));
             }
             resultSet.close();
-
             return data;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
     public void Add() {
 //        String query = "insert into Deliveries(delivery_id, delivery_name, delivery_company, ordered_products) VALUES (1,'Chilled Delivery', 'Spencers', json_array(json_array(0,15),json_array(1,20)))"
     }
