@@ -3,6 +3,7 @@ package Stock.application.Controllers;
 import Stock.application.Models.DeliveriesModel;
 import Stock.application.Models.SpecificDeliveryModel;
 import Stock.classes.Deliveries.Deliveries;
+import Stock.classes.Misc.Clock;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,6 +29,7 @@ import java.util.ResourceBundle;
 
 public class UpcomingDeliveriesController implements Initializable {
     public DeliveriesModel deliveriesModel = new DeliveriesModel();
+    public Clock clock = new Clock();
 
     Stage stage;
     Scene scene;
@@ -40,6 +42,9 @@ public class UpcomingDeliveriesController implements Initializable {
     @FXML private TableColumn<Deliveries, String> Delivery_Date;
     @FXML private TableColumn<Deliveries, String> Delivery_Company;
     @FXML private Label date;
+    @FXML private ChoiceBox<String> DeliverySelect;
+
+    public String[] DeliveryOptions = {"All Deliveries", "Recent Deliveries", "Upcoming Deliveries"};
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,7 +55,7 @@ public class UpcomingDeliveriesController implements Initializable {
         Delivery_Company.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Delivery_Company"));
 //        Ordered_Products.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Ordered_Products"));
 
-        tableView.getItems().setAll(deliveriesModel.FetchDeliveryData());
+        tableView.getItems().setAll(deliveriesModel.FetchAllDeliveryData());
 
         File file = new File("src/main/java/Stock/backend/cookie.txt");
         Scanner scanner = null;
@@ -64,8 +69,9 @@ public class UpcomingDeliveriesController implements Initializable {
             }
         }
 
-        int date = date();
-        System.out.println(date);
+        date.setText(clock.getDate());
+        DeliverySelect.getItems().addAll(DeliveryOptions);
+        DeliverySelect.setOnAction(this::switchDelivery);
     }
 
     public void switchToHomepage(ActionEvent event) {
@@ -123,28 +129,26 @@ public class UpcomingDeliveriesController implements Initializable {
         stage.show();
     }
 
-    public int date() {
-        Calendar calendar = Calendar.getInstance();
+    public void switchDelivery(ActionEvent event) {
+        System.out.println("Switching delivery");
+        // get data from menu
+        String delivery = DeliverySelect.getValue();
 
-        Date currentDate = calendar.getTime();
+        if (delivery == null) {
+            System.out.println("No delivery selected");
+            return;
+        }
 
-        String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
-        if (day.length() == 1) { day = "0" + day; }
-        String month = Integer.toString(calendar.get(Calendar.MONTH)+1);
-        if (month.length() == 1) { month = "0" + month; }
-        String currentDateTime = currentDate.toString();
-        String year = Integer.toString(calendar.get(Calendar.YEAR));
+        if (delivery.equals("Recent Deliveries")) {
+            tableView.getItems().setAll(deliveriesModel.FetchPastDeliveryData());
+        } else if (delivery.equals("Upcoming Deliveries")) {
+            tableView.getItems().setAll(deliveriesModel.FetchFutureDeliveryData());
+        } else if (delivery.equals("All Deliveries")) {
+            tableView.getItems().setAll(deliveriesModel.FetchAllDeliveryData());
+        }
 
-        int sortableDate = Integer.parseInt(year + month + day);
-
-        System.out.println("Day: " + day);
-        System.out.println("Month: " + month);
-        System.out.println("Year: " + year);
-        System.out.println(currentDateTime);
-        System.out.println("Sortable Date: " + sortableDate);
-
-        date.setText(day + "/" + month + "/" + year);
-
-        return sortableDate;
+        System.out.println(delivery);
     }
+
+
 }
