@@ -44,7 +44,7 @@ public class UpcomingDeliveriesController implements Initializable {
     @FXML private Label date;
     @FXML private ChoiceBox<String> DeliverySelect;
 
-    public String[] DeliveryOptions = {"All Deliveries", "Recent Deliveries", "Upcoming Deliveries"};
+    public String[] DeliveryOptions = {"All Deliveries", "Todays Deliveries", "Recent Deliveries", "Upcoming Deliveries"};
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -143,6 +143,8 @@ public class UpcomingDeliveriesController implements Initializable {
             tableView.getItems().setAll(deliveriesModel.FetchPastDeliveryData());
         } else if (delivery.equals("Upcoming Deliveries")) {
             tableView.getItems().setAll(deliveriesModel.FetchFutureDeliveryData());
+        } else if (delivery.equals("Todays Deliveries")) {
+            tableView.getItems().setAll(deliveriesModel.FetchTodaysDeliveryData());
         } else if (delivery.equals("All Deliveries")) {
             tableView.getItems().setAll(deliveriesModel.FetchAllDeliveryData());
         }

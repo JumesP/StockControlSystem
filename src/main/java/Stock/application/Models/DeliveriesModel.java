@@ -5,10 +5,14 @@ import Stock.classes.Deliveries.Deliveries;
 import Stock.classes.Misc.Clock;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import static Stock.classes.Misc.Clock.formatDateForUser;
 
 public class DeliveriesModel {
 
@@ -79,6 +83,30 @@ public class DeliveriesModel {
         return null;
     }
 
+    public List<Deliveries> FetchTodaysDeliveryData() {
+        ResultSet resultSet;
+        PreparedStatement preparedStatement;
+
+        List<Deliveries> data = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM Deliveries WHERE Delivery_Date = ? ORDER BY Delivery_Date ASC"; //MAKE ALL FUTURE PRODUCTS
+            preparedStatement= connection.prepareStatement(query);
+            preparedStatement.setInt(1, clock.sortableDate());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println(resultSet);
+
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company")));
+            }
+            resultSet.close();
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Deliveries> FetchAllDeliveryData() {
         ResultSet resultSet;
         Statement statement;
@@ -91,7 +119,10 @@ public class DeliveriesModel {
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company")));
+                String formattedDate = formatDateForUser(resultSet.getInt("Delivery_Date"));
+                System.out.println("Formatted Date: " + formattedDate);
+
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), formattedDate, resultSet.getString("Delivery_Company")));
             }
 
             resultSet.close();

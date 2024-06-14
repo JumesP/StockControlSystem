@@ -21,6 +21,6 @@
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Home" />
       <Button fx:id="NewDeliveries" layoutX="72.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToNewDeliveries" text="Add Deliveries" />
       <Label fx:id="date" alignment="CENTER" layoutX="378.0" layoutY="19.0" prefHeight="17.0" prefWidth="144.0" text="Current Date:" />
-      <ChoiceBox fx:id="DeliverySelect" layoutX="672.0" layoutY="14.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="DeliverySelect" layoutX="671.0" layoutY="14.0" onMousePressed="#switchDelivery" prefWidth="150.0" />
    </children>
 </Pane>

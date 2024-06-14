@@ -15,21 +15,26 @@ import javafx.stage.Stage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javafx.scene.control.DatePicker.*;
 
 public class NewDeliveryController {
     NewDeliveryModel newDeliveryModel = new NewDeliveryModel();
     int counter = 0;
 
     public TextField Delivery_Name;
-    public TextField Delivery_Date;
+//    public TextField Delivery_Date;
     public TextField Delivery_Supplier;
 //    public TextField Ordered_Products;
 //    public Button submit;
     public ScrollPane productScrollPane;
     public Pane productPane;
 //    public Label error;
+    public DatePicker datePicker;
 
 //    public void addDelivery() {
 //        // Add delivery to database
@@ -53,7 +58,7 @@ public class NewDeliveryController {
         }
     }
 
-    public void change(ActionEvent event) {
+    public void addAnotherProduct(ActionEvent event) {
         List<String> products = newDeliveryModel.getProducts();
 
         ChoiceBox<KeyValuePair> product = new ChoiceBox<KeyValuePair>();
@@ -101,8 +106,12 @@ public class NewDeliveryController {
 
     public void submitDelivery(ActionEvent event) {
         String deliveryName = Delivery_Name.getText();
-        String deliveryDate = Delivery_Date.getText();
+//        String deliveryDate = Delivery_Date.getText();
         String deliveryCompany = Delivery_Supplier.getText();
+
+        LocalDate DeliveryDate2 = datePicker.getValue();
+        int FormattedDate = Integer.parseInt(DeliveryDate2.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+        System.out.println("DatePicker: " + FormattedDate);
 
         ArrayList<ArrayList<String>> orderedProducts = new ArrayList<ArrayList<String>>();
 
@@ -119,7 +128,7 @@ public class NewDeliveryController {
             orderedProducts.add(subproduct);
         }
 
-        newDeliveryModel.Add(deliveryName, deliveryCompany, deliveryDate, orderedProducts);
+        newDeliveryModel.Add(deliveryName, deliveryCompany, FormattedDate, orderedProducts);
         IncreaseStock(orderedProducts);
         switchToHomepage(event);
     }
@@ -137,6 +146,12 @@ public class NewDeliveryController {
             newDeliveryModel.ProductAdd(productID, productNewQuantity);
         }
 
+    }
+
+    public void pickDate(ActionEvent event) {
+        System.out.println("Date picked");
+        String FormattedDate2 = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        System.out.println("DatePicker: " + FormattedDate2);
     }
 
 }

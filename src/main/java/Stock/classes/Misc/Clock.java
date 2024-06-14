@@ -80,8 +80,14 @@ public class Clock {
         System.out.println(currentDateTime);
         System.out.println("Sortable Date: " + sortableDate);
 
-//        date.setText(day + "/" + month + "/" + year);
-
         return sortableDate;
+    }
+
+    public static String formatDateForUser(int Date) {
+        String DateString = String.valueOf(Date);
+        String Year = DateString.substring(0, 4);
+        String Month = DateString.substring(4, 6);
+        String Day = DateString.substring(6, 8);
+        return Day + "-" + Month + "-" + Year;
     }
 }

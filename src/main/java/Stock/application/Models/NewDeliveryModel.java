@@ -1,7 +1,6 @@
 package Stock.application.Models;
 
 import Stock.application.SqliteConnection;
-import org.json.JSONArray;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -74,18 +73,13 @@ public class NewDeliveryModel {
 
     }
 
-    public void Add(String Delivery_Name, String Delivery_Company, String Delivery_Date, ArrayList<ArrayList<String>> Ordered_Products) {
+    public void Add(String Delivery_Name, String Delivery_Company, int Delivery_Date, ArrayList<ArrayList<String>> Ordered_Products) {
         String query;
         PreparedStatement PreparedStatement;
         Statement statement;
         ResultSet resultSet;
 
         System.out.println("Ordered Products" + Ordered_Products);
-
-//        Ordered_Products = Ordered_Products.toArray();
-
-//        JSONArray Ordered_Products_Array = new JSONArray(Ordered_Products);
-//        String Ordered_Products_String = Ordered_Products_Array.toString();
 
         try {
             // Delivery ID
@@ -101,7 +95,7 @@ public class NewDeliveryModel {
             PreparedStatement.setString(1, Delivery_Name);
             PreparedStatement.setInt(2, Delivery_ID);
             PreparedStatement.setString(3, Delivery_Company);
-            PreparedStatement.setString(4, Delivery_Date);
+            PreparedStatement.setInt(4, Delivery_Date);
 //            PreparedStatement.setString(5, Ordered_Products_String);
             System.out.println("PreparedStatement value: " + PreparedStatement);
 //            System.out.println(PreparedStatement);

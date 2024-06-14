@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -27,7 +28,7 @@
                         <Arc fill="DODGERBLUE" layoutX="24.0" layoutY="34.0" length="270.0" radiusX="10.0" radiusY="9.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
                      </children>
                   </Pane>
-                  <Button fx:id="AddAnother" layoutX="263.0" layoutY="289.0" mnemonicParsing="false" onAction="#change" text="Add Another Product" />
+                  <Button fx:id="AddAnother" layoutX="263.0" layoutY="289.0" mnemonicParsing="false" onAction="#addAnotherProduct" text="Add Another Product" />
                   <Button fx:id="submitDelivery" layoutX="263.0" layoutY="321.0" mnemonicParsing="false" onAction="#submitDelivery" prefHeight="25.0" prefWidth="130.0" text="Submit Delivery" />
                   <Label layoutX="263.0" layoutY="264.0" text="Stock Increased on Submit">
                      <font>
@@ -38,5 +39,6 @@
             </AnchorPane>
         </content>
       </ScrollPane>
+      <DatePicker fx:id="datePicker" layoutX="217.0" layoutY="145.0" onAction="#pickDate" promptText="date" />
    </children>
 </AnchorPane>
