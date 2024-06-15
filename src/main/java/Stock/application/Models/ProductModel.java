@@ -1,10 +1,13 @@
 package Stock.application.Models;
 import Stock.application.SqliteConnection;
 import Stock.classes.All_Products;
+import Stock.classes.Deliveries.Deliveries;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static Stock.classes.Misc.Clock.formatDateForUser;
 
 public class ProductModel {
 
@@ -37,7 +40,9 @@ public class ProductModel {
                 System.out.println(resultSet);
                 System.out.println(resultSet.getString("Product_Name"));
                 System.out.println(resultSet.getInt("Product_ID"));
-                data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Price"), resultSet.getInt("Product_Quantity"), resultSet.getString("Last_Stocked")));
+                String formattedDate = formatDateForUser(resultSet.getInt("Last_Stocked"));
+
+                data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Price"), resultSet.getInt("Product_Quantity"), formattedDate));
             }
             resultSet.close();
             return data;
@@ -70,7 +75,10 @@ public class ProductModel {
             }
             List<All_Products> searchResults = new ArrayList<>();
             while (resultSet.next()) {
-                searchResults.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Price"), resultSet.getInt("Product_Quantity"), resultSet.getString("Last_Stocked")));
+                String formattedDate = formatDateForUser(resultSet.getInt("Last_Stocked"));
+                System.out.println("Formatted Date: " + formattedDate);
+
+                searchResults.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Price"), resultSet.getInt("Product_Quantity"), formattedDate));
             }
             resultSet.close();
             return searchResults;

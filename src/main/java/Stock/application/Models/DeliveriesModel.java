@@ -46,7 +46,10 @@ public class DeliveriesModel {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company")));
+                String formattedDate = formatDateForUser(resultSet.getInt("Delivery_Date"));
+                System.out.println("Formatted Date: " + formattedDate);
+
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), formattedDate, resultSet.getString("Delivery_Company")));
             }
 
             preparedStatement.close();
@@ -71,9 +74,10 @@ public class DeliveriesModel {
             preparedStatement.setInt(1, clock.sortableDate());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(resultSet);
+                String formattedDate = formatDateForUser(resultSet.getInt("Delivery_Date"));
+                System.out.println("Formatted Date: " + formattedDate);
 
-                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company")));
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), formattedDate, resultSet.getString("Delivery_Company")));
             }
             resultSet.close();
             return data;
@@ -95,9 +99,10 @@ public class DeliveriesModel {
             preparedStatement.setInt(1, clock.sortableDate());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println(resultSet);
+                String formattedDate = formatDateForUser(resultSet.getInt("Delivery_Date"));
+                System.out.println("Formatted Date: " + formattedDate);
 
-                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), resultSet.getString("Delivery_Date"), resultSet.getString("Delivery_Company")));
+                data.add(new Deliveries(resultSet.getInt("Delivery_ID"), resultSet.getString("Delivery_Name"), formattedDate, resultSet.getString("Delivery_Company")));
             }
             resultSet.close();
             return data;

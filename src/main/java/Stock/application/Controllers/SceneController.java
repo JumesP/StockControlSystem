@@ -27,8 +27,8 @@ public class SceneController implements Initializable {
 
     public Button StockTracker;
     public Button UpcomingDeliveries;
-    public Button RecentDeliveries;
-    public Button DepartmentEditor;
+    public Button Button4;
+    public Button Button3;
     public Button switchToApproveAdmins;
 
     @Override
@@ -63,8 +63,8 @@ public class SceneController implements Initializable {
         if (User.equals("guest")) {
             StockTracker.setDisable(true);
             UpcomingDeliveries.setDisable(true);
-            RecentDeliveries.setDisable(true);
-            DepartmentEditor.setDisable(true);
+            Button3.setDisable(true);
+            Button4.setDisable(true);
         }
 
 
@@ -106,31 +106,7 @@ public class SceneController implements Initializable {
         }
 
     }
-
-    public void switchToDepartmentEditor(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/DepartmentEditor.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void switchToRecentDeliveries(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/RecentDeliveries.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+    // small buttons
     public void switchToSignin(ActionEvent event) {
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Login/LoginPage.fxml"));

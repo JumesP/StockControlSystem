@@ -8,17 +8,17 @@
    <children>
       <TilePane layoutX="136.0" layoutY="79.0" prefHeight="200.0" prefWidth="156.0" stylesheets="@../css/Homepage.css">
          <children>
-            <Button fx:id="DepartmentEditor" mnemonicParsing="false" onAction="#switchToDepartmentEditor" prefHeight="225.0" prefWidth="225.0" stylesheets="@../css/Homepage.css" text="Department Editor" />
+            <Button fx:id="Button4" mnemonicParsing="false" prefHeight="225.0" prefWidth="225.0" stylesheets="@../css/Homepage.css" text="----" />
          </children>
       </TilePane>
       <TilePane layoutX="136.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button fx:id="RecentDeliveries" mnemonicParsing="false" onAction="#switchToRecentDeliveries" prefHeight="225.0" prefWidth="225.0" text="Recent Deliveries" />
+            <Button fx:id="Button3" mnemonicParsing="false" prefHeight="225.0" prefWidth="225.0" text="----" />
          </children>
       </TilePane>
       <TilePane layoutX="552.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button fx:id="UpcomingDeliveries" mnemonicParsing="false" onAction="#switchToUpcomingDeliveries" prefHeight="225.0" prefWidth="225.0" text="Upcoming Deliveries" />
+            <Button fx:id="UpcomingDeliveries" mnemonicParsing="false" onAction="#switchToUpcomingDeliveries" prefHeight="225.0" prefWidth="225.0" text="Delivery Tracker " />
          </children>
       </TilePane>
       <TilePane layoutX="552.0" layoutY="79.0" prefHeight="200.0" prefWidth="200.0">

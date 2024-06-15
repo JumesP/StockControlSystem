@@ -20,3 +20,11 @@ Button {
     -fx-background-color: #f2f2f2;
     -fx-text-fill: #484848;
 }
+
+Images {
+    -fx-border-color: blue;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-box-shadow: 10;
+
+}

@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Stock.application.Controllers.SpecificProductController">
    <children>
-      <ImageView fx:id="ProductImage" fitHeight="294.0" fitWidth="356.0" layoutX="64.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ProductImage" fitHeight="458.0" fitWidth="425.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="Product_Name" layoutX="450.0" layoutY="169.0" prefHeight="27.0" prefWidth="125.0" text="Product Title">
          <font>
             <Font size="18.0" />

@@ -1,5 +1,8 @@
 package Stock.classes;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class All_Products {
     private String Product_Name;
     private Number Product_ID;
@@ -33,6 +36,10 @@ public class All_Products {
 
     public String getLast_Stocked() {
         return Last_Stocked;
+    }
+
+    public Image getImage() {
+        return new Image("/images/" + this.Product_ID + ".png");
     }
 
     public void setProduct_Name(String Product_Name) {
