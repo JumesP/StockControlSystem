@@ -32,5 +32,15 @@
          </font>
       </Label>
       <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToStockTracker" text="Back" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="611.0" prefHeight="17.0" prefWidth="425.0" text="Products created since opening application require placeholders while images load">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="628.0" prefHeight="17.0" prefWidth="425.0" text="Images will be visable upon reopening the app">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

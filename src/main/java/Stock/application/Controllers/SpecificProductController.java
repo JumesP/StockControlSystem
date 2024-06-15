@@ -1,9 +1,11 @@
 package Stock.application.Controllers;
 
+import Stock.application.Models.SpecificProductModel;
 import Stock.classes.All_Products;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,35 +14,39 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class SpecificProductController {
+public class SpecificProductController implements Initializable {
     @FXML private Label Product_Name;
     @FXML private Label Product_Price;
     @FXML private Label Product_Quantity;
     @FXML private Label Last_Stocked;
     @FXML private ImageView ProductImage;
 
-    public void setProduct(All_Products product) {
+    SpecificProductModel specificProductModel = new SpecificProductModel();
 
-        System.out.println("Product ID: " + product.getProduct_ID());
-        System.out.println("Product Image: " + product.getImage());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        All_Products product = specificProductModel.FetchData();
+//        setProduct(product);
+    }
+
+    public void setProduct(All_Products product) {
 
 
         Product_Name.setText(product.getProduct_Name());
         Product_Price.setText("£ " + product.getProduct_Price().toString());
         Product_Quantity.setText(product.getProduct_Quantity().toString() + " units");
         Last_Stocked.setText(product.getLast_Stocked());
-//        ProductImage.setImage(product.getImage());
-//
-//        System.out.println(ProductImage);
-
-        Image image = new Image("/images/" + product.getProduct_ID() + ".png");
-        System.out.println(image.errorProperty());
-        if (image.errorProperty().getValue() == true) {
+        try {
+            ProductImage.setImage(product.getImage());
+        } catch (IllegalArgumentException e) {
             ProductImage.setImage(new Image("/images/placeholder.png"));
-        } else {
-            ProductImage.setImage(image);
         }
     }
 

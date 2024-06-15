@@ -2,6 +2,7 @@ package Stock.classes;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.io.InputStream;
 
 public class All_Products {
     private String Product_Name;
@@ -39,8 +40,18 @@ public class All_Products {
     }
 
     public Image getImage() {
-        return new Image("/images/" + this.Product_ID + ".png");
+        Image image = new Image("/images/products/" + this.getProduct_ID() + ".png");
+        if (image.errorProperty().getValue()) {
+            return new Image("/images/placeholder.png");
+        } else {
+            return image;
+        }
     }
+
+    public String ImagePath() {
+        return "/images/products/" + this.getProduct_ID() + ".png";
+    }
+
 
     public void setProduct_Name(String Product_Name) {
         this.Product_Name = Product_Name;

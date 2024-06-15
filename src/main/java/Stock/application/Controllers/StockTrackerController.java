@@ -74,8 +74,6 @@ public class StockTrackerController implements Initializable {
 
     public void viewSpecificProduct(MouseEvent event) throws IOException {
         All_Products product = tableView.getSelectionModel().getSelectedItem();
-        System.out.println(product.getProduct_ID());
-        System.out.println(product.getProduct_Name());
 
         // Switch to the specific product page
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SpecificProduct.fxml"));
@@ -90,7 +88,6 @@ public class StockTrackerController implements Initializable {
 
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getClassLoader().getResource("css/Homepage.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
