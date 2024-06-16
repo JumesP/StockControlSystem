@@ -91,27 +91,31 @@ public class StockTrackerController implements Initializable {
         SpecificProductController specificProductController = loader.getController();
         specificProductController.setProduct(product);
 
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
     public void switchToHomepage(ActionEvent event) {
-        Stage stage;
-        Scene scene;
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Homepage.fxml"));
-            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneController.switchToHomepage(event);
     }
+
+//    public void switchToHomepage(ActionEvent event) {
+//        Stage stage;
+//        Scene scene;
+//        Parent root;
+//
+//        try {
+//            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Homepage.fxml"));
+//            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//            scene = new Scene(root);
+//            stage.setScene(scene);
+//            stage.show();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void switchToNewProduct(ActionEvent event) {
         Stage stage;

@@ -34,5 +34,6 @@
             <Font size="17.0" />
          </font></Label>
       <Label fx:id="Result" alignment="CENTER" layoutX="245.0" layoutY="472.0" prefHeight="48.0" prefWidth="417.0" />
+      <Button fx:id="Home" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Home" />
    </children>
 </AnchorPane>

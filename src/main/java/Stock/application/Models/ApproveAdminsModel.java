@@ -20,28 +20,28 @@ public class ApproveAdminsModel {
         if (connection == null) System.exit(1);
     }
 
-    public List<PendingAdmins> FetchData() {
-        try {
-            String query = "SELECT * FROM Users WHERE Admin = 1 AND Approved = 0";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            List<PendingAdmins> unApprovedAdmins = new ArrayList<>();
-            while (resultSet.next()) {
-                int user_id = resultSet.getInt("User_ID");
-                String username = resultSet.getString("Username");
-                String password = resultSet.getString("Password");
-
-                PendingAdmins pendingAdmins = new PendingAdmins(user_id, username, password, true, false);
-                unApprovedAdmins.add(pendingAdmins);
-            }
-            resultSet.close();
-            statement.close();
-            return unApprovedAdmins;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public List<PendingAdmins> FetchData() {
+//        try {
+//            String query = "SELECT * FROM Users WHERE Admin = 1 AND Approved = 0";
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery(query);
+//            List<PendingAdmins> unApprovedAdmins = new ArrayList<>();
+//            while (resultSet.next()) {
+//                int user_id = resultSet.getInt("User_ID");
+//                String username = resultSet.getString("Username");
+//                String password = resultSet.getString("Password");
+//
+//                PendingAdmins pendingAdmins = new PendingAdmins(user_id, username, password, true, false);
+//                unApprovedAdmins.add(pendingAdmins);
+//            }
+//            resultSet.close();
+//            statement.close();
+//            return unApprovedAdmins;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 
     //approve pending users

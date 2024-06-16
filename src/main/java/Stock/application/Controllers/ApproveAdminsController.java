@@ -19,22 +19,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static Stock.classes.Users.Admins.approveAdminByID;
+import static Stock.classes.Users.PendingAdmins.FetchPending;
+
 public class ApproveAdminsController implements Initializable {
     public ApproveAdminsModel approveAdminsModel = new ApproveAdminsModel();
 
-    Stage stage;
-    Scene scene;
-    Parent root;
-
-
-    @FXML
-    TableView<PendingAdmins> unApprovedAdminsTable;
-    @FXML
-    TableColumn<PendingAdmins, Integer> user_id;
-    @FXML
-    TableColumn<PendingAdmins, String> username;
-    @FXML
-    TableColumn<PendingAdmins, String> password;
+    @FXML TableView<PendingAdmins> unApprovedAdminsTable;
+    @FXML TableColumn<PendingAdmins, Integer> user_id;
+    @FXML TableColumn<PendingAdmins, String> username;
+    @FXML TableColumn<PendingAdmins, String> password;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,29 +36,18 @@ public class ApproveAdminsController implements Initializable {
         username.setCellValueFactory(new PropertyValueFactory<PendingAdmins, String>("username"));
         password.setCellValueFactory(new PropertyValueFactory<PendingAdmins, String>("password"));
 
-        unApprovedAdminsTable.getItems().setAll(approveAdminsModel.FetchData());
+        unApprovedAdminsTable.getItems().setAll(FetchPending());
     }
 
 
     public void switchToHomepage(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Homepage.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneController.switchToHomepage(event);
     }
 
     public void Approve() {
-        PendingAdmins pendingAdmins = unApprovedAdminsTable.getSelectionModel().getSelectedItem();
-        System.out.println(pendingAdmins.getUser_ID());
-        System.out.println(pendingAdmins.getUsername());
-        System.out.println(pendingAdmins.getPassword());
+        PendingAdmins pendingAdmin = unApprovedAdminsTable.getSelectionModel().getSelectedItem();
 
-        approveAdminsModel.ApproveAdmins(pendingAdmins.getUser_ID());
-        unApprovedAdminsTable.getItems().setAll(approveAdminsModel.FetchData());
+        pendingAdmin.approveAdmin();
+        unApprovedAdminsTable.getItems().setAll(FetchPending());
     }
 }

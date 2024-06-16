@@ -21,6 +21,12 @@ public class All_Products {
     static PreparedStatement preparedStatement;
     static ResultSet resultSet;
 
+    public static void connection() {
+        connection = SqliteConnection.Connector();
+        if (connection == null) System.exit(1);
+    }
+
+
     private String Product_Name;
     private int Product_ID;
     private Integer Product_Restock_Price;
@@ -28,13 +34,6 @@ public class All_Products {
     private int Product_Quantity;
     private int Last_Stocked;
     private String Viewable_Last_Stocked;
-
-
-    public static void connection() {
-        connection = SqliteConnection.Connector();
-        if (connection == null) System.exit(1);
-    }
-
 
     public All_Products(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked) {
         this.Product_Name = Product_Name;
@@ -48,6 +47,7 @@ public class All_Products {
         connection = SqliteConnection.Connector();
         if (connection == null) System.exit(1);
     }
+
 
     // GETTERS
     public String getProduct_Name() {

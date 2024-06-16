@@ -1,6 +1,8 @@
 package Stock.application.Controllers;
 
 import Stock.application.Models.CreateAccountModel;
+import Stock.classes.Users.Users;
+import Stock.classes.Users.Admins;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,10 +14,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import static Stock.classes.Users.Users.generateUserID;
+
 
 public class CreateAccountController {
-    CreateAccountModel createAccountModel = new CreateAccountModel();
-
     public TextField Username;
     public TextField Password;
     public CheckBox Admin;
@@ -27,30 +29,28 @@ public class CreateAccountController {
         System.out.println(Username.getText());
         System.out.println(Password.getText());
         System.out.println(Admin.isSelected());
-        if (createAccountModel.isCreateAccount(Username.getText(), Password.getText(), Admin.isSelected())) {
-            System.out.println("Account created successfully");
-            error.setText("Account created successfully");
+        if (Admin.isSelected()) {
+            Admins admin = new Admins(Username.getText(), Password.getText());
+            if (admin.isCreateAccount(Username.getText(), Password.getText(), Admin.isSelected())) {
+                System.out.println("Account created successfully");
+                error.setText("Account created successfully");
+            } else {
+                System.out.println("Account creation failed");
+                error.setText("Account creation failed");
+            }
         } else {
-            System.out.println("Account creation failed");
-            error.setText("Account creation failed");
+            Users user = new Users(Username.getText(), Password.getText());
+            if (user.isCreateAccount(Username.getText(), Password.getText(), Admin.isSelected())) {
+                System.out.println("Account created successfully");
+                error.setText("Account created successfully");
+            } else {
+                System.out.println("Account creation failed");
+                error.setText("Account creation failed");
+            }
         }
     }
 
     public void switchToLogin(ActionEvent event) {
-        Stage stage;
-        Scene scene;
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Login/LoginPage.fxml"));
-            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneController.switchToSignin(event);
     }
-
-
 }

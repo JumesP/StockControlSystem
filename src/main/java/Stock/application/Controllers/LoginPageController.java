@@ -1,6 +1,7 @@
 package Stock.application.Controllers;
 
 import Stock.application.Models.LoginPageModel;
+import Stock.classes.Users.Users;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import java.awt.*;
 import java.io.FileWriter;
 
 public class LoginPageController {
-    LoginPageModel loginPageModel = new LoginPageModel();
+//    LoginPageModel loginPageModel = new LoginPageModel();
 
     public AnchorPane AnchorPane;
     public TextField Username;
@@ -25,10 +26,9 @@ public class LoginPageController {
     public Label Result;
 
     public void login(ActionEvent event) {
-        if (loginPageModel.isLogin(Username.getText(), Password.getText())) {
-            System.out.println("Login successful");
+        Users user = new Users(Username.getText(), Password.getText());
+        if (user.isLogin()) {
             Result.setText("Login successful");
-
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {
@@ -43,32 +43,10 @@ public class LoginPageController {
     }
 
     public void switchToCreateAnAccount(ActionEvent event) {
-
-        Stage stage;
-        Scene scene;
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Login/CreateAccountPage.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneController.switchToCreateAccount(event);
     }
 
     public void switchToHomepage(ActionEvent event) {
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Homepage.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneController.switchToHomepage(event);
     }
 }

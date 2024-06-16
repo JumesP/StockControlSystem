@@ -1,16 +1,37 @@
 package Stock.classes.Users;
 
+import Stock.application.SqliteConnection;
+
+import java.io.FileWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class Users {
+    static Connection connection;
+    static String query;
+    static Statement statement;
+    static PreparedStatement preparedStatement;
+    static ResultSet resultSet;
+
+    public static void connection() {
+        connection = SqliteConnection.Connector();
+        if (connection == null) System.exit(1);
+    }
+
+
     private int User_ID;
     private String username;
     private String password;
 
-    public Users(int User_ID, String username, String password) {
-        this.User_ID = User_ID;
+    public Users(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
+
+    // GETTERS
     public int getUser_ID() {
         return User_ID;
     }
@@ -23,6 +44,7 @@ public class Users {
         return password;
     }
 
+    // SETTERS
     public void setUser_ID(int User_ID) {
         this.User_ID = User_ID;
     }
@@ -37,16 +59,77 @@ public class Users {
 
 
     // METHODS
+    public Boolean isCreateAccount(String username, String password, Boolean admin) {
+        // Create and account using the username and password and return success
+        connection();
+        if (admin) {
+            query = "INSERT INTO Users (User_ID, Username, Password, Admin, Approved) VALUES (?, ?, ?, 1, 0)";
+            // requests approval, but is stored as admin
+        } else {
+            query = "INSERT INTO Users (User_ID, Username, Password, Admin, Approved) VALUES (?, ?, ?, 0, 1)";
+            // does not request approval, but is stored as user
+        }
 
-//    public Boolean isCreateAccount() {
-//        // Create and account using the username and password and return success
-//    }
-//
-//    public Boolean isLogin() {
-//        // Login using the username and password and return success
-//    }
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, generateUserID());
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, password);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Boolean isLogin() {
+        // Login using the username and password and return success
+        connection();
+        query = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                FileWriter myWriter = new FileWriter("src/main/java/Stock/backend/cookie.txt");
+                if (resultSet.getString("Admin").equals("1")) {
+                    myWriter.write("admin");
+                } else {
+                    myWriter.write("user");
+                }
+                myWriter.close();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) { e.printStackTrace(); return false; }
+    }
 
 
     // STATIC METHODS
+    public static int generateUserID() {
+        // Generate a new User_ID
+        connection();
+        query = "SELECT COUNT(*) FROM users";
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            int User_ID = resultSet.getInt(1);
+            resultSet.close();
+            statement.close();
+            return User_ID;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 
 }
