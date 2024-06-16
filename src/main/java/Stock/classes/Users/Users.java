@@ -35,4 +35,18 @@ public class Users {
         this.password = password;
     }
 
+
+    // METHODS
+
+//    public Boolean isCreateAccount() {
+//        // Create and account using the username and password and return success
+//    }
+//
+//    public Boolean isLogin() {
+//        // Login using the username and password and return success
+//    }
+
+
+    // STATIC METHODS
+
 }

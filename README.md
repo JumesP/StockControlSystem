@@ -1,6 +1,21 @@
 **Supermarket Stock Control System (SSCS)**
 is a revolutionary Stock Management system, allowing users to view, add and control quantities of different products sold by the company.
 
+**Features**
+
+
+**Restocking Products**
+Adding fresh stock to the database is done via deliveries, where the user can input the amount of stock being delivered, This will then update the database with the new stock amount.
+
+**Selling Products**
+Selling products to customers could have simply been completed using a "-1 Stock" button or an entry for removing stock, but for more realistic functionality, random amounts of stock is generated from the Tills of the store.
+
+This functionality will prove useful for this project for the additional feature, 
+
+
+
+
+
 
 **Device Functionality**
 

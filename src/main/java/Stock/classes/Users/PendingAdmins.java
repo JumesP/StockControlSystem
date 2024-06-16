@@ -15,4 +15,19 @@ public class PendingAdmins extends Admins {
     public void setIsApproved(Boolean isApproved) {
         this.isApproved = isApproved;
     }
+
+    // METHODS
+
+    public void FetchPending() {
+
+    }
+
+
+    // STATIC METHODS
+
+
+
+
+
+
 }

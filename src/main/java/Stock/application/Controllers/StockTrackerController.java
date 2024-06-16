@@ -26,8 +26,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import static Stock.classes.All_Products.*;
+
 public class StockTrackerController implements Initializable {
-    public ProductModel productModel = new ProductModel();
+//    public ProductModel productModel = new ProductModel();
+//    public All_Products product = new All_Products();
     public TextField Search;
     public Button add;
 
@@ -38,7 +41,8 @@ public class StockTrackerController implements Initializable {
     @FXML private TableView<All_Products> tableView;
     @FXML private TableColumn<All_Products, String> Product_ID;
     @FXML private TableColumn<All_Products, String> Product_Name;
-    @FXML private TableColumn<All_Products, String> Product_Price;
+    @FXML private TableColumn<All_Products, String> Product_Restock_Price;
+    @FXML private TableColumn<All_Products, String> Product_Sale_Price;
     @FXML private TableColumn<All_Products, String> Product_Quantity;
     @FXML private TableColumn<All_Products, String> Last_Stocked;
 
@@ -47,11 +51,12 @@ public class StockTrackerController implements Initializable {
         // TODO Auto-generated method stub
         Product_ID.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_ID"));
         Product_Name.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Name"));
-        Product_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Price"));
+        Product_Restock_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Restock_Price"));
+        Product_Sale_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Sale_Price"));
         Product_Quantity.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Quantity"));
-        Last_Stocked.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Last_Stocked"));
+        Last_Stocked.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Viewable_Last_Stocked"));
 
-        tableView.getItems().setAll(productModel.FetchData());
+        tableView.getItems().setAll(getAllProducts());
 
         File file = new File("src/main/java/Stock/backend/cookie.txt");
         Scanner scanner = null;
@@ -68,7 +73,7 @@ public class StockTrackerController implements Initializable {
     public void search(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             System.out.println(Search.getText());
-            tableView.getItems().setAll(productModel.FetchSearchedData(Search.getText()));
+            tableView.getItems().setAll(searchProducts(Search.getText()));
         }
     }
 

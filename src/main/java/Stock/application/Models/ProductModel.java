@@ -42,7 +42,7 @@ public class ProductModel {
                 System.out.println(resultSet.getInt("Product_ID"));
                 String formattedDate = formatDateForUser(resultSet.getInt("Last_Stocked"));
 
-                data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Price"), resultSet.getInt("Product_Quantity"), formattedDate));
+                data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked")));
             }
             resultSet.close();
             return data;
@@ -78,7 +78,7 @@ public class ProductModel {
                 String formattedDate = formatDateForUser(resultSet.getInt("Last_Stocked"));
                 System.out.println("Formatted Date: " + formattedDate);
 
-                searchResults.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Price"), resultSet.getInt("Product_Quantity"), formattedDate));
+                searchResults.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked")));
             }
             resultSet.close();
             return searchResults;

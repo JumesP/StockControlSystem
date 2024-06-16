@@ -14,7 +14,8 @@
          <columns>
             <TableColumn fx:id="Product_ID" prefWidth="150.0" text="Product ID" />
             <TableColumn fx:id="Product_Name" prefWidth="150.0" text="Product Name" />
-            <TableColumn fx:id="Product_Price" prefWidth="150.0" text="Product Price" />
+            <TableColumn fx:id="Product_Restock_Price" prefWidth="150.0" text="Product Restock Price" />
+            <TableColumn fx:id="Product_Sale_Price" prefWidth="150.0" text="Product Sale Price" />
             <TableColumn fx:id="Product_Quantity" prefWidth="150.0" text="Product Quantity" />
             <TableColumn fx:id="Last_Stocked" prefWidth="150.0" text="Last Restocked" />
          </columns>

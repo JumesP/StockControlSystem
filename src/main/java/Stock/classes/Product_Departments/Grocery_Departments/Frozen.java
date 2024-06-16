@@ -5,8 +5,18 @@ import Stock.classes.Product_Departments.Grocery;
 public class Frozen extends Grocery{
     private Number Storage_Temperature = -19;
 
-    public Frozen(String Product_Name, Number Product_ID, Number Product_Price, Number Product_Quantity, String Last_Stocked, String Useby_Date, Number Storage_Temperature) {
-        super(Product_Name, Product_ID, Product_Price, Product_Quantity, Last_Stocked, Useby_Date);
+    public Frozen(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked, String Useby_Date) {
+        super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Useby_Date);
         this.Storage_Temperature = Storage_Temperature;
     }
+
+    // METHODS
+
+
+
+    // STATIC METHODS
+//    public static Boolean ifReorderable(int ID) {
+//        // Frozen products can only be ordered once a month, so check if the product has been ordered in the last week
+//
+//    }
 }

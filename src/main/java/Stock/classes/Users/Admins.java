@@ -17,4 +17,19 @@ public class Admins extends Users{
     public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+
+
+    // METHODS
+
+
+
+    // STATIC METHODS
+    public static void ApproveAdmin(int ID) {
+        // Approve an admin account
+    }
+
+
+
+
 }
+

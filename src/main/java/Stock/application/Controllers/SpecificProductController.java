@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -28,7 +29,7 @@ public class SpecificProductController implements Initializable {
     @FXML private Label Last_Stocked;
     @FXML private ImageView ProductImage;
 
-    SpecificProductModel specificProductModel = new SpecificProductModel();
+    All_Products product;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,16 +39,34 @@ public class SpecificProductController implements Initializable {
 
     public void setProduct(All_Products product) {
 
+        this.product = product;
 
         Product_Name.setText(product.getProduct_Name());
-        Product_Price.setText("£ " + product.getProduct_Price().toString());
-        Product_Quantity.setText(product.getProduct_Quantity().toString() + " units");
-        Last_Stocked.setText(product.getLast_Stocked());
+        Product_Price.setText("£ " + product.getProduct_Restock_Price().toString());
+        Product_Quantity.setText(product.getProduct_Quantity() + " units");
+        Last_Stocked.setText(String.valueOf(product.getLast_Stocked()));
         try {
             ProductImage.setImage(product.getImage());
         } catch (IllegalArgumentException e) {
             ProductImage.setImage(new Image("/images/placeholder.png"));
         }
+    }
+
+    public void plusOneStock(ActionEvent event) {
+        // call +1 function in product, change onscreen text to display it higher
+        product.stockAddOne();
+        product.setProduct_Quantity(product.getProduct_Quantity() + 1);
+        Product_Quantity.setText((product.getProduct_Quantity() + 1) + " units");
+    }
+
+    public void minusOneStock(ActionEvent event) {
+        product.stockAddOne();
+        product.setProduct_Quantity(product.getProduct_Quantity() + 1);
+        Product_Quantity.setText((product.getProduct_Quantity() + 1) + " units");
+    }
+
+    public void printProductDetails(ActionEvent event) {
+
     }
 
 
