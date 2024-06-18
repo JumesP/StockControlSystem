@@ -198,20 +198,6 @@ public class All_Products{
         }
     }
 
-//    public static List<All_Products> getAllProducts() {
-//        query = "SELECT * FROM Products ORDER BY Product_Name ASC";
-//        try (ResultSet results = Select(query)) {
-//            List<All_Products> data = new ArrayList<>();
-//            while (results.next()) {
-//                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked")));
-//            }
-//            return data;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return new ArrayList<>();
-//    }
-
     public static List<All_Products> getAllProducts() {
         connection();
         query = "SELECT * FROM Products ORDER BY Product_ID ASC";
@@ -263,11 +249,8 @@ public class All_Products{
 
     public static All_Products getProductByID(int id) {
         query = "SELECT * FROM Products WHERE Product_ID = " + id;
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-
-            if (resultSet.next()) {
+        try (ResultSet results = Select(query)) {
+            if (results.next()) {
                 return new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked"));
             }
         } catch (Exception e) {
