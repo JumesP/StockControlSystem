@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static Stock.classes.Deliveries.Ordered_Items.FetchOrderedItemsByDeliveryID;
+import static Stock.classes.Misc.Clock.formatDateForUser;
 
 public class SpecificDeliveryController implements Initializable {
 
@@ -47,7 +48,7 @@ public class SpecificDeliveryController implements Initializable {
     public void setDelivery(Deliveries delivery) {
         System.out.println("Delivery_ID: " + delivery.getDelivery_ID());
         System.out.println("Delivery_Name: " + delivery.getDelivery_Name());
-        System.out.println("Delivery_Date: " + delivery.getDelivery_Date());
+        System.out.println("Delivery_Date: " + formatDateForUser(delivery.getDelivery_Date()));
         System.out.println("Delivery_Supplier: " + delivery.getDelivery_Company());
 
         Delivery_ID.setText(String.valueOf(delivery.getDelivery_ID()));

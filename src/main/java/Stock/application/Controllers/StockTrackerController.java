@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -15,10 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -41,6 +39,7 @@ public class StockTrackerController implements Initializable {
     @FXML private TableColumn<All_Products, String> Product_Sale_Price;
     @FXML private TableColumn<All_Products, String> Product_Quantity;
     @FXML private TableColumn<All_Products, String> Last_Stocked;
+    @FXML private ChoiceBox<String> Departments;
     @FXML private Button exportData;
 
     @Override
@@ -65,6 +64,11 @@ public class StockTrackerController implements Initializable {
                 add.setDisable(true);
             }
         }
+
+        List<String> departments = listOfDepartments();
+        departments.add(0, "All Departments");
+        Departments.getItems().addAll(departments);
+        Departments.setOnAction(this::switchDepartment);
     }
 
     public void search(KeyEvent event) {
@@ -101,6 +105,20 @@ public class StockTrackerController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void switchDepartment(ActionEvent event) {
+        System.out.println("Switching department");
+        // get data from menu
+        String department = Departments.getValue().toString();
+
+        if (department == null) {
+            tableView.getItems().setAll(getAllProducts());
+        } else if (department.equals("All Departments")) {
+            tableView.getItems().setAll(getAllProducts());
+        } else {
+            tableView.getItems().setAll(getProductsByDepartment(department));
+        }
     }
 
     public void switchToHomepage(ActionEvent event) {

@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Stock.application.SqliteConnection.Select;
+
 public class Ordered_Items {
     static Connection connection;
     static String query;
@@ -61,14 +63,11 @@ public class Ordered_Items {
     // STATIC METHODS
     public static List<Ordered_Items> FetchOrderedItemsByDeliveryID(int ID) {
         query = "SELECT * FROM Orders WHERE Delivery_ID = " + ID;
-        try {
-            connection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
+        try (ResultSet results = Select(query)){
             List<Ordered_Items> data = new ArrayList<>();
 
-            while (resultSet.next()) {
-                data.add(new Ordered_Items(resultSet.getInt("Product_ID"), resultSet.getString("Product_Name"), resultSet.getInt("Product_Quantity")));
+            while (results.next()) {
+                data.add(new Ordered_Items(results.getInt("Product_ID"), results.getString("Product_Name"), results.getInt("Product_Quantity")));
             }
             return data;
         } catch (Exception e) {

@@ -108,4 +108,32 @@ public class Clock {
         String Day = DateString.substring(6, 8);
         return Day + "-" + Month + "-" + Year;
     }
+
+    public static int getSortableDateInAWeek(int Date) {
+//        change from "YYYYmmDD" to "YYYYmmDD" + 7 days
+        String DateString = String.valueOf(Date);
+        String Year = DateString.substring(0, 4);
+        String Month = DateString.substring(4, 6);
+        String Day = DateString.substring(6, 8);
+
+        int day = Integer.parseInt(Day);
+        int month = Integer.parseInt(Month);
+        int year = Integer.parseInt(Year);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+
+
+        Day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+        Month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+        Year = String.valueOf(calendar.get(Calendar.YEAR));
+
+
+        if (Day.length() == 1) { Day = "0" + Day; }
+        if (Month.length() == 1) { Month = "0" + Month; }
+
+
+        return Integer.parseInt(Year + Month + Day);
+    }
 }

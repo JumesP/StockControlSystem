@@ -346,4 +346,32 @@ public class All_Products{
             e.printStackTrace();
         }
     }
+
+    public static List<String> listOfDepartments() {
+        query = "SELECT * FROM Departments";
+        List<String> departments = new ArrayList<>();
+        try (ResultSet results = Select(query)) {
+            while (results.next()) {
+                departments.add(results.getString("Department_Name"));
+            }
+            return departments;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    public static List<All_Products> getProductsByDepartment(String department) {
+        query = "SELECT * FROM Products p, Departments d WHERE p.Department_ID = d.Department_ID AND d.Department_Name = '" + department + "'";
+        try (ResultSet results = Select(query)) {
+            List<All_Products> data = new ArrayList<>();
+            while (results.next()) {
+                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked")));
+            }
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
 }

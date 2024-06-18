@@ -12,16 +12,16 @@
       <TableView fx:id="tableView" layoutX="465.0" layoutY="96.0" prefHeight="437.0" prefWidth="349.0">
         <columns>
           <TableColumn fx:id="Product_ID" prefWidth="75.0" text="Product ID" />
-          <TableColumn fx:id="Product_Name" prefWidth="75.0" text="Product Name" />
-            <TableColumn fx:id="Product_Quantity" prefWidth="75.0" text="Product Quantity" />
+          <TableColumn fx:id="Product_Name" prefWidth="155.0" text="Product Name" />
+            <TableColumn fx:id="Product_Quantity" prefWidth="118.0" text="Product Quantity" />
         </columns>
       </TableView>
-      <Label fx:id="Delivery_ID" layoutX="166.0" layoutY="82.0" text="Delivery ID">
+      <Label fx:id="Delivery_ID" layoutX="193.0" layoutY="82.0" text="Delivery ID">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <Label fx:id="Delivery_Name" layoutX="166.0" layoutY="130.0" text="Name">
+      <Label fx:id="Delivery_Name" layoutX="193.0" layoutY="130.0" text="Name">
          <font>
             <Font size="23.0" />
          </font>
@@ -41,7 +41,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Label fx:id="Delivery_Supplier" layoutX="166.0" layoutY="175.0" text="Supplier">
+      <Label fx:id="Delivery_Supplier" layoutX="193.0" layoutY="175.0" text="Supplier">
          <font>
             <Font size="23.0" />
          </font>
@@ -51,12 +51,22 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Label fx:id="Delivery_Date" layoutX="169.0" layoutY="216.0" text="Date">
+      <Label fx:id="Delivery_Date" layoutX="196.0" layoutY="216.0" text="Date">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToUpcomingDeliveries" text="Back" />
       <Button layoutX="69.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Home" />
+      <Label layoutX="63.0" layoutY="256.0" text="Description:">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="Product_Description" layoutX="192.0" layoutY="270.0" prefHeight="263.0" prefWidth="238.0" text="Description">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Stock.classes.Misc.Clock.getSortableDateInAWeek;
+
 public class Grocery extends All_Products {
 
     static Connection connection;
@@ -18,15 +20,31 @@ public class Grocery extends All_Products {
     static ResultSet resultSet;
 
     private String Parent_Category = "Grocery"; public String getParent_Category() { return Parent_Category; }
-    private String Useby_Date; public String getUseby_Date() { return Useby_Date; }
+    private int Useby_Date; public int getUseby_Date() { return Useby_Date; }
 
-    public Grocery(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked, String Useby_Date) {
+    public Grocery(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked) {
         super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked);
         this.Parent_Category = "Grocery";
-        this.Useby_Date = Useby_Date;
+        this.Useby_Date = getSortableDateInAWeek(Last_Stocked);
     }
 
     // METHODS
+//    public void addGrocery(){
+//        // Add a new grocery product to the database
+//        query = "insert into products (Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Useby_Date) values (?, ?, ?, ?, ?, ?, ?)";
+//        try {
+//            preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setString(1, this.getProduct_Name());
+//            preparedStatement.setInt(2, this.Product_ID);
+//            preparedStatement.setInt(3, this.Product_Restock_Price);
+//            preparedStatement.setInt(4, this.Product_Sale_Price);
+//            preparedStatement.setInt(5, this.Product_Quantity);
+//            preparedStatement.setInt(6, this.Last_Stocked);
+//            preparedStatement.setInt(7, this.Useby_Date);
+//            preparedStatement.executeUpdate();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//    }
 
 
 

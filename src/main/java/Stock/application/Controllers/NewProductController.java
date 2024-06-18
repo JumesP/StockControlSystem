@@ -6,10 +6,12 @@ import Stock.classes.Misc.Image;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -19,13 +21,12 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import static Stock.classes.All_Products.addNewProductToDBStatically;
-import static Stock.classes.All_Products.generateID;
+import static Stock.classes.All_Products.*;
 
-public class NewProductController {
-//    NewProductModel newProductModel = new NewProductModel();
-//    All_Products products = new All_Products();
+public class NewProductController implements Initializable {
     Clock clock = new Clock();
     Image image = new Image();
 
@@ -33,12 +34,19 @@ public class NewProductController {
     public TextField Product_Quantity;
     public TextField Product_Restock_Price;
     public TextField Product_Sale_Price;
+    public ChoiceBox<String> Choicebox1;
+    public ChoiceBox<String> Choicebox2;
     public Button UploadImage;
     public Button submit;
     public Label error;
 
-//    All_Products products = new All_Products("a", 10000, 1, 2, 1, clock.sortableDate());
-//    All_Products products;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Choicebox1.getItems().addAll(listOfDepartments());
+        Choicebox1.setOnAction(this::selectDepartment);
+        Choicebox2.getItems().addAll("Category 1", "Category 2", "Category 3");
+    }
 
     public void addProduct() {
         // Add product to database
@@ -46,10 +54,11 @@ public class NewProductController {
             error.setText("Please fill in all fields");
             return;
         }
-//        All_Products products = new All_Products(Product_Name.getText(), 0, Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.sortableDate());
+
         File selectFile = image.getImage();
 
         addNewProductToDBStatically(Product_Name.getText(), Integer.parseInt(Product_Quantity.getText()), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()));
+
         try{
             File file = new File("src/main/resources/images/products/" + (generateID()-1) + ".png");
             BufferedImage bi = ImageIO.read(selectFile);
@@ -71,6 +80,21 @@ public class NewProductController {
         if (selectFile != null) {
             UploadImage.setText(selectFile.getName() + " selected");
             image.setImage(selectFile);
+        }
+    }
+
+
+    public void selectDepartment(ActionEvent event) {
+        // provide input boxes for the selected department
+        switch (Choicebox1.getValue()) {
+            case "Grocery":
+                Choicebox2.getItems().clear();
+                Choicebox2.getItems().addAll("Chilled", "Frozen", "Fresh");
+                break;
+            case "Ambient":
+                Choicebox2.getItems().clear();
+                Choicebox2.getItems().addAll("Cleaning", "Toiletries", "Kitchen");
+                break;
         }
     }
 

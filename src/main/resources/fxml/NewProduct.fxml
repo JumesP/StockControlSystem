@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Stock.application.Controllers.NewProductController">
    <children>
-      <MenuButton contentDisplay="BOTTOM" layoutX="215.0" layoutY="17.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Department" AnchorPane.bottomAnchor="358.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="247.0" AnchorPane.topAnchor="17.0">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Ambient" />
-          <MenuItem mnemonicParsing="false" text="Chilled" />
-          <MenuItem mnemonicParsing="false" text="Frozen" />
-          <MenuItem mnemonicParsing="false" text="Home and Entertainment" />
-          <MenuItem mnemonicParsing="false" text="Laundry and Household" />
-          <MenuItem mnemonicParsing="false" text="Toiletries and Beauty" />
-        </items>
-      </MenuButton>
+      <ChoiceBox fx:id="Choicebox1" layoutX="215.0" layoutY="17.0" prefWidth="150.0" />
       <TextField fx:id="Product_Name" layoutX="14.0" layoutY="60.0" promptText="Product Name" />
       <TextField fx:id="Product_Quantity" layoutX="14.0" layoutY="102.0" promptText="Product Quantity" />
       <TextField fx:id="Product_Restock_Price" layoutX="14.0" layoutY="145.0" promptText="Product Restock Price" />
@@ -27,5 +17,6 @@
       <Button fx:id="back" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Back" />
       <Button fx:id="UploadImage" layoutX="14.0" layoutY="247.0" mnemonicParsing="false" onAction="#selectFile" prefHeight="26.0" prefWidth="160.0" text="Upload Image" />
       <TextField fx:id="Product_Sale_Price" layoutX="14.0" layoutY="188.0" promptText="Product Sale Price" />
+      <ChoiceBox fx:id="Choicebox2" layoutX="215.0" layoutY="60.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
