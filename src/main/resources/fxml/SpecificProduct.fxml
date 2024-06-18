@@ -42,5 +42,8 @@
             <Font size="10.0" />
          </font>
       </Label>
+      <Button fx:id="plusOneStock" layoutX="458.0" layoutY="448.0" mnemonicParsing="false" onAction="#plusOneStock" style="-fx-background-color: lime;" text="+1 Stock" />
+      <Button fx:id="minusOneStock" layoutX="544.0" layoutY="448.0" mnemonicParsing="false" onAction="#minusOneStock" style="-fx-background-color: red;" text="-1 Stock" />
+      <Button fx:id="exportData" layoutX="458.0" layoutY="493.0" mnemonicParsing="false" onAction="#exportData" prefHeight="26.0" prefWidth="145.0" text="Export Product Data" />
    </children>
 </Pane>

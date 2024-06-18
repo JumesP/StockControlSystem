@@ -13,7 +13,7 @@
       </TilePane>
       <TilePane layoutX="136.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button fx:id="Button3" mnemonicParsing="false" prefHeight="225.0" prefWidth="225.0" text="----" />
+            <Button fx:id="TransactionAnalytics" mnemonicParsing="false" onAction="#switchToTransactionAnalytics" prefHeight="225.0" prefWidth="225.0" text="Transactions Analytics" />
          </children>
       </TilePane>
       <TilePane layoutX="552.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0">

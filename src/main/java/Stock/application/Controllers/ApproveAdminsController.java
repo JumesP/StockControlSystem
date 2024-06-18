@@ -1,6 +1,6 @@
 package Stock.application.Controllers;
 
-import Stock.application.Models.ApproveAdminsModel;
+//import Stock.application.Models.ApproveAdminsModel;
 import Stock.classes.Users.PendingAdmins;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ import static Stock.classes.Users.Admins.approveAdminByID;
 import static Stock.classes.Users.PendingAdmins.FetchPending;
 
 public class ApproveAdminsController implements Initializable {
-    public ApproveAdminsModel approveAdminsModel = new ApproveAdminsModel();
+//    public ApproveAdminsModel approveAdminsModel = new ApproveAdminsModel();
 
     @FXML TableView<PendingAdmins> unApprovedAdminsTable;
     @FXML TableColumn<PendingAdmins, Integer> user_id;

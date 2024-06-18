@@ -60,6 +60,18 @@ public class SceneController {
 
     }
 
+    public static void switchToTransactionAnalytics(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/TransactionAnalytics.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // Account Based
     public static void switchToSignin(ActionEvent event) {
@@ -101,7 +113,7 @@ public class SceneController {
     // Products
     public static void switchToNewProduct(ActionEvent event) {
         try {
-            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/Products/NewProduct.fxml"));
+            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/NewProduct.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -113,7 +125,7 @@ public class SceneController {
 
     public static void switchToSpecificProduct(ActionEvent event) {
         try {
-            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/Products/SpecificProduct.fxml"));
+            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/SpecificProduct.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -126,7 +138,7 @@ public class SceneController {
     // Delivery
     public static void switchToNewDelivery(ActionEvent event) {
         try {
-            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/Delivery/NewDelivery.fxml"));
+            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/NewDelivery.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -138,7 +150,7 @@ public class SceneController {
 
     public static void switchToSpecificDelivery(ActionEvent event) {
         try {
-            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/Delivery/SpecificDelivery.fxml"));
+            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/SpecificDelivery.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import static Stock.application.SqliteConnection.Select;
+import static Stock.application.SqliteConnection.SelectAd;
+
 public class Users {
     static Connection connection;
     static String query;
@@ -76,6 +79,7 @@ public class Users {
             preparedStatement.setString(2, username);
             preparedStatement.setString(3, password);
             preparedStatement.executeUpdate();
+            connection.close();
             return true;
         } catch (Exception e) {
             return false;
@@ -91,16 +95,11 @@ public class Users {
 
     public Boolean isLogin() {
         // Login using the username and password and return success
-        connection();
         query = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
-        try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+        try(ResultSet results = SelectAd(query, username, password)) {
+            if (results.next()) {
                 FileWriter myWriter = new FileWriter("src/main/java/Stock/backend/cookie.txt");
-                if (resultSet.getString("Admin").equals("1")) {
+                if (results.getString("Admin").equals("1")) {
                     myWriter.write("admin");
                 } else {
                     myWriter.write("user");
@@ -111,6 +110,26 @@ public class Users {
                 return false;
             }
         } catch (Exception e) { e.printStackTrace(); return false; }
+
+//        try {
+//            preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setString(1, this.username);
+//            preparedStatement.setString(2, this.password);
+//            resultSet = preparedStatement.executeQuery();
+//            if (resultSet.next()) {
+//                FileWriter myWriter = new FileWriter("src/main/java/Stock/backend/cookie.txt");
+//                if (resultSet.getString("Admin").equals("1")) {
+//                    myWriter.write("admin");
+//                } else {
+//                    myWriter.write("user");
+//                }
+//                myWriter.close();
+//                connection.close();
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        } catch (Exception e) { e.printStackTrace(); return false; }
     }
 
 
@@ -125,6 +144,7 @@ public class Users {
             int User_ID = resultSet.getInt(1);
             resultSet.close();
             statement.close();
+            connection.close();
             return User_ID;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,0 +1,7 @@
+Stock Details - Dated: 18/06/2024 at 06:44:22
+Product Name: Sienna
+Product ID: 10
+Product Restock Price: 2
+Product Sale Price: 5000
+Product Quantity: 5
+Last Stocked: 20240618

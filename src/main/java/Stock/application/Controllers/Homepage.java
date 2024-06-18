@@ -15,8 +15,8 @@ public class Homepage implements Initializable {
     public String User;
     public Button StockTracker;
     public Button UpcomingDeliveries;
+    public Button TransactionAnalytics;
     public Button Button4;
-    public Button Button3;
     public Button switchToApproveAdmins;
 
     @Override
@@ -51,7 +51,7 @@ public class Homepage implements Initializable {
         if (User.equals("guest")) {
             StockTracker.setDisable(true);
             UpcomingDeliveries.setDisable(true);
-            Button3.setDisable(true);
+            TransactionAnalytics.setDisable(true);
             Button4.setDisable(true);
         }
     }
@@ -62,6 +62,10 @@ public class Homepage implements Initializable {
 
     public void switchToUpcomingDeliveries(ActionEvent event) {
         SceneController.switchToUpcomingDeliveries(event);
+    }
+
+    public void switchToTransactionAnalytics(ActionEvent event) {
+        SceneController.switchToTransactionAnalytics(event);
     }
 
     public void switchToApproveAdmins(ActionEvent event) {

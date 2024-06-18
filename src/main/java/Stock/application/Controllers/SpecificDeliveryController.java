@@ -1,7 +1,5 @@
 package Stock.application.Controllers;
 
-import Stock.application.Models.SpecificDeliveryModel;
-import Stock.classes.All_Products;
 import Stock.classes.Deliveries.Deliveries;
 import Stock.classes.Deliveries.Ordered_Items;
 import javafx.event.ActionEvent;
@@ -21,8 +19,9 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static Stock.classes.Deliveries.Ordered_Items.FetchOrderedItemsByDeliveryID;
+
 public class SpecificDeliveryController implements Initializable {
-    public SpecificDeliveryModel specificDeliveryModel = new SpecificDeliveryModel();
 
     @FXML private TableView<Ordered_Items> tableView;
     @FXML private TableColumn<Ordered_Items, String> Product_ID;
@@ -51,44 +50,19 @@ public class SpecificDeliveryController implements Initializable {
         System.out.println("Delivery_Date: " + delivery.getDelivery_Date());
         System.out.println("Delivery_Supplier: " + delivery.getDelivery_Company());
 
-        Delivery_ID.setText(delivery.getDelivery_ID().toString());
+        Delivery_ID.setText(String.valueOf(delivery.getDelivery_ID()));
         Delivery_Name.setText(delivery.getDelivery_Name());
-        Delivery_Date.setText(delivery.getDelivery_Date());
+        Delivery_Date.setText(String.valueOf(delivery.getDelivery_Date()));
         Delivery_Supplier.setText(delivery.getDelivery_Company());
-        tableView.getItems().setAll(specificDeliveryModel.FetchData(delivery.getDelivery_ID()));
 
-//        Delivery_ID.setText("Hello");
+        tableView.getItems().setAll(FetchOrderedItemsByDeliveryID(delivery.getDelivery_ID()));
     }
 
     public void switchToUpcomingDeliveries(ActionEvent event) {
-        Stage stage;
-        Scene scene;
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/UpcomingDeliveries.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneController.switchToUpcomingDeliveries(event);
     }
 
     public void switchToHomepage(ActionEvent event) {
-        Stage stage;
-        Scene scene;
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Homepage.fxml"));
-            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneController.switchToHomepage(event);
     }
 }

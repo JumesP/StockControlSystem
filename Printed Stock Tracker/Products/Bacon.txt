@@ -1,0 +1,6 @@
+Product Name: Bacon
+Product ID: 5
+Product Restock Price: 10
+Product Sale Price: 2
+Product Quantity: 1
+Last Stocked: 20240615

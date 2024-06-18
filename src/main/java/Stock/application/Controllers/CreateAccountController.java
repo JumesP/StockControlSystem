@@ -1,6 +1,5 @@
 package Stock.application.Controllers;
 
-import Stock.application.Models.CreateAccountModel;
 import Stock.classes.Users.Users;
 import Stock.classes.Users.Admins;
 import javafx.event.ActionEvent;

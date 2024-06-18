@@ -2,12 +2,17 @@ package Stock.classes.Misc;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Clock {
 
-    private String Day;
-    private String Month;
-    private final String Year;
+    private static String Day;
+    private static String Month;
+    private static String Year;
+
+    public static String Hour;
+    public static String Minute;
+    public static String Second;
 
     public Clock() {
         Calendar calendar = Calendar.getInstance();
@@ -19,6 +24,14 @@ public class Clock {
 
         if (Day.length() == 1) { Day = "0" + Day; }
         if (Month.length() == 1) { Month = "0" + Month; }
+
+        Hour = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
+        Minute = String.valueOf(calendar.get(Calendar.MINUTE));
+        Second = String.valueOf(calendar.get(Calendar.SECOND));
+
+        if (Hour.length() == 1) { Hour = "0" + Hour; }
+        if (Minute.length() == 1) { Minute = "0" + Minute; }
+        if (Second.length() == 1) { Second = "0" + Second; }
     }
 
     public int getDay() {
@@ -35,6 +48,10 @@ public class Clock {
 
     public String getDate() {
         return Day + "/" + Month + "/" + Year;
+    }
+
+    public String getTime() {
+        return Hour + ":" + Minute + ":" + Second;
     }
 
     public String getCurrentDate(){
@@ -84,6 +101,7 @@ public class Clock {
     }
 
     public static String formatDateForUser(int Date) {
+        // changes the date from "YYYYmmDD" to "DD-mm-YYYY"
         String DateString = String.valueOf(Date);
         String Year = DateString.substring(0, 4);
         String Month = DateString.substring(4, 6);

@@ -7,25 +7,24 @@ import javafx.scene.image.Image;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class All_Products {
+import static Stock.application.SqliteConnection.*;
+import static Stock.classes.Misc.Clock.formatDateForUser;
+
+public class All_Products{
     static Connection connection;
     static String query;
+    static ResultSet resultSet;
     static Statement statement;
     static PreparedStatement preparedStatement;
-    static ResultSet resultSet;
 
-    public static void connection() {
+    static {
         connection = SqliteConnection.Connector();
         if (connection == null) System.exit(1);
     }
-
 
     private String Product_Name;
     private int Product_ID;
@@ -34,6 +33,7 @@ public class All_Products {
     private int Product_Quantity;
     private int Last_Stocked;
     private String Viewable_Last_Stocked;
+    private File image;
 
     public All_Products(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked) {
         this.Product_Name = Product_Name;
@@ -42,12 +42,11 @@ public class All_Products {
         this.Product_Sale_Price = Product_Sale_Price;
         this.Product_Quantity = Product_Quantity;
         this.Last_Stocked = Last_Stocked;
-        this.Viewable_Last_Stocked = Clock.formatDateForUser(Last_Stocked);
-
-        connection = SqliteConnection.Connector();
-        if (connection == null) System.exit(1);
+        this.Viewable_Last_Stocked = formatDateForUser(Last_Stocked);
+        this.image = null;
     }
 
+    static Clock clock = new Clock();
 
     // GETTERS
     public String getProduct_Name() {
@@ -78,6 +77,12 @@ public class All_Products {
         return Viewable_Last_Stocked;
     }
 
+    public File getFile() {
+        return image;
+    }
+
+//    public File getImage() { return image; }
+
 //    public String getViewable_Last_Stocked() { return Viewable_Last_Stocked; }
 
     // SETTERS
@@ -100,6 +105,8 @@ public class All_Products {
         this.Viewable_Last_Stocked = Viewable_Last_Stocked;
     }
 
+    public void setImage(File image) { this.image = image; }
+
     // METHODS
 
     public Image getImage() {
@@ -117,6 +124,8 @@ public class All_Products {
 
     public void printOneToFile() {
         String FilePath = "Printed Stock Tracker/Products/" + this.Product_Name + ".txt";
+        String Date = clock.getDate();
+        String Time = clock.getTime();
         try {
             // Create new File
             File file = new File(FilePath);
@@ -125,6 +134,7 @@ public class All_Products {
             }
             // Write to file
             FileWriter writer = new FileWriter(FilePath);
+            writer.write("Stock Details - Dated: " + Date + " at " + Time + "\n");
             writer.write("Product Name: " + this.Product_Name + "\n");
             writer.write("Product ID: " + this.Product_ID + "\n");
             writer.write("Product Restock Price: " + this.Product_Restock_Price + "\n");
@@ -140,22 +150,12 @@ public class All_Products {
 
     public void stockAddOne() {
         query = "UPDATE Products SET Product_Quantity = Product_Quantity + 1 WHERE Product_ID = " + this.Product_ID;
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Update(query);
     }
 
-    public void StockRemoveOne() {
+    public void stockRemoveOne() {
         query = "UPDATE Products SET Product_Quantity = Product_Quantity - 1 WHERE Product_ID = " + this.Product_ID;
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Update(query);
     }
 
     public void bulkDeleteStock(int amount) {
@@ -179,7 +179,7 @@ public class All_Products {
     }
 
     public void addNewProductToDB() {
-        query = "INSERT INTO Products (Product_Name, Product_ID, Product_Price, Product_Quantity, Last_Stocked) VALUES ('" + this.Product_Name + "', " + this.Product_ID + ", " + this.Product_Restock_Price + ", " + this.Product_Sale_Price + ", " + this.Product_Quantity + ", '" + this.Last_Stocked + "')";
+        query = "INSERT INTO Products (Product_Name, Product_ID, Product_Price, Product_Quantity, Last_Stocked) VALUES ('" + this.Product_Name + "', " + generateID() + ", " + this.Product_Restock_Price + ", " + this.Product_Sale_Price + ", " + this.Product_Quantity + ", '" + clock.sortableDate() + "')";
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -188,10 +188,33 @@ public class All_Products {
         }
     }
 
-    // STATICS
+    // STATIC METHODS
+    public static Image ImageByID(int ID) {
+        Image image = new Image("/images/products/" + ID + ".png");
+        if (image.errorProperty().getValue()) {
+            return new Image("/images/placeholder.png");
+        } else {
+            return image;
+        }
+    }
+
+//    public static List<All_Products> getAllProducts() {
+//        query = "SELECT * FROM Products ORDER BY Product_Name ASC";
+//        try (ResultSet results = Select(query)) {
+//            List<All_Products> data = new ArrayList<>();
+//            while (results.next()) {
+//                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked")));
+//            }
+//            return data;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return new ArrayList<>();
+//    }
+
     public static List<All_Products> getAllProducts() {
         connection();
-        query = "SELECT * FROM Products ORDER BY Product_Name ASC";
+        query = "SELECT * FROM Products ORDER BY Product_ID ASC";
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
@@ -200,7 +223,6 @@ public class All_Products {
             while (resultSet.next()) {
                 data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked")));
             }
-            connection.close();
             return data;
         } catch (Exception e) {
             e.printStackTrace();
@@ -209,8 +231,19 @@ public class All_Products {
     }
 
     public static List<All_Products> searchProducts(String search) {
-        connection();
-        query = "SELECT * FROM Products WHERE Product_Name LIKE '%" + search + "%' ORDER BY Product_Name ASC";
+        if (search.equals("")) { return getAllProducts(); }
+        query = "SELECT * FROM Products WHERE Product_Name LIKE '%" + search + "%' ORDER BY Product_ID ASC";
+        try (ResultSet results = Select(query)) {
+            List<All_Products> data = new ArrayList<>();
+            while (results.next()) {
+                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked")));
+            }
+            return data;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
@@ -244,25 +277,20 @@ public class All_Products {
     }
 
     public static int generateID() {
-        query = "SELECT MAX(Product_ID) FROM Products";
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-
-            if (resultSet.next()) {
-                return resultSet.getInt("Product_ID") + 1;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        query = "SELECT COUNT(Product_ID) FROM Products";
+        try (ResultSet results = Select(query)) {
+            if (results.next()) { return results.getInt(1); }
+        } catch (Exception e) { e.printStackTrace(); }
         return 0;
     }
 
     public static void printAllToFile() throws IOException {
         String FilePath = "Printed Stock Tracker/Stock Details.txt";
-
+        String Date = clock.getDate();
+        String Time = clock.getTime();
         query = "SELECT * FROM Products";
         try {
+            connection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             List<All_Products> data= new ArrayList<>();
@@ -277,6 +305,8 @@ public class All_Products {
 
             FileWriter writer = new FileWriter(FilePath);
 
+            writer.write("Stock Details - Dated: " + Date + " at " + Time + "\n");
+
             while (resultSet.next()) {
                 TotalStockCost += resultSet.getInt("Product_Restock_Price") * resultSet.getInt("Product_Quantity");
                 TotalStockValue += resultSet.getInt("Product_Sale_Price") * resultSet.getInt("Product_Quantity");
@@ -286,14 +316,17 @@ public class All_Products {
                 // Write to file
                 writer.write("Product Name: " + resultSet.getString("Product_Name") + "\n");
                 writer.write("Product ID: " + resultSet.getInt("Product_ID") + "\n");
-                writer.write("Product Price: " + resultSet.getInt("Product_Price") + "\n");
+                writer.write("Product Restock Price: " + resultSet.getInt("Product_Restock_Price") + "\n");
+                writer.write("Product Sale Price: " + resultSet.getInt("Product_Sale_Price") + "\n");
                 writer.write("Product Quantity: " + resultSet.getInt("Product_Quantity") + "\n");
-                writer.write("Last Stocked: " + resultSet.getString("Last_Stocked") + "\n");
+                writer.write("Last Stocked: " + formatDateForUser(resultSet.getInt("Last_Stocked")) + "\n");
+                writer.write("Total Stock Cost:  £" + TotalStockCost + "\n");
+                writer.write("Total Stock Value: £" + TotalStockValue + "\n");
                 writer.write("\n");
             }
             writer.write("========================================\n");
-            writer.write("Total Stock Cost: " + TotalStockCost + "\n");
-            writer.write("Total Stock Value: " + TotalStockValue + "\n");
+            writer.write("Total Stock Cost:  £" + TotalStockCost + "\n");
+            writer.write("Total Stock Value: £" + TotalStockValue + "\n");
 
             writer.close();
         } catch (Exception e) {
@@ -313,6 +346,16 @@ public class All_Products {
 
     public static void bulkAddStock(int ID, int amount) {
         query = "UPDATE Products SET Product_Quantity = Product_Quantity + " + amount + " WHERE Product_ID = " + ID;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addNewProductToDBStatically(String name, int quantity, int restock_price, int sale_price) {
+        query = "INSERT INTO Products (Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked) VALUES ('" + name + "', " + generateID() + ", " + restock_price + ", " + sale_price + ", " + quantity + ", '" + clock.sortableDate() + "')";
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query);

@@ -33,5 +33,6 @@
             <MenuItem mnemonicParsing="false" text="Toiletries and Beauty" />
          </items>
       </MenuButton>
+      <Button fx:id="exportData" layoutX="137.0" layoutY="9.0" mnemonicParsing="false" onAction="#exportData" prefHeight="26.0" prefWidth="161.0" text="Export Stock Data" />
    </children>
 </AnchorPane>

@@ -1,0 +1,113 @@
+Stock Details - Dated: 18/06/2024 at 06:44:22
+Product Name: Orange
+Product ID: 0
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 100
+Last Stocked: 14-06-2024
+Total Stock Cost:  £100
+Total Stock Value: £200
+
+Product Name: Banana
+Product ID: 2
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 10
+Last Stocked: 14-06-2024
+Total Stock Cost:  £110
+Total Stock Value: £220
+
+Product Name: Apple
+Product ID: 1
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 556
+Last Stocked: 27-06-2024
+Total Stock Cost:  £666
+Total Stock Value: £1332
+
+Product Name: Grape
+Product ID: 4
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 494
+Last Stocked: 14-06-2024
+Total Stock Cost:  £1160
+Total Stock Value: £2320
+
+Product Name: Melon
+Product ID: 3
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 20
+Last Stocked: 20-06-2024
+Total Stock Cost:  £1180
+Total Stock Value: £2360
+
+Product Name: Mango
+Product ID: 6
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 1251
+Last Stocked: 20-06-2024
+Total Stock Cost:  £2431
+Total Stock Value: £4862
+
+Product Name: Tomato
+Product ID: 7
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 194
+Last Stocked: 14-06-2024
+Total Stock Cost:  £2625
+Total Stock Value: £5250
+
+Product Name: Strawberry
+Product ID: 8
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 6
+Last Stocked: 18-06-2024
+Total Stock Cost:  £2631
+Total Stock Value: £5262
+
+Product Name: Bacon
+Product ID: 5
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 8
+Last Stocked: 15-06-2024
+Total Stock Cost:  £2639
+Total Stock Value: £5278
+
+Product Name: Ham
+Product ID: 9
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 5
+Last Stocked: 22-06-2024
+Total Stock Cost:  £2644
+Total Stock Value: £5288
+
+Product Name: Sienna
+Product ID: 10
+Product Restock Price: 2
+Product Sale Price: 5000
+Product Quantity: 5
+Last Stocked: 18-06-2024
+Total Stock Cost:  £2654
+Total Stock Value: £30288
+
+Low Stock: Sienna
+Product Name: Sienna
+Product ID: 11
+Product Restock Price: 2
+Product Sale Price: 5000
+Product Quantity: 1
+Last Stocked: 18-06-2024
+Total Stock Cost:  £2656
+Total Stock Value: £35288
+
+========================================
+Total Stock Cost:  £2656
+Total Stock Value: £35288

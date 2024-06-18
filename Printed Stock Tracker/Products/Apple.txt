@@ -1,0 +1,7 @@
+Stock Details - Dated: 17/06/2024 at 00:10:59
+Product Name: Apple
+Product ID: 1
+Product Restock Price: 1
+Product Sale Price: 2
+Product Quantity: 503
+Last Stocked: 20240614

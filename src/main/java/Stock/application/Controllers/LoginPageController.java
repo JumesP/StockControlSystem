@@ -1,6 +1,5 @@
 package Stock.application.Controllers;
 
-import Stock.application.Models.LoginPageModel;
 import Stock.classes.Users.Users;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;

@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import java.io.File;
 import java.io.FileWriter;
 
+import static Stock.application.SqliteConnection.connection;
+
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
@@ -38,6 +40,8 @@ public class Main extends Application {
             // Logo
             Image icon = new Image("/images/logo.jpeg");
             primaryStage.getIcons().add(icon);
+
+            connection();
 
 //            Button button = new Button("Button 1");
 //            EventHandler listener = new MyEventHandler();

@@ -1,7 +1,5 @@
 package Stock.application.Controllers;
 
-import Stock.application.Models.ProductModel;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,8 +27,6 @@ import javafx.stage.Stage;
 import static Stock.classes.All_Products.*;
 
 public class StockTrackerController implements Initializable {
-//    public ProductModel productModel = new ProductModel();
-//    public All_Products product = new All_Products();
     public TextField Search;
     public Button add;
 
@@ -45,6 +41,7 @@ public class StockTrackerController implements Initializable {
     @FXML private TableColumn<All_Products, String> Product_Sale_Price;
     @FXML private TableColumn<All_Products, String> Product_Quantity;
     @FXML private TableColumn<All_Products, String> Last_Stocked;
+    @FXML private Button exportData;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,6 +74,15 @@ public class StockTrackerController implements Initializable {
         }
     }
 
+    public void exportData(ActionEvent event) {
+        try {
+            printAllToFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        exportData.setText("Stock Data Exported");
+    }
+
     public void viewSpecificProduct(MouseEvent event) throws IOException {
         All_Products product = tableView.getSelectionModel().getSelectedItem();
 
@@ -101,35 +107,7 @@ public class StockTrackerController implements Initializable {
         SceneController.switchToHomepage(event);
     }
 
-//    public void switchToHomepage(ActionEvent event) {
-//        Stage stage;
-//        Scene scene;
-//        Parent root;
-//
-//        try {
-//            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Homepage.fxml"));
-//            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//            scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void switchToNewProduct(ActionEvent event) {
-        Stage stage;
-        Scene scene;
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/NewProduct.fxml"));
-            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneController.switchToNewProduct(event);
     }
 }
