@@ -2,11 +2,13 @@ package Stock.classes.Users;
 
 import Stock.application.SqliteConnection;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import static Stock.application.SqliteConnection.Select;
 import static Stock.application.SqliteConnection.SelectAd;
@@ -152,4 +154,18 @@ public class Users {
         }
     }
 
+    public static String isAdmin() {
+        File file = new File("src/main/java/Stock/backend/cookie.txt");
+        Scanner scanner = null;
+        try { scanner = new Scanner(file); }
+        catch (Exception e) { throw new RuntimeException(e); }
+
+        if (!scanner.hasNext()) { return "guest"; }
+
+        return switch (scanner.nextLine()) {
+            case "admin" -> "admin";
+            case "user" -> "user";
+            default -> "guest";
+        };
+    }
 }

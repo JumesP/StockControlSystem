@@ -68,7 +68,7 @@ public class NewDeliveryController {
         TextField product_quantity = new TextField();
         product_quantity.setPromptText("Product Quantity");
         product_quantity.idProperty().set("product_quantity" + counter);
-        product_quantity.setLayoutX(91);
+        product_quantity.setLayoutX(110);
         product_quantity.setLayoutY((counter * 30));
         product_quantity.prefWidth(75);
         product_quantity.prefHeight(28);

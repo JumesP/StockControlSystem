@@ -29,22 +29,24 @@ public class Grocery extends All_Products {
     }
 
     // METHODS
-//    public void addGrocery(){
-//        // Add a new grocery product to the database
-//        query = "insert into products (Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Useby_Date) values (?, ?, ?, ?, ?, ?, ?)";
-//        try {
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setString(1, this.getProduct_Name());
-//            preparedStatement.setInt(2, this.Product_ID);
-//            preparedStatement.setInt(3, this.Product_Restock_Price);
-//            preparedStatement.setInt(4, this.Product_Sale_Price);
-//            preparedStatement.setInt(5, this.Product_Quantity);
-//            preparedStatement.setInt(6, this.Last_Stocked);
-//            preparedStatement.setInt(7, this.Useby_Date);
-//            preparedStatement.executeUpdate();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//    }
+    public void addGrocery(){
+        // Add a new grocery product to the database
+        query = "insert into products (Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Useby_Date) values (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, this.getProduct_Name());
+            preparedStatement.setInt(2, super.getProduct_ID());
+            preparedStatement.setInt(3, super.getProduct_Restock_Price());
+            preparedStatement.setInt(4, super.getProduct_Sale_Price());
+            preparedStatement.setInt(5, super.getProduct_Quantity());
+            preparedStatement.setInt(6, super.getLast_Stocked());
+            preparedStatement.setInt(7, this.Useby_Date);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

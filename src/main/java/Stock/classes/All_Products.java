@@ -347,19 +347,7 @@ public class All_Products{
         }
     }
 
-    public static List<String> listOfDepartments() {
-        query = "SELECT * FROM Departments";
-        List<String> departments = new ArrayList<>();
-        try (ResultSet results = Select(query)) {
-            while (results.next()) {
-                departments.add(results.getString("Department_Name"));
-            }
-            return departments;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new ArrayList<>();
-    }
+
 
     public static List<All_Products> getProductsByDepartment(String department) {
         query = "SELECT * FROM Products p, Departments d WHERE p.Department_ID = d.Department_ID AND d.Department_Name = '" + department + "'";
@@ -374,4 +362,6 @@ public class All_Products{
         }
         return new ArrayList<>();
     }
+
+
 }

@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import static Stock.classes.All_Products.*;
+import static Stock.classes.Departments.Departments.listOfDepartments;
 
 public class StockTrackerController implements Initializable {
     public TextField Search;
@@ -128,4 +129,6 @@ public class StockTrackerController implements Initializable {
     public void switchToNewProduct(ActionEvent event) {
         SceneController.switchToNewProduct(event);
     }
+
+
 }
