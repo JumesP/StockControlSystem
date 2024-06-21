@@ -48,9 +48,9 @@ public class StockTrackerController implements Initializable {
         // TODO Auto-generated method stub
         Product_ID.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_ID"));
         Product_Name.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Name"));
-        Product_Restock_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Restock_Price"));
-        Product_Sale_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Sale_Price"));
-        Product_Quantity.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Quantity"));
+        Product_Restock_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Viewable_Restock_Price"));
+        Product_Sale_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Viewable_Sale_Price"));
+        Product_Quantity.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Viewable_Quantity"));
         Last_Stocked.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Viewable_Last_Stocked"));
 
         tableView.getItems().setAll(getAllProducts());

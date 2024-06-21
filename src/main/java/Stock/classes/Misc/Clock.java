@@ -2,6 +2,7 @@ package Stock.classes.Misc;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Clock {
@@ -109,6 +110,14 @@ public class Clock {
         return Day + "-" + Month + "-" + Year;
     }
 
+    public static int sortableDateHyphen(String date){
+        // Converts a date in the format "DD-mm-YYYY" to a sortable integer being "YYYYmmDD"
+        String[] dateArray = date.split("-");
+        String sortableDate = dateArray[2] + dateArray[1] + dateArray[0];
+        System.out.println("Sortable Date: " + sortableDate);
+        return Integer.parseInt(sortableDate);
+    }
+
     public static int getSortableDateInAWeek(int Date) {
 //        change from "YYYYmmDD" to "YYYYmmDD" + 7 days
         String DateString = String.valueOf(Date);
@@ -136,4 +145,16 @@ public class Clock {
 
         return Integer.parseInt(Year + Month + Day);
     }
+
+
+    public static List<String> splitDates(String pair) {
+        // changes
+        String[] datePair = pair.split(" - ");
+
+        String Week_Start = datePair[0];
+        String Week_End = datePair[1];
+
+        return List.of(Week_Start, Week_End);
+    }
+
 }

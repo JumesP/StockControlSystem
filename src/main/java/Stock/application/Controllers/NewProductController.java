@@ -4,6 +4,8 @@ import Stock.classes.All_Products;
 import Stock.classes.Misc.Clock;
 import Stock.classes.Misc.Image;
 import Stock.classes.Product_Departments.Grocery_Departments.Chilled_Departments.Fruits;
+import Stock.classes.Product_Departments.Grocery_Departments.Chilled_Departments.Meats;
+import Stock.classes.Product_Departments.Grocery_Departments.Chilled_Departments.Vegetable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +49,7 @@ public class NewProductController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Choicebox1.getItems().addAll(listOfParentDepertments());
         Choicebox1.setOnAction(this::selectDepartment);
+        Choicebox2.setDisable(true);
         Choicebox2.getItems().addAll("Category 1", "Category 2", "Category 3", "please select option above");
     }
 
@@ -78,11 +81,17 @@ public class NewProductController implements Initializable {
         switch (Choicebox2.getValue()) {
             case "Fruit":
                 Fruits fruit = new Fruits(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date());
-                fruit.addFruit();
+                fruit.addChilled(Choicebox2.getValue());
+                break;
+            case "Vegetables":
+                Vegetable vegetable = new Vegetable(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date());
+                vegetable.addChilled(Choicebox2.getValue());
+                break;
+            case "Meat":
+                Meats meat = new Meats(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date());
+                meat.addChilled(Choicebox2.getValue());
                 break;
         }
-
-
 
 
 
@@ -113,6 +122,7 @@ public class NewProductController implements Initializable {
 
     public void selectDepartment(ActionEvent event) {
         // provide input boxes for the selected department
+        Choicebox2.setDisable(false);
         switch (Choicebox1.getValue()) {
             case "Chilled":
                 Choicebox2.getItems().clear();

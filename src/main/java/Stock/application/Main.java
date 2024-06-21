@@ -1,5 +1,6 @@
 package Stock.application;
 
+import Stock.classes.Sales.Sales;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,6 +44,7 @@ public class Main extends Application {
 
             connection();
 
+
 //            Button button = new Button("Button 1");
 //            EventHandler listener = new MyEventHandler();
 //            button.setOnAction(listener);
@@ -59,6 +61,8 @@ public class Main extends Application {
 
             primaryStage.setScene(scene);
             primaryStage.show();
+//            Sales sale = new Sales(20240526);
+//            sale.addSales();
         } catch (Exception e) {
             e.printStackTrace();
         }

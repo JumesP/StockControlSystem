@@ -13,6 +13,7 @@ import java.util.List;
 
 import static Stock.application.SqliteConnection.*;
 import static Stock.classes.Misc.Clock.formatDateForUser;
+import static Stock.classes.Misc.Clock.getSortableDateInAWeek;
 
 public class All_Products{
     static Connection connection;
@@ -33,6 +34,9 @@ public class All_Products{
     private int Product_Quantity;
     private int Last_Stocked;
     private String Viewable_Last_Stocked;
+    private String Viewable_Restock_Price;
+    private String Viewable_Sale_Price;
+    private String Viewable_Quantity;
     private File image;
 
     public All_Products(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked) {
@@ -42,6 +46,9 @@ public class All_Products{
         this.Product_Sale_Price = Product_Sale_Price;
         this.Product_Quantity = Product_Quantity;
         this.Last_Stocked = Last_Stocked;
+        this.Viewable_Restock_Price = "£" + Product_Restock_Price;
+        this.Viewable_Sale_Price = "£" + Product_Sale_Price;
+        this.Viewable_Quantity = Product_Quantity + " units";
         this.Viewable_Last_Stocked = formatDateForUser(Last_Stocked);
         this.image = null;
     }
@@ -71,6 +78,18 @@ public class All_Products{
 
     public int getLast_Stocked() {
         return Last_Stocked;
+    }
+
+    public String getViewable_Restock_Price() {
+        return Viewable_Restock_Price;
+    }
+
+    public String getViewable_Sale_Price() {
+        return Viewable_Sale_Price;
+    }
+
+    public String getViewable_Quantity() {
+        return Viewable_Quantity;
     }
 
     public String getViewable_Last_Stocked() {
@@ -108,7 +127,6 @@ public class All_Products{
     public void setImage(File image) { this.image = image; }
 
     // METHODS
-
     public Image getImage() {
         Image image = new Image("/images/products/" + this.getProduct_ID() + ".png");
         if (image.errorProperty().getValue()) {
@@ -188,6 +206,34 @@ public class All_Products{
         }
     }
 
+    public int listOfSalesBetweenTwoDates(int start, int end) {
+        // Get list of sales between two dates
+        query = "select * from transactions, sales where transactions.Sale_ID = sales.Sale_ID and Sales.Sale_Date between " + start + " and " + end + " and transactions.Product_ID = " + this.Product_ID;
+        try (ResultSet results = Select(query)) {
+            int sales = 0;
+            while (results.next()) {
+                sales += results.getInt("Product_Quantity_Sold");
+            }
+            return sales;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }; return 0;
+    }
+
+    public int listOfDeliveriesBetweenTwoDates(int start, int end) {
+        // Get list of sales between two dates
+        query = "select * from orders, deliveries where orders.Delivery_ID = deliveries.Delivery_ID and deliveries.Delivery_Date between " + start + " and " + end + " and orders.Product_ID = " + this.Product_ID;
+        try (ResultSet results = Select(query)) {
+            int delivered = 0;
+            while (results.next()) {
+                delivered += results.getInt("Product_Quantity");
+            }
+            return delivered;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }; return 0;
+    }
+
     // STATIC METHODS
     public static Image ImageByID(int ID) {
         Image image = new Image("/images/products/" + ID + ".png");
@@ -251,7 +297,7 @@ public class All_Products{
         query = "SELECT * FROM Products WHERE Product_ID = " + id;
         try (ResultSet results = Select(query)) {
             if (results.next()) {
-                return new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked"));
+                return new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -259,10 +305,43 @@ public class All_Products{
         return null;
     }
 
+    public static List<String> IDandProduct() {
+        String query;
+        Statement statement;
+        ResultSet resultSet;
+
+        List<String> products = new ArrayList<>();
+        try {
+            connection();
+            query = "SELECT * FROM Products";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                products.add(resultSet.getString("Product_ID") + ": " + resultSet.getString("Product_Name"));
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+            return products;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static List<String> IDandProductSplit(String pair) {
+        String[] productIDandNameArray = pair.split(": ");
+
+        String Product_ID = productIDandNameArray[0];
+        String Product_Name = productIDandNameArray[1];
+
+        return List.of(Product_ID, Product_Name);
+    }
+
     public static int generateID() {
         query = "SELECT COUNT(Product_ID) FROM Products";
         try (ResultSet results = Select(query)) {
-            if (results.next()) { return results.getInt(1); }
+            if (results.next()) { return getSortableDateInAWeek(results.getInt(1)); }
         } catch (Exception e) { e.printStackTrace(); }
         return 0;
     }
@@ -347,8 +426,6 @@ public class All_Products{
         }
     }
 
-
-
     public static List<All_Products> getProductsByDepartment(String department) {
         query = "SELECT * FROM Products p, Departments d WHERE p.Department_ID = d.Department_ID AND d.Department_Name = '" + department + "'";
         try (ResultSet results = Select(query)) {
@@ -362,6 +439,4 @@ public class All_Products{
         }
         return new ArrayList<>();
     }
-
-
 }

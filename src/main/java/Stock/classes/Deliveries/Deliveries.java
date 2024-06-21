@@ -32,6 +32,7 @@ public class Deliveries {
     private int Delivery_Date;
     private String Delivery_Company;
     private String Viewable_Delivery_Date;
+    private String Most_Ordered_Products;
 
     public Deliveries(int Delivery_ID, String Delivery_Name, int Delivery_Date, String Delivery_Company) {
         this.Delivery_ID = Delivery_ID;
@@ -39,6 +40,7 @@ public class Deliveries {
         this.Delivery_Date = Delivery_Date;
         this.Delivery_Company = Delivery_Company;
         this.Viewable_Delivery_Date = formatDateForUser(Delivery_Date);
+        this.Most_Ordered_Products = Most_Ordered_Products();
     }
 
     public int getDelivery_ID() {
@@ -58,6 +60,8 @@ public class Deliveries {
     }
 
     public String getViewable_Delivery_Date() { return Viewable_Delivery_Date; }
+
+    public String getMost_Ordered_Products() { return Most_Ordered_Products; }
 
     public void setDelivery_ID(Integer Delivery_ID) {
         this.Delivery_ID = Integer.valueOf(Delivery_ID);
@@ -86,6 +90,16 @@ public class Deliveries {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String Most_Ordered_Products() {
+        query = "SELECT Product_Name, Product_Quantity FROM Orders WHERE Delivery_ID = " + this.Delivery_ID + " ORDER BY Product_Quantity DESC";
+        try (ResultSet results = Select(query)){
+            if (results.next()) { return results.getString("Product_Name") + ": " + results.getString("Product_Quantity") + "\n"; }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -192,30 +206,6 @@ public class Deliveries {
         return null;
     }
 
-    public static List<String> IDandProduct() {
-        String query;
-        Statement statement;
-        ResultSet resultSet;
-
-        List<String> products = new ArrayList<>();
-        try {
-            connection();
-            query = "SELECT * FROM Products";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                products.add(resultSet.getString("Product_ID") + ": " + resultSet.getString("Product_Name"));
-            }
-            resultSet.close();
-            statement.close();
-            connection.close();
-            return products;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public void addProductsToOrder(ArrayList<ArrayList<String>> Ordered_Products) {
         // Add Ordered Products to Order table
         for (ArrayList<String> product : Ordered_Products) {
@@ -272,7 +262,7 @@ public class Deliveries {
     public static int generateDeliveryID() {
         query = "SELECT COUNT(*) FROM Deliveries";
         try (ResultSet results = Select(query)){
-            return results.getInt(1) + 1;
+            if (results.next()) { return results.getInt(1); }
         } catch (Exception e) {
             e.printStackTrace();
         }

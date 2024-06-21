@@ -70,4 +70,9 @@ public class Fruits extends Chilled{
             e.printStackTrace();
         }
     }
+
+    // STATIC METHODS
+    public static int getDepartmentID(){
+        return 0;
+    }
 }

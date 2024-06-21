@@ -11,16 +11,15 @@
    <children>
       <TableView fx:id="tableView" layoutX="6.0" layoutY="44.0" onMousePressed="#viewSpecificDelivery" prefHeight="599.0" prefWidth="889.0">
          <columns>
-            <TableColumn fx:id="Delivery_ID" prefWidth="150.0" text="Delivery ID" />
-            <TableColumn fx:id="Delivery_Name" prefWidth="150.0" text="Delivery Name" />
-            <TableColumn fx:id="Delivery_Date" prefWidth="150.0" text="Delivery Date" />
-            <TableColumn fx:id="Delivery_Company" prefWidth="150.0" text="Delivery Suppler" />
-            <TableColumn fx:id="Most_Ordered_Products" prefWidth="288.0" text="Most Ordered Product in Delivery" />
+            <TableColumn fx:id="Delivery_ID" prefWidth="235.0" text="Sale ID" />
+            <TableColumn fx:id="Sale_Date" prefWidth="256.0" text="Sale Week" />
+            <TableColumn fx:id="Most_Sold_Products" prefWidth="397.0" text="Most Sold Product" />
          </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Home" />
-      <Button fx:id="NewDeliveries" layoutX="72.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToNewDeliveries" text="Add Deliveries" />
+      <Button fx:id="NewSale" layoutX="72.0" layoutY="14.0" mnemonicParsing="false" onAction="#generateSale" text="Generate Sale" />
       <Label fx:id="date" alignment="CENTER" layoutX="378.0" layoutY="19.0" prefHeight="17.0" prefWidth="144.0" text="Current Date:" />
-      <ChoiceBox fx:id="DeliverySelect" layoutX="671.0" layoutY="14.0" onMousePressed="#switchDelivery" prefWidth="150.0" />
+      <ChoiceBox fx:id="SaleSelect" layoutX="671.0" layoutY="14.0" onMousePressed="#switchDelivery" prefWidth="150.0" />
+      <Label fx:id="date1" layoutX="175.0" layoutY="19.0" prefHeight="17.0" prefWidth="203.0" text="sale date to be generated: " />
    </children>
 </Pane>

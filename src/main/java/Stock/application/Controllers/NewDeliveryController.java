@@ -21,9 +21,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Stock.classes.All_Products.bulkAddStock;
-import static Stock.classes.Deliveries.Deliveries.IDandProduct;
 //import static Stock.classes.Deliveries.Deliveries.addProductsToOrder;
+import static Stock.classes.All_Products.*;
 import static Stock.classes.Deliveries.Deliveries.generateDeliveryID;
 import static javafx.scene.control.DatePicker.*;
 
@@ -135,14 +134,14 @@ public class NewDeliveryController {
         for (ArrayList<String> product : orderedProducts) {
 
             String productIDandName = product.get(0);
-            String[] productIDandNameArray = productIDandName.split(": ");
+            List<String> productIDandNameArray = IDandProductSplit(productIDandName);
 
-            int productID = Integer.parseInt(productIDandNameArray[0]);
+
+            int productID = Integer.parseInt(productIDandNameArray.get(0));
+            String productName = productIDandNameArray.get(1);
             int productNewQuantity = Integer.parseInt(product.get(1));
 
-//            newDeliveryModel.ProductAdd(productID, productNewQuantity);
             bulkAddStock(productID, productNewQuantity);
-//            All_Products
         }
     }
 

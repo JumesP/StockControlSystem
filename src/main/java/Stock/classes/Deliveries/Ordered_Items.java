@@ -27,11 +27,13 @@ public class Ordered_Items {
     private int Product_ID;
     private String Product_Name;
     private int Product_Quantity;
+    private String Viewable_Quantity;
 
     public Ordered_Items (int Product_ID, String Product_Name, int Product_Quantity) {
         this.Product_ID = Product_ID;
         this.Product_Name = Product_Name;
         this.Product_Quantity = Product_Quantity;
+        this.Viewable_Quantity = Product_Quantity + " units";
     }
 
 
@@ -46,6 +48,8 @@ public class Ordered_Items {
     public int getProduct_Quantity() {
         return Product_Quantity;
     }
+
+    public String getViewable_Quantity() { return Viewable_Quantity; }
 
     public void setProduct_ID(int Product_ID) {
         this.Product_ID = Product_ID;
@@ -62,7 +66,7 @@ public class Ordered_Items {
 
     // STATIC METHODS
     public static List<Ordered_Items> FetchOrderedItemsByDeliveryID(int ID) {
-        query = "SELECT * FROM Orders WHERE Delivery_ID = " + ID;
+        query = "SELECT * FROM Orders WHERE Delivery_ID = " + ID + " ORDER BY Product_Quantity DESC";
         try (ResultSet results = Select(query)){
             List<Ordered_Items> data = new ArrayList<>();
 

@@ -39,6 +39,7 @@ public class UpcomingDeliveriesController implements Initializable {
     @FXML private TableColumn<Deliveries, String> Delivery_Name;
     @FXML private TableColumn<Deliveries, String> Delivery_Date;
     @FXML private TableColumn<Deliveries, String> Delivery_Company;
+    @FXML private TableColumn<Deliveries, String> Most_Ordered_Products;
     @FXML private Label date;
     @FXML private ChoiceBox<String> DeliverySelect;
 
@@ -52,6 +53,7 @@ public class UpcomingDeliveriesController implements Initializable {
         Delivery_Name.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Delivery_Name"));
         Delivery_Date.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Viewable_Delivery_Date"));
         Delivery_Company.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Delivery_Company"));
+        Most_Ordered_Products.setCellValueFactory(new PropertyValueFactory<Deliveries, String>("Most_Ordered_Products"));
 
         tableView.getItems().setAll(FetchAllDeliveryData());
 
@@ -82,8 +84,6 @@ public class UpcomingDeliveriesController implements Initializable {
 
     public void viewSpecificDelivery(MouseEvent event) throws IOException {
         Deliveries deliveries = tableView.getSelectionModel().getSelectedItem();
-        System.out.println(deliveries.getDelivery_ID());
-        System.out.println(deliveries.getDelivery_Name());
 
         // Switch to the specific delivery page
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SpecificDelivery.fxml"));

@@ -35,7 +35,7 @@ public class SpecificDeliveryController implements Initializable {
         // TODO Auto-generated method stub
         Product_ID.setCellValueFactory(new PropertyValueFactory<Ordered_Items, String>("Product_ID"));
         Product_Name.setCellValueFactory(new PropertyValueFactory<Ordered_Items, String>("Product_Name"));
-        Product_Quantity.setCellValueFactory(new PropertyValueFactory<Ordered_Items, String>("Product_Quantity"));
+        Product_Quantity.setCellValueFactory(new PropertyValueFactory<Ordered_Items, String>("Viewable_Quantity"));
 
 //        tableView.getItems().setAll(specificDeliveryModel.FetchData(delivery.getDelivery_ID()));
     }
@@ -53,7 +53,7 @@ public class SpecificDeliveryController implements Initializable {
 
         Delivery_ID.setText(String.valueOf(delivery.getDelivery_ID()));
         Delivery_Name.setText(delivery.getDelivery_Name());
-        Delivery_Date.setText(String.valueOf(delivery.getDelivery_Date()));
+        Delivery_Date.setText(formatDateForUser(delivery.getDelivery_Date()));
         Delivery_Supplier.setText(delivery.getDelivery_Company());
 
         tableView.getItems().setAll(FetchOrderedItemsByDeliveryID(delivery.getDelivery_ID()));
