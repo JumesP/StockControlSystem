@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 import static Stock.application.SqliteConnection.connection;
+import static Stock.classes.Misc.Clock.getSortableDateInAdjust;
 
 public class Main extends Application {
     @Override
@@ -43,26 +44,8 @@ public class Main extends Application {
             primaryStage.getIcons().add(icon);
 
             connection();
-
-
-//            Button button = new Button("Button 1");
-//            EventHandler listener = new MyEventHandler();
-//            button.setOnAction(listener);
-//
-//            public class MyEventHandler implements EventHandler{
-//                @Override
-//                public void handle(ActionEvent event) {
-//                    System.out.println("Button clicked");
-//                }
-//            }
-
-
-
-
             primaryStage.setScene(scene);
             primaryStage.show();
-//            Sales sale = new Sales(20240526);
-//            sale.addSales();
         } catch (Exception e) {
             e.printStackTrace();
         }

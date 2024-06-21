@@ -2,12 +2,16 @@ package Stock.classes.Sales;
 
 import Stock.application.SqliteConnection;
 import Stock.classes.All_Products;
+import Stock.classes.Deliveries.Ordered_Items;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import static Stock.application.SqliteConnection.Select;
 import static Stock.classes.All_Products.bulkDeleteStock;
 
 public class Transactions {
@@ -25,23 +29,26 @@ public class Transactions {
     int Transaction_ID;
     int Sale_ID;
     int Product_ID;
+    String Product_Name;
     int Product_Quantity_Sold;
     int Total_Profit;
+    String Viewable_Quantity;
 
-    public Transactions(int Sale_ID, int Product_ID) {
-        this.Transaction_ID = generateTransactionID();
+    public Transactions(int Transaction_ID, int Sale_ID, int Product_ID, String Product_Name) {
+        this.Transaction_ID = Transaction_ID;
         this.Sale_ID = Sale_ID;
         this.Product_ID = Product_ID;
         this.Product_Quantity_Sold = 0;
         this.Total_Profit = 0;
+        this.Viewable_Quantity = Product_Quantity_Sold + " units";
     }
 
-//    public int getTransaction_ID() { return Transaction_ID; }; public void setTransaction_ID(int Transaction_ID) { this.Transaction_ID = Transaction_ID; }
-//    public int getSale_ID() { return Sale_ID; }; public void setSale_ID(int Sale_ID) { this.Sale_ID = Sale_ID; }
-//    public int getProduct_ID() { return Product_ID; }; public void setProduct_ID(int Product_ID) { this.Product_ID = Product_ID; }
-//    public int getProduct_Quantity() { return Product_Quantity; }; public void setProduct_Quantity(int Product_Quantity) { this.Product_Quantity = Product_Quantity; }
+    public int getTransaction_ID() { return Transaction_ID; }; public void setTransaction_ID(int Transaction_ID) { this.Transaction_ID = Transaction_ID; }
+    public int getSale_ID() { return Sale_ID; }; public void setSale_ID(int Sale_ID) { this.Sale_ID = Sale_ID; }
+    public int getProduct_ID() { return Product_ID; }; public void setProduct_ID(int Product_ID) { this.Product_ID = Product_ID; }
+    public int getProduct_Quantity_Sold() { return Product_Quantity_Sold; }; public void setProduct_Quantity_Sold(int Product_Quantity_Sold) { this.Product_Quantity_Sold = Product_Quantity_Sold; }
     public int getTotal_Profit() { return Total_Profit; }; public void setTotal_Profit(int Total_Profit) { this.Total_Profit = Total_Profit; }
-
+    public String getViewable_Quantity() { return Viewable_Quantity; }; public void setViewable_Quantity(String Viewable_Quantity) { this.Viewable_Quantity = Viewable_Quantity; }
 
 
     public void addTransaction() {
@@ -92,6 +99,8 @@ public class Transactions {
 //        bulkDeleteStock(this.Product_ID, soldQuantity);
     }
 
+
+    // STATIC METHODS
     public static int generateTransactionID() {
         query = "SELECT COUNT(*) FROM Transactions";
         try (ResultSet results = SqliteConnection.Select(query)) {

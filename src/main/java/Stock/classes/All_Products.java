@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Stock.application.SqliteConnection.*;
-import static Stock.classes.Misc.Clock.formatDateForUser;
-import static Stock.classes.Misc.Clock.getSortableDateInAWeek;
+import static Stock.classes.Misc.Clock.*;
+import static Stock.classes.Misc.Clock.sortableDateHyphen;
 
 public class All_Products{
     static Connection connection;
@@ -166,6 +166,44 @@ public class All_Products{
         }
     }
 
+    public boolean printWasteReport(String date_range) {
+        String FilePath = "Printed Stock Tracker/Waste Report.txt";
+        String Date = clock.getDate();
+        String Time = clock.getTime();
+
+        List<String> dates = splitDates(date_range);
+        int Week_start = sortableDateHyphen(dates.get(0));
+        int Week_end = sortableDateHyphen(dates.get(1));
+        int ordered = this.listOfDeliveriesBetweenTwoDates(Week_start, Week_end);
+        int sales = this.listOfSalesBetweenTwoDates(Week_start, Week_end);
+
+        try {
+            // Create new File
+            File file = new File(FilePath);
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            }
+            // Write to file
+            FileWriter writer = new FileWriter(FilePath);
+            writer.write("Stock Details - Printed Date: " + Date + " at " + Time + "\n");
+            writer.write("==================================================\n");
+            writer.write("Product ID: " + this.Product_ID + "\n");
+            writer.write("Product Name: " + this.Product_Name + "\n");
+            writer.write("==================================================\n");
+            writer.write("Waste Report for: " + date_range + "\n");
+            writer.write("==================================================\n");
+            writer.write("Ordered: " + ordered + " units\n");
+            writer.write("Sold: " + sales + " units\n");
+            writer.write("Waste: " + (ordered - sales) + " units\n");
+            writer.write("==================================================\n");
+
+            writer.close();
+            return true;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void stockAddOne() {
         query = "UPDATE Products SET Product_Quantity = Product_Quantity + 1 WHERE Product_ID = " + this.Product_ID;
         Update(query);
@@ -306,27 +344,15 @@ public class All_Products{
     }
 
     public static List<String> IDandProduct() {
-        String query;
-        Statement statement;
-        ResultSet resultSet;
-
         List<String> products = new ArrayList<>();
-        try {
-            connection();
-            query = "SELECT * FROM Products";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                products.add(resultSet.getString("Product_ID") + ": " + resultSet.getString("Product_Name"));
-            }
-            resultSet.close();
-            statement.close();
-            connection.close();
-            return products;
+        query = "SELECT * FROM Products";
+        try (ResultSet results = Select(query)) {
+            while (results.next()) {
+                products.add(results.getString("Product_ID") + ": " + results.getString("Product_Name"));
+            } return products;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
-        }
+        }; return null;
     }
 
     public static List<String> IDandProductSplit(String pair) {
@@ -351,11 +377,8 @@ public class All_Products{
         String Date = clock.getDate();
         String Time = clock.getTime();
         query = "SELECT * FROM Products";
-        try {
-            connection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-            List<All_Products> data= new ArrayList<>();
+        try (ResultSet results = Select(query)) {
+            List<All_Products> data = new ArrayList<>();
             int TotalStockCost = 0;
             int TotalStockValue = 0;
 
@@ -369,19 +392,19 @@ public class All_Products{
 
             writer.write("Stock Details - Dated: " + Date + " at " + Time + "\n");
 
-            while (resultSet.next()) {
-                TotalStockCost += resultSet.getInt("Product_Restock_Price") * resultSet.getInt("Product_Quantity");
-                TotalStockValue += resultSet.getInt("Product_Sale_Price") * resultSet.getInt("Product_Quantity");
-                if (resultSet.getInt("Product_Quantity") < 5) {
-                    writer.write("Low Stock: " + resultSet.getString("Product_Name") + "\n");
+            while (results.next()) {
+                TotalStockCost += results.getInt("Product_Restock_Price") * results.getInt("Product_Quantity");
+                TotalStockValue += results.getInt("Product_Sale_Price") * results.getInt("Product_Quantity");
+                if (results.getInt("Product_Quantity") < 5) {
+                    writer.write("Low Stock: " + results.getString("Product_Name") + "\n");
                 }
                 // Write to file
-                writer.write("Product Name: " + resultSet.getString("Product_Name") + "\n");
-                writer.write("Product ID: " + resultSet.getInt("Product_ID") + "\n");
-                writer.write("Product Restock Price: " + resultSet.getInt("Product_Restock_Price") + "\n");
-                writer.write("Product Sale Price: " + resultSet.getInt("Product_Sale_Price") + "\n");
-                writer.write("Product Quantity: " + resultSet.getInt("Product_Quantity") + "\n");
-                writer.write("Last Stocked: " + formatDateForUser(resultSet.getInt("Last_Stocked")) + "\n");
+                writer.write("Product Name: " + results.getString("Product_Name") + "\n");
+                writer.write("Product ID: " + results.getInt("Product_ID") + "\n");
+                writer.write("Product Restock Price: " + results.getInt("Product_Restock_Price") + "\n");
+                writer.write("Product Sale Price: " + results.getInt("Product_Sale_Price") + "\n");
+                writer.write("Product Quantity: " + results.getInt("Product_Quantity") + "\n");
+                writer.write("Last Stocked: " + formatDateForUser(results.getInt("Last_Stocked")) + "\n");
                 writer.write("Total Stock Cost:  £" + TotalStockCost + "\n");
                 writer.write("Total Stock Value: £" + TotalStockValue + "\n");
                 writer.write("\n");

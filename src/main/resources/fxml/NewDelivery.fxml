@@ -42,5 +42,6 @@
       <Label layoutX="36.0" layoutY="80.0" prefHeight="17.0" prefWidth="109.0" text="Delivery Name: " />
       <Label layoutX="36.0" layoutY="116.0" prefHeight="17.0" prefWidth="109.0" text="Delivery Supplier:" />
       <Label layoutX="36.0" layoutY="152.0" prefHeight="17.0" prefWidth="109.0" text="Delivery Date:" />
+      <Button fx:id="everythingDelivery" layoutX="527.0" layoutY="560.0" mnemonicParsing="false" onAction="#everythingDelivery" prefHeight="26.0" prefWidth="174.0" text="Everything Delivery" />
    </children>
 </AnchorPane>

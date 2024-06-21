@@ -8,7 +8,7 @@
    <children>
       <TilePane layoutX="136.0" layoutY="79.0" prefHeight="200.0" prefWidth="156.0" stylesheets="@../css/Homepage.css">
          <children>
-            <Button fx:id="Button4" mnemonicParsing="false" prefHeight="225.0" prefWidth="225.0" stylesheets="@../css/Homepage.css" text="----" />
+            <Button fx:id="SalesTracker" mnemonicParsing="false" onAction="#switchToSalesTracker" prefHeight="225.0" prefWidth="225.0" stylesheets="@../css/Homepage.css" text="Sales Tracker" />
          </children>
       </TilePane>
       <TilePane layoutX="136.0" layoutY="349.0" prefHeight="200.0" prefWidth="200.0">

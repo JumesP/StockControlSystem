@@ -17,7 +17,7 @@ public class Homepage implements Initializable {
     public Button StockTracker;
     public Button UpcomingDeliveries;
     public Button TransactionAnalytics;
-    public Button Button4;
+    public Button SalesTracker;
     public Button switchToApproveAdmins;
 
     @Override
@@ -29,7 +29,7 @@ public class Homepage implements Initializable {
                 StockTracker.setDisable(true);
                 UpcomingDeliveries.setDisable(true);
                 TransactionAnalytics.setDisable(true);
-                Button4.setDisable(true);
+                SalesTracker.setDisable(true);
                 switchToApproveAdmins.setDisable(true);
                 break;
             case "admin":
@@ -53,6 +53,8 @@ public class Homepage implements Initializable {
     public void switchToTransactionAnalytics(ActionEvent event) {
         SceneController.switchToTransactionAnalytics(event);
     }
+
+    public void switchToSalesTracker(ActionEvent event) { SceneController.switchToSalesTracker(event); }
 
     public void switchToApproveAdmins(ActionEvent event) {
         SceneController.switchToApproveAdmins(event);

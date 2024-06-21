@@ -27,6 +27,7 @@ import static Stock.classes.Deliveries.Deliveries.generateDeliveryID;
 import static javafx.scene.control.DatePicker.*;
 
 public class NewDeliveryController {
+
     int counter = 0;
 
     public TextField Delivery_Name;
@@ -38,6 +39,7 @@ public class NewDeliveryController {
     public Pane productPane;
 //    public Label error;
     public DatePicker datePicker;
+    public Button everythingDelivery;
 
 //    public void addDelivery() {
 //        // Add delivery to database
@@ -110,19 +112,42 @@ public class NewDeliveryController {
             TextField product_quantity = (TextField) productPane.lookup("#product_quantity" + i);
 
             System.out.println(product.getValue().getKey()); // Product Name
-            System.out.println(product_quantity.getText()); // Product Quantity
+            System.out.println(product_quantity.getText());  // Product Quantity
 
-            subproduct.add(product.getValue().getKey());
-            subproduct.add(product_quantity.getText());
+            subproduct.add(product.getValue().getKey());    // Product Name
+            subproduct.add(product_quantity.getText());     // Product Quantity
             orderedProducts.add(subproduct);
         }
 
-//        newDeliveryModel.Add(deliveryName, deliveryCompany, FormattedDate, orderedProducts);
         Deliveries delivery = new Deliveries(generateDeliveryID(), deliveryName, FormattedDate, deliveryCompany);
         // Add delivery to the delivery database
         delivery.AddDelivery();
 
         // Adds each product to the order database, updates Last_Stocked function
+        delivery.addProductsToOrder(orderedProducts);
+
+        IncreaseStock(orderedProducts);
+        switchToHomepage(event);
+    }
+
+    public void everythingDelivery(ActionEvent event) {
+        //
+        String deliveryName = Delivery_Name.getText();
+        LocalDate DeliveryDate2 = datePicker.getValue(); int FormattedDate = Integer.parseInt(DeliveryDate2.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+        String deliveryCompany = Delivery_Supplier.getText();
+
+        Deliveries delivery = new Deliveries(generateDeliveryID(), deliveryName, FormattedDate, deliveryCompany);
+        delivery.AddDelivery();
+
+        ArrayList<ArrayList<String>> orderedProducts = new ArrayList<ArrayList<String>>();
+
+        for (All_Products products: All_Products.getAllProducts()) {
+            ArrayList<String> subproduct = new ArrayList<String>();
+            subproduct.add(products.getProduct_ID() + ": " + products.getProduct_Name());
+            subproduct.add("20");
+            orderedProducts.add(subproduct);
+        }
+
         delivery.addProductsToOrder(orderedProducts);
 
         IncreaseStock(orderedProducts);

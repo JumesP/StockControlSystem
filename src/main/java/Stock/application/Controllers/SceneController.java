@@ -72,6 +72,18 @@ public class SceneController {
         }
     }
 
+    public static void switchToSalesTracker(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/SalesTracker.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // Account Based
     public static void switchToSignin(ActionEvent event) {

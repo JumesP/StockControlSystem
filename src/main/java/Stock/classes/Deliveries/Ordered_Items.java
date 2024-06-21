@@ -12,17 +12,6 @@ import java.util.List;
 import static Stock.application.SqliteConnection.Select;
 
 public class Ordered_Items {
-    static Connection connection;
-    static String query;
-    static Statement statement;
-    static PreparedStatement preparedStatement;
-    static ResultSet resultSet;
-
-    public static void connection() {
-        connection = SqliteConnection.Connector();
-        if (connection == null) System.exit(1);
-    }
-
 
     private int Product_ID;
     private String Product_Name;
@@ -66,7 +55,7 @@ public class Ordered_Items {
 
     // STATIC METHODS
     public static List<Ordered_Items> FetchOrderedItemsByDeliveryID(int ID) {
-        query = "SELECT * FROM Orders WHERE Delivery_ID = " + ID + " ORDER BY Product_Quantity DESC";
+        String query = "SELECT * FROM Orders WHERE Delivery_ID = " + ID + " ORDER BY Product_Quantity DESC";
         try (ResultSet results = Select(query)){
             List<Ordered_Items> data = new ArrayList<>();
 

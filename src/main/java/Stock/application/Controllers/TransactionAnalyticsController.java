@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import static Stock.classes.All_Products.*;
 import static Stock.classes.Misc.Clock.sortableDateHyphen;
 import static Stock.classes.Misc.Clock.splitDates;
+import static Stock.classes.Sales.Sales.getAllSalesDates;
 
 public class TransactionAnalyticsController implements Initializable {
 
@@ -36,7 +37,7 @@ public class TransactionAnalyticsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         productRange.getItems().addAll(IDandProduct());
-        dateRange.getItems().addAll("13-05-2024 - 19-05-2024", "20-05-2024 - 26-05-2024", "27-05-2024 - 02-06-2024");
+        dateRange.getItems().addAll(getAllSalesDates());
         productRange.setOnAction(this::generateGraph);
         dateRange.setOnAction(this::generateGraph);
 
@@ -70,7 +71,6 @@ public class TransactionAnalyticsController implements Initializable {
         Chart.getData().add(deliveries);
         Chart.getData().add(sold);
     }
-
 
 
     public void generateGraph(ActionEvent event) {
@@ -107,7 +107,7 @@ public class TransactionAnalyticsController implements Initializable {
         XYChart.Series sold = new XYChart.Series();
         XYChart.Series deliveries = new XYChart.Series();
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 1; i < 8; i++) {
             deliveries.getData().add(new XYChart.Data(i, orderAveragePerWeek));
             sold.getData().add(new XYChart.Data(i, salesAveragePerWeek));
             System.out.println("Day " + i + ": Plotted!");
@@ -122,9 +122,46 @@ public class TransactionAnalyticsController implements Initializable {
         Chart.getData().clear();
         Chart.getData().add(deliveries);
         Chart.getData().add(sold);
+
+        orderedThisWeek.setText(ordered + " units");
+        soldThisWeek.setText(sales + " units");
+        wasteThisWeek.setText((ordered - sales) + " units");
+    }
+
+    public void exportToFile(ActionEvent event) {
+        // Export data to file
+
+        if (productRange.getValue() == null || dateRange.getValue() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Export Failed");
+            alert.setHeaderText("Export Failed");
+            alert.setContentText("Please select a product and date range to export the waste report.");
+            alert.showAndWait();
+            return;
+        }
+
+        int Product_ID = Integer.parseInt(IDandProductSplit(productRange.getValue()).get(0));
+        All_Products product = getProductByID(Product_ID);
+        String dates = dateRange.getValue();
+
+        if (product.printWasteReport(dates)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Export Successful");
+            alert.setHeaderText("Waste Report Exported Successfully");
+            alert.setContentText("The waste report for " + productRange.getValue() + " between " + dates + " has been exported successfully.");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Export Failed");
+            alert.setHeaderText("Waste Report Export Failed");
+            alert.setContentText("The waste report for " + productRange.getValue() + " between " + dates + " could not be exported.");
+            alert.showAndWait();
+        }
     }
 
     public void switchToHomepage(ActionEvent event) {
+        ChartPane.getChildren().clear();
+        Chart.getData().clear();
         SceneController.switchToHomepage(event);
     }
 
