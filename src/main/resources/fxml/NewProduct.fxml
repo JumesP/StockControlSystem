@@ -18,5 +18,6 @@
       <Button fx:id="UploadImage" layoutX="14.0" layoutY="247.0" mnemonicParsing="false" onAction="#selectFile" prefHeight="26.0" prefWidth="160.0" text="Upload Image" />
       <TextField fx:id="Product_Sale_Price" layoutX="14.0" layoutY="188.0" promptText="Product Sale Price" />
       <ChoiceBox fx:id="Choicebox2" layoutX="215.0" layoutY="60.0" prefWidth="150.0" />
+      <TextField fx:id="Rolls" layoutX="215.0" layoutY="102.0" prefHeight="26.0" prefWidth="150.0" promptText="Amount of Rolls" />
    </children>
 </AnchorPane>

@@ -1,28 +1,25 @@
 package Stock.application.Controllers;
 
-import Stock.classes.All_Products;
 import Stock.classes.Misc.Clock;
 import Stock.classes.Misc.Image;
+import Stock.classes.Product_Departments.Grocery_Departments.Ambient_Department.Chocolate;
+import Stock.classes.Product_Departments.Grocery_Departments.Ambient_Department.Crisps;
+import Stock.classes.Product_Departments.Grocery_Departments.Ambient_Department.Sweets;
 import Stock.classes.Product_Departments.Grocery_Departments.Chilled_Departments.Fruits;
 import Stock.classes.Product_Departments.Grocery_Departments.Chilled_Departments.Meats;
 import Stock.classes.Product_Departments.Grocery_Departments.Chilled_Departments.Vegetable;
+import Stock.classes.Product_Departments.Grocery_Departments.Frozen_Department.Ice_Cream;
+import Stock.classes.Product_Departments.Non_Foods.Toiletries_and_Beauty_Department.Toilet_Rolls;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,6 +37,7 @@ public class NewProductController implements Initializable {
     public TextField Product_Sale_Price;
     public ChoiceBox<String> Choicebox1;
     public ChoiceBox<String> Choicebox2;
+    public TextField Rolls;
     public Button UploadImage;
     public Button submit;
     public Label error;
@@ -50,7 +48,7 @@ public class NewProductController implements Initializable {
         Choicebox1.getItems().addAll(listOfParentDepertments());
         Choicebox1.setOnAction(this::selectDepartment);
         Choicebox2.setDisable(true);
-        Choicebox2.getItems().addAll("Category 1", "Category 2", "Category 3", "please select option above");
+        Choicebox2.setOnAction(this::ToiletRollsAmount);
     }
 
     public void addProduct() {
@@ -62,34 +60,39 @@ public class NewProductController implements Initializable {
 
         File selectFile = image.getImage();
 
-        System.out.println("Name: " + Product_Name.getText());
-        System.out.println("Quantity: " + Product_Quantity.getText());
-        System.out.println("Restock Price: " + Product_Restock_Price.getText());
-        System.out.println("Sale Price: " + Product_Sale_Price.getText());
-
-        System.out.println("Department: " + Choicebox1.getValue());
-        System.out.println("Category: " + Choicebox2.getValue());
-        System.out.println("Image: " + selectFile.getName());
-
-
-
-
-
-
-
-//        addNewProductToDBStatically(Product_Name.getText(), Integer.parseInt(Product_Quantity.getText()), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()));
         switch (Choicebox2.getValue()) {
             case "Fruit":
-                Fruits fruit = new Fruits(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date());
+                Fruits fruit = new Fruits(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date(), 0);
                 fruit.addChilled(Choicebox2.getValue());
                 break;
             case "Vegetables":
-                Vegetable vegetable = new Vegetable(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date());
+                Vegetable vegetable = new Vegetable(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date(), 1);
                 vegetable.addChilled(Choicebox2.getValue());
                 break;
             case "Meat":
-                Meats meat = new Meats(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date());
+                Meats meat = new Meats(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date(), 2);
                 meat.addChilled(Choicebox2.getValue());
+                break;
+            case "Ice Cream":
+                Ice_Cream ice_cream = new Ice_Cream(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date(), 5);
+                ice_cream.addFrozen(Choicebox2.getValue());
+                break;
+            case "Crisps":
+                Crisps crisps = new Crisps(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date(), 7);
+                crisps.addAmbient(Choicebox2.getValue());
+                break;
+            case "Sweets":
+                Sweets sweets = new Sweets(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date(), 8);
+                sweets.addAmbient(Choicebox2.getValue());
+                break;
+            case "Chocolate":
+                Chocolate chocolate = new Chocolate(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date(), 9);
+                chocolate.addAmbient(Choicebox2.getValue());
+                break;
+            case "Toilet Rolls":
+                int rolls = Integer.parseInt(Rolls.getText());
+                Toilet_Rolls toilet_rolls = new Toilet_Rolls(Product_Name.getText(), generateID(), Integer.parseInt(Product_Restock_Price.getText()), Integer.parseInt(Product_Sale_Price.getText()), Integer.parseInt(Product_Quantity.getText()), clock.date(), 10, rolls);
+                toilet_rolls.addToiletRolls(Choicebox2.getValue());
                 break;
         }
 
@@ -165,6 +168,18 @@ public class NewProductController implements Initializable {
             case "Chocolate":
                 break;
             case "Toilet Rolls":
+                break;
+        }
+    }
+
+    public void ToiletRollsAmount(ActionEvent event) {
+        // provide input boxes for the selected category
+        switch (Choicebox2.getValue()) {
+            case "Toilet Rolls":
+                Rolls.setDisable(false);
+                break;
+            default:
+                Rolls.setDisable(true);
                 break;
         }
     }

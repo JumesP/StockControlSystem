@@ -2,14 +2,13 @@ package Stock.classes.Product_Departments.Grocery_Departments.Ambient_Department
 
 import Stock.classes.Product_Departments.Grocery_Departments.Ambient;
 
-public class Crisps extends Ambient {
-
-    static String Description = "The finest crisps in the store!";
-    String Department = "Crisps";
-    int Department_ID = 7;
+public class Sweets extends Ambient {
+    static String Description = "The finest sweets in the store!";
+    String Department = "Sweets";
+    int Department_ID = 6;
     int Storage_Temperature = 20;
 
-    public Crisps(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked, int Department_ID){
+    public Sweets(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked, int Department_ID){
         super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Department_ID);
         this.Description = Description;
         this.Department = Department;
@@ -20,6 +19,4 @@ public class Crisps extends Ambient {
     public static String getDescription(){
         return Description;
     }
-
-
 }

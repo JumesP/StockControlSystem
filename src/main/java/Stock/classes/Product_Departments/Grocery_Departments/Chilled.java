@@ -1,6 +1,7 @@
 package Stock.classes.Product_Departments.Grocery_Departments;
 
 import Stock.application.SqliteConnection;
+import Stock.classes.All_Products;
 import Stock.classes.Misc.Clock;
 import Stock.classes.Product_Departments.Grocery;
 
@@ -9,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import static Stock.application.SqliteConnection.Select;
 import static Stock.application.SqliteConnection.connection;
 
 public class Chilled extends Grocery {
@@ -26,13 +28,14 @@ public class Chilled extends Grocery {
 
     private int Storage_Temperature = 4;
 
-    public Chilled(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked) {
-        super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked);
+    public Chilled(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked, int Department_ID) {
+        super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Department_ID);
         this.Storage_Temperature = Storage_Temperature;
     }
 
     public int getStorage_Temperature() {
-        return Storage_Temperature;
+        return 4;
+//        return Storage_Temperature;
     }
 
 
@@ -82,6 +85,20 @@ public class Chilled extends Grocery {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Chilled getChilledByID(int id) {
+        query = "SELECT * FROM Products WHERE Product_ID = " + id;
+        try (ResultSet results = Select(query)) {
+            if (results.next()) {
+                Chilled chilled = new Chilled(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"), results.getInt("Department_ID"));
+                System.out.println("Chilled product found");
+                return chilled;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

@@ -10,23 +10,23 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Stock.application.Controllers.SpecificProductController">
    <children>
       <ImageView fx:id="ProductImage" fitHeight="458.0" fitWidth="425.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="Product_Name" layoutX="450.0" layoutY="169.0" prefHeight="27.0" prefWidth="125.0" text="Product Title">
+      <Label fx:id="Product_Name" layoutX="576.0" layoutY="143.0" prefHeight="27.0" prefWidth="301.0" text="Product Name">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Line endX="29.0" endY="403.0" layoutX="407.0" layoutY="114.0" startX="29.0" startY="19.0" />
-      <Label fx:id="Product_Price" layoutX="450.0" layoutY="294.0" prefHeight="27.0" prefWidth="125.0" text="Product Price">
+      <Label fx:id="Product_Price" layoutX="576.0" layoutY="296.0" prefHeight="27.0" prefWidth="125.0" text="Product Price">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="Product_Quantity" layoutX="450.0" layoutY="338.0" prefHeight="27.0" prefWidth="145.0" text="Product Quantity">
+      <Label fx:id="Product_Quantity" layoutX="576.0" layoutY="342.0" prefHeight="27.0" prefWidth="145.0" text="Product Quantity">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="Last_Stocked" layoutX="450.0" layoutY="390.0" prefHeight="27.0" prefWidth="177.0" text="Product Restock Date">
+      <Label fx:id="Last_Stocked" layoutX="576.0" layoutY="390.0" prefHeight="27.0" prefWidth="177.0" text="Product Restock Date">
          <font>
             <Font size="18.0" />
          </font>
@@ -45,5 +45,48 @@
       <Button fx:id="plusOneStock" layoutX="458.0" layoutY="448.0" mnemonicParsing="false" onAction="#plusOneStock" style="-fx-background-color: lime;" text="+1 Stock" />
       <Button fx:id="minusOneStock" layoutX="544.0" layoutY="448.0" mnemonicParsing="false" onAction="#minusOneStock" style="-fx-background-color: red;" text="-1 Stock" />
       <Button fx:id="exportData" layoutX="458.0" layoutY="493.0" mnemonicParsing="false" onAction="#exportData" prefHeight="26.0" prefWidth="145.0" text="Export Product Data" />
+      <Label layoutX="450.0" layoutY="170.0" text="Description:" />
+      <Label fx:id="Description" alignment="TOP_LEFT" layoutX="450.0" layoutY="193.0" prefHeight="79.0" prefWidth="358.0" style="-fx-border-width: 1; -fx-border-style: solid;" text="desc" />
+      <Label layoutX="450.0" layoutY="296.0" prefHeight="27.0" prefWidth="52.0" text="Price: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="342.0" prefHeight="27.0" prefWidth="75.0" text="Quantity:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="390.0" prefHeight="27.0" prefWidth="177.0" text="Last Restocked:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="450.0" layoutY="143.0" prefHeight="27.0" prefWidth="125.0" text="Product Name:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="Unique" layoutX="448.0" layoutY="279.0" prefHeight="17.0" prefWidth="358.0" text="Unique:" />
+      <Label layoutX="450.0" layoutY="417.0" prefHeight="27.0" prefWidth="177.0" text="Useby Date:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="Useby_Date" layoutX="576.0" layoutY="417.0" prefHeight="27.0" prefWidth="177.0" text="Product Restock Date">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="RollsLabel" layoutX="450.0" layoutY="369.0" prefHeight="27.0" prefWidth="114.0" text="Rolls Amount:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="Rolls" layoutX="576.0" layoutY="369.0" prefHeight="27.0" prefWidth="145.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

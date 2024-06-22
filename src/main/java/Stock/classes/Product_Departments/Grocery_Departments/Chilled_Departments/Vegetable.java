@@ -20,10 +20,10 @@ public class Vegetable extends Chilled {
 
     private String Department = "Vegetable";
     private int Department_ID = 1;
-    private String Description = "Freshly picked from the farm!";
+    private static String Description = "Freshly picked from the farm!";
 
-    public Vegetable(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked){
-        super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked);
+    public Vegetable(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked, int Department_ID){
+        super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Department_ID);
         this.Department = Department;
         this.Department_ID = Department_ID;
         this.Description = Description;
@@ -37,7 +37,7 @@ public class Vegetable extends Chilled {
         return Department_ID;
     }
 
-    public String getDescription(){
+    public static String getDescription(){
         return Description;
     }
 

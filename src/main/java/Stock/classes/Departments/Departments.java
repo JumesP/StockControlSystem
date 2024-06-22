@@ -86,7 +86,7 @@ public class Departments {
     }
 
     public static String[] listOfParentDepertments() {
-        return new String[]{"Chilled", "Frozen", "Frozen", "Household", "Entertainment", "Toiletries"};
+        return new String[]{"Chilled", "Frozen", "Ambient", "Toiletries"};
     }
 
     public static int getDepartmentID(String departmentName) {

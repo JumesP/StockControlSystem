@@ -24,6 +24,7 @@ import java.util.List;
 //import static Stock.classes.Deliveries.Deliveries.addProductsToOrder;
 import static Stock.classes.All_Products.*;
 import static Stock.classes.Deliveries.Deliveries.generateDeliveryID;
+import static Stock.classes.Misc.Clock.formatDateForUser;
 import static javafx.scene.control.DatePicker.*;
 
 public class NewDeliveryController {
@@ -39,7 +40,9 @@ public class NewDeliveryController {
     public Pane productPane;
 //    public Label error;
     public DatePicker datePicker;
+    public DatePicker datePickerEverything;
     public Button everythingDelivery;
+    public TextField everythingQuantity;
 
 //    public void addDelivery() {
 //        // Add delivery to database
@@ -98,7 +101,7 @@ public class NewDeliveryController {
 
     public void submitDelivery(ActionEvent event) {
         String deliveryName = Delivery_Name.getText();
-        LocalDate DeliveryDate2 = datePicker.getValue(); int FormattedDate = Integer.parseInt(DeliveryDate2.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+        LocalDate DeliveryDate = datePicker.getValue(); int FormattedDate = Integer.parseInt(DeliveryDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
         String deliveryCompany = Delivery_Supplier.getText();
 
 
@@ -131,10 +134,10 @@ public class NewDeliveryController {
     }
 
     public void everythingDelivery(ActionEvent event) {
-        //
-        String deliveryName = Delivery_Name.getText();
-        LocalDate DeliveryDate2 = datePicker.getValue(); int FormattedDate = Integer.parseInt(DeliveryDate2.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-        String deliveryCompany = Delivery_Supplier.getText();
+        LocalDate DeliveryDate = datePickerEverything.getValue(); int FormattedDate = Integer.parseInt(DeliveryDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+        String deliveryName = "Everything Delivery: " + formatDateForUser(FormattedDate); // "Everything Delivery 2021-12-31
+        String deliveryCompany = "Everything Men";
+        String productQuantity = everythingQuantity.getText();
 
         Deliveries delivery = new Deliveries(generateDeliveryID(), deliveryName, FormattedDate, deliveryCompany);
         delivery.AddDelivery();
@@ -144,7 +147,7 @@ public class NewDeliveryController {
         for (All_Products products: All_Products.getAllProducts()) {
             ArrayList<String> subproduct = new ArrayList<String>();
             subproduct.add(products.getProduct_ID() + ": " + products.getProduct_Name());
-            subproduct.add("20");
+            subproduct.add(productQuantity);
             orderedProducts.add(subproduct);
         }
 

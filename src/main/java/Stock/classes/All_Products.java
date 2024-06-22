@@ -33,19 +33,21 @@ public class All_Products{
     private Integer Product_Sale_Price;
     private int Product_Quantity;
     private int Last_Stocked;
+    private int Department_ID;
     private String Viewable_Last_Stocked;
     private String Viewable_Restock_Price;
     private String Viewable_Sale_Price;
     private String Viewable_Quantity;
     private File image;
 
-    public All_Products(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked) {
+    public All_Products(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked, int Department_ID) {
         this.Product_Name = Product_Name;
         this.Product_ID = Product_ID;
         this.Product_Restock_Price = Product_Restock_Price;
         this.Product_Sale_Price = Product_Sale_Price;
         this.Product_Quantity = Product_Quantity;
         this.Last_Stocked = Last_Stocked;
+        this.Department_ID = Department_ID;
         this.Viewable_Restock_Price = "£" + Product_Restock_Price;
         this.Viewable_Sale_Price = "£" + Product_Sale_Price;
         this.Viewable_Quantity = Product_Quantity + " units";
@@ -78,6 +80,10 @@ public class All_Products{
 
     public int getLast_Stocked() {
         return Last_Stocked;
+    }
+
+    public int getDepartment_ID() {
+        return Department_ID;
     }
 
     public String getViewable_Restock_Price() {
@@ -117,8 +123,6 @@ public class All_Products{
     public void setProduct_Quantity(int Product_Quantity) {
         this.Product_Quantity = Product_Quantity;
     }
-
-//    public void setLast_Stocked(String Last_Stocked) {this.Last_Stocked = Last_Stocked;}
 
     public void setViewable_Last_Stocked(String Viewable_Last_Stocked) {
         this.Viewable_Last_Stocked = Viewable_Last_Stocked;
@@ -291,7 +295,7 @@ public class All_Products{
             List<All_Products> data= new ArrayList<>();
 
             while (resultSet.next()) {
-                data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked")));
+                data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked"), resultSet.getInt("Department_ID")));
             }
             return data;
         } catch (Exception e) {
@@ -306,7 +310,7 @@ public class All_Products{
         try (ResultSet results = Select(query)) {
             List<All_Products> data = new ArrayList<>();
             while (results.next()) {
-                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked")));
+                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"), resultSet.getInt("Department_ID")));
             }
             return data;
         } catch (SQLException e) {
@@ -322,7 +326,7 @@ public class All_Products{
             if (resultSet.next()) {
                 System.out.println(resultSet.getString("Product_Name"));
 
-                data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked")));
+                data.add(new All_Products(resultSet.getString("Product_Name"), resultSet.getInt("Product_ID"), resultSet.getInt("Product_Restock_Price"), resultSet.getInt("Product_Sale_Price"), resultSet.getInt("Product_Quantity"), resultSet.getInt("Last_Stocked"), resultSet.getInt("Department_ID")));
             }
             return data;
         } catch (Exception e) {
@@ -333,9 +337,10 @@ public class All_Products{
 
     public static All_Products getProductByID(int id) {
         query = "SELECT * FROM Products WHERE Product_ID = " + id;
+        System.out.println(id);
         try (ResultSet results = Select(query)) {
             if (results.next()) {
-                return new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"));
+                return new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"), results.getInt("Department_ID"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -367,7 +372,7 @@ public class All_Products{
     public static int generateID() {
         query = "SELECT COUNT(Product_ID) FROM Products";
         try (ResultSet results = Select(query)) {
-            if (results.next()) { return getSortableDateInAWeek(results.getInt(1)); }
+            if (results.next()) { return results.getInt(1); }
         } catch (Exception e) { e.printStackTrace(); }
         return 0;
     }
@@ -454,7 +459,7 @@ public class All_Products{
         try (ResultSet results = Select(query)) {
             List<All_Products> data = new ArrayList<>();
             while (results.next()) {
-                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked")));
+                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"), resultSet.getInt("Department_ID")));
             }
             return data;
         } catch (Exception e) {

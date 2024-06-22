@@ -58,15 +58,5 @@
       </Label>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToUpcomingDeliveries" text="Back" />
       <Button layoutX="69.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Home" />
-      <Label layoutX="63.0" layoutY="256.0" text="Description:">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
-      <Label fx:id="Product_Description" layoutX="192.0" layoutY="270.0" prefHeight="263.0" prefWidth="238.0" text="Description">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
    </children>
 </Pane>

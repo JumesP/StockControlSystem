@@ -1,6 +1,7 @@
 package Stock.classes.Product_Departments;
 
 import Stock.classes.All_Products;
+import Stock.classes.Product_Departments.Grocery_Departments.Chilled;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Stock.application.SqliteConnection.Select;
 import static Stock.classes.Misc.Clock.getSortableDateInAWeek;
 
 public class Grocery extends All_Products {
@@ -22,8 +24,8 @@ public class Grocery extends All_Products {
     private String Parent_Category = "Grocery"; public String getParent_Category() { return Parent_Category; }
     private int Useby_Date; public int getUseby_Date() { return Useby_Date; }
 
-    public Grocery(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked) {
-        super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked);
+    public Grocery(String Product_Name, int Product_ID, Integer Product_Restock_Price, Integer Product_Sale_Price, int Product_Quantity, int Last_Stocked, int Department_ID) {
+        super(Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Department_ID);
         this.Parent_Category = "Grocery";
         this.Useby_Date = getSortableDateInAWeek(Last_Stocked);
     }

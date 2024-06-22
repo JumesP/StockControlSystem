@@ -42,6 +42,31 @@
       <Label layoutX="36.0" layoutY="80.0" prefHeight="17.0" prefWidth="109.0" text="Delivery Name: " />
       <Label layoutX="36.0" layoutY="116.0" prefHeight="17.0" prefWidth="109.0" text="Delivery Supplier:" />
       <Label layoutX="36.0" layoutY="152.0" prefHeight="17.0" prefWidth="109.0" text="Delivery Date:" />
-      <Button fx:id="everythingDelivery" layoutX="527.0" layoutY="560.0" mnemonicParsing="false" onAction="#everythingDelivery" prefHeight="26.0" prefWidth="174.0" text="Everything Delivery" />
+      <Button fx:id="everythingDelivery" layoutX="606.0" layoutY="562.0" mnemonicParsing="false" onAction="#everythingDelivery" prefHeight="26.0" prefWidth="174.0" text="Everything Delivery" />
+      <TextField fx:id="everythingQuantity" layoutX="613.0" layoutY="480.0" />
+      <Label layoutX="668.0" layoutY="456.0" text="Quantity:" />
+      <Line endX="-100.0" endY="609.0" layoutX="586.0" layoutY="20.0" startX="-100.0" />
+      <Label layoutX="576.0" layoutY="130.0" text="Everything Delivery">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="567.0" layoutY="295.0" text="Order a certain quantity of every product">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="datePickerEverything" layoutX="614.0" layoutY="395.0" onAction="#pickDate" prefHeight="26.0" prefWidth="160.0" promptText="Delivery Date" />
+      <Label layoutX="678.0" layoutY="364.0" text="Date:" />
+      <Label layoutX="644.0" layoutY="163.0" text="Sponsored b y the Eneverything Men ™ ">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="484.0" layoutY="421.0" prefHeight="13.0" prefWidth="408.0" text="Everything Deliveries are usually scheduled on for Mondays to be sold within the week and expire on the weekend">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
