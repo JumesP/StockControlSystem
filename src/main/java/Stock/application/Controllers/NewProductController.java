@@ -45,6 +45,7 @@ public class NewProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Rolls.setDisable(true);
         Choicebox1.getItems().addAll(listOfParentDepertments());
         Choicebox1.setOnAction(this::selectDepartment);
         Choicebox2.setDisable(true);
@@ -147,7 +148,6 @@ public class NewProductController implements Initializable {
                 Choicebox2.getItems().addAll("Toilet Rolls");
                 break;
         }
-        Choicebox2.setOnAction(this::selectCategory);
     }
 
     public void selectCategory(ActionEvent event) {
@@ -174,14 +174,8 @@ public class NewProductController implements Initializable {
 
     public void ToiletRollsAmount(ActionEvent event) {
         // provide input boxes for the selected category
-        switch (Choicebox2.getValue()) {
-            case "Toilet Rolls":
-                Rolls.setDisable(false);
-                break;
-            default:
-                Rolls.setDisable(true);
-                break;
-        }
+        Choicebox1.setDisable(true);
+        Rolls.setDisable(!Choicebox2.getValue().equals("Toilet Rolls"));
     }
 
     public void switchToHomepage(ActionEvent event) {

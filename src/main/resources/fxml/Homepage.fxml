@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
@@ -28,5 +29,6 @@
       </TilePane>
       <Button fx:id="Signin" layoutX="757.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToSignin" prefHeight="26.0" prefWidth="127.0" text="Login" />
       <Button fx:id="switchToApproveAdmins" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#switchToApproveAdmins" text="Approve Admins" />
+      <Label fx:id="loginToAccess" layoutX="365.0" layoutY="317.0" prefHeight="17.0" prefWidth="188.0" text="Please login to access the system" textFill="WHITE" />
    </children>
 </Pane>

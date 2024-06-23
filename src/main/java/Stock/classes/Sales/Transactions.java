@@ -96,7 +96,7 @@ public class Transactions {
         this.Product_Quantity_Sold = soldQuantity;
         this.Total_Profit = profit;
 
-//        bulkDeleteStock(this.Product_ID, soldQuantity);
+        bulkDeleteStock(this.Product_ID, soldQuantity);
     }
 
 

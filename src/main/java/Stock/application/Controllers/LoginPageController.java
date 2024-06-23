@@ -28,13 +28,6 @@ public class LoginPageController {
         Users user = new Users(Username.getText(), Password.getText());
         if (user.isLogin()) {
             Result.setText("Login successful");
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            switchToHomepage(event);
         } else {
             System.out.println("Login failed");
             Result.setText("Incorrect Username and Password combination.\nPlease enter a valid Username and Password");

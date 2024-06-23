@@ -52,4 +52,6 @@ public class CreateAccountController {
     public void switchToLogin(ActionEvent event) {
         SceneController.switchToSignin(event);
     }
+
+    public void switchToHomepage(ActionEvent event) { SceneController.switchToHomepage(event); }
 }

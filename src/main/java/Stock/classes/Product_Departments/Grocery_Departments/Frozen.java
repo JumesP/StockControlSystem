@@ -42,7 +42,7 @@ public class Frozen extends Grocery{
         query = "insert into products (Product_Name, Product_ID, Product_Restock_Price, Product_Sale_Price, Product_Quantity, Last_Stocked, Department_ID, Useby_Date, Storage_Temp) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         int Department_ID = 0;
-        if (department.equals("IceCream")) {
+        if (department.equals("Ice Cream")) {
             Department_ID = 5;
         }
 

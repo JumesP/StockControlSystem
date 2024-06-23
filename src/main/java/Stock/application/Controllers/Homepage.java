@@ -4,6 +4,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -19,6 +21,7 @@ public class Homepage implements Initializable {
     public Button TransactionAnalytics;
     public Button SalesTracker;
     public Button switchToApproveAdmins;
+    public Label loginToAccess;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -31,13 +34,16 @@ public class Homepage implements Initializable {
                 TransactionAnalytics.setDisable(true);
                 SalesTracker.setDisable(true);
                 switchToApproveAdmins.setDisable(true);
+                loginToAccess.setText("Please login to access the system");
                 break;
             case "admin":
                 Signin.setText("Signed in as Admin");
+                loginToAccess.setVisible(false);
                 break;
             case "user":
                 Signin.setText("Signed in as User");
                 switchToApproveAdmins.setDisable(true);
+                loginToAccess.setVisible(false);
                 break;
         }
     }

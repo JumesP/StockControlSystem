@@ -1,11 +1,11 @@
-Stock Details - Printed Date: 21/06/2024 at 13:57:43
+Stock Details - Printed Date: 23/06/2024 at 14:34:23
 ==================================================
-Product ID: 0
-Product Name: Orange
+Product ID: 4
+Product Name: Grape
 ==================================================
-Waste Report for: 13-05-2024 - 19-05-2024
+Waste Report for: 10-06-2024 - 16-06-2024
 ==================================================
-Ordered: 20 units
-Sold: 110 units
-Waste: -90 units
+Ordered: 200 units
+Sold: 348 units
+Waste: -148 units
 ==================================================

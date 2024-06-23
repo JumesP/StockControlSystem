@@ -35,5 +35,7 @@
             <Font size="15.0" />
          </font></Label>
       <Label fx:id="error" alignment="CENTER" layoutX="96.0" layoutY="510.0" prefHeight="17.0" prefWidth="714.0" />
+      <Button fx:id="Home" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToHomepage" text="Home" />
+      <Button fx:id="Login" layoutX="78.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToLogin" text="Back" />
    </children>
 </AnchorPane>

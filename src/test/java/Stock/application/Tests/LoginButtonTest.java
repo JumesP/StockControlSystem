@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
-public class LoginTest extends ApplicationTest {
+public class LoginButtonTest extends ApplicationTest {
     @Override
     public void start(Stage stage) {
         Parent root = null;
