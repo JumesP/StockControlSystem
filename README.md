@@ -18,7 +18,7 @@ This functionality will prove useful for this project for the additional feature
 
 To run the application
 
-![Screenshot 2024-06-23 at 13.26.49.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fjc%2Fr12s6r2x64n7b_pmpzw43h0c0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_JyHDO1%2FScreenshot%202024-06-23%20at%2013.26.49.png)
+<img width="1082" alt="Screenshot 2024-06-23 at 11 48 27" src="https://github.com/JumesP/StockControlSystem/assets/118614403/e58ff095-3525-4708-950b-c81f85b6a59a">
 
 
 ### Tests
