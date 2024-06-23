@@ -18,7 +18,8 @@ This functionality will prove useful for this project for the additional feature
 
 To run the application
 
-<img width="1082" alt="Screenshot 2024-06-23 at 11 48 27" src="https://github.com/JumesP/StockControlSystem/assets/118614403/e58ff095-3525-4708-950b-c81f85b6a59a">
+<img width="304" alt="Screenshot 2024-06-23 at 13 24 37" src="https://github.com/JumesP/StockControlSystem/assets/118614403/e99f6571-6e3a-4623-b731-361d3d7dec79">
+
 
 
 ### Tests
