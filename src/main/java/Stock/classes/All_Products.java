@@ -310,7 +310,7 @@ public class All_Products{
         try (ResultSet results = Select(query)) {
             List<All_Products> data = new ArrayList<>();
             while (results.next()) {
-                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"), resultSet.getInt("Department_ID")));
+                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"), results.getInt("Department_ID")));
             }
             return data;
         } catch (SQLException e) {
@@ -459,7 +459,7 @@ public class All_Products{
         try (ResultSet results = Select(query)) {
             List<All_Products> data = new ArrayList<>();
             while (results.next()) {
-                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"), resultSet.getInt("Department_ID")));
+                data.add(new All_Products(results.getString("Product_Name"), results.getInt("Product_ID"), results.getInt("Product_Restock_Price"), results.getInt("Product_Sale_Price"), results.getInt("Product_Quantity"), results.getInt("Last_Stocked"), results.getInt("Department_ID")));
             }
             return data;
         } catch (Exception e) {

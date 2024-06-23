@@ -49,3 +49,7 @@ bin/
 
 ### Other ###
 .txt
+
+### Gradle ###
+.gradle/
+build/

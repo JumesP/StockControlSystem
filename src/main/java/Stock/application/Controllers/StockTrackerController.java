@@ -45,7 +45,6 @@ public class StockTrackerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
         Product_ID.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_ID"));
         Product_Name.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Product_Name"));
         Product_Restock_Price.setCellValueFactory(new PropertyValueFactory<All_Products, String>("Viewable_Restock_Price"));

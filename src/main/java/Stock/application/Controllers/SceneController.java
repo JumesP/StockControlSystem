@@ -112,7 +112,7 @@ public class SceneController {
 
     public static void switchToCreateAccount(ActionEvent event) {
         try {
-            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/Login/CreateAccount.fxml"));
+            root = FXMLLoader.load(SceneController.class.getClassLoader().getResource("fxml/CreateAccount.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
