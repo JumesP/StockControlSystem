@@ -28,8 +28,8 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-test {
-    useJUnitPlatform()
-}
+//test {
+//    useJUnitPlatform()
+//}
 
 mainClassName = "Stock.application.Main"

@@ -1,60 +1,42 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.Delivery;
 
+import Stock.application.Controllers.SceneController;
 import Stock.classes.All_Products;
 import Stock.classes.Deliveries.Deliveries;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-//import static Stock.classes.Deliveries.Deliveries.addProductsToOrder;
 import static Stock.classes.All_Products.*;
 import static Stock.classes.Deliveries.Deliveries.generateDeliveryID;
 import static Stock.classes.Misc.Clock.formatDateForUser;
-import static javafx.scene.control.DatePicker.*;
 
 public class NewDeliveryController {
 
     int counter = 0;
 
     public TextField Delivery_Name;
-//    public TextField Delivery_Date;
     public TextField Delivery_Supplier;
-//    public TextField Ordered_Products;
-//    public Button submit;
+    public TextField everythingQuantity;
+    public Button everythingDelivery;
     public ScrollPane productScrollPane;
     public Pane productPane;
-//    public Label error;
     public DatePicker datePicker;
     public DatePicker datePickerEverything;
-    public Button everythingDelivery;
-    public TextField everythingQuantity;
-
-//    public void addDelivery() {
-//        // Add delivery to database
-//        newDeliveryModel.Add(Delivery_Name.getText(), Delivery_Date.getText(), Delivery_Company.getText(), orderedProducts);
-////        error.setText("Delivery added successfully");
-//    }
 
     public void switchToHomepage(ActionEvent event) {
         SceneController.switchToHomepage(event);
     }
 
     public void addAnotherProduct(ActionEvent event) {
+        // add another product selector to delivery
         List<String> products = IDandProduct();
 
         ChoiceBox<KeyValuePair> product = new ChoiceBox<KeyValuePair>();
@@ -178,5 +160,4 @@ public class NewDeliveryController {
         String FormattedDate2 = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         System.out.println("DatePicker: " + FormattedDate2);
     }
-
 }

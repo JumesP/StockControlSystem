@@ -1,10 +1,8 @@
 package Stock.classes.Misc;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Clock {
 
@@ -201,7 +199,4 @@ public class Clock {
 
         return firstDay + " - " + lastDay;
     }
-
-
-
 }

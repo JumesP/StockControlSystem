@@ -23,16 +23,11 @@ public class PendingAdmins extends Admins {
         this.isApproved = isApproved;
     }
 
-    // METHODS
-
-
-
     // STATIC METHODS
     public static List<PendingAdmins> FetchPending() {
         // Fetch all pending admin accounts
         query = "SELECT * FROM Users WHERE Admin = 1 AND Approved = 0";
         try (ResultSet results = Select(query)) {
-
             List<PendingAdmins> unApprovedAdmins = new ArrayList<>();
 
             while (results.next()) {

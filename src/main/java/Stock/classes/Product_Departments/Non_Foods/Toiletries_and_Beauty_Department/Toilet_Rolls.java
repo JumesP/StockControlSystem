@@ -74,7 +74,7 @@ public class Toilet_Rolls extends NonFood {
     }
 
 
-
+    // STATIC METHODS
     public static Toilet_Rolls getToiletRollsByID(int id) {
         query = "SELECT * FROM Products WHERE Product_ID = " + id;
         try (ResultSet results = Select(query)) {

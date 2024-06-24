@@ -1,16 +1,14 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.MainPages;
 
+import Stock.application.Controllers.SceneController;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 import static Stock.classes.Users.Users.isAdmin;
 

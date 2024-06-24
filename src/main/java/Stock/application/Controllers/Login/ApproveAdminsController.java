@@ -1,29 +1,20 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.Login;
 
-//import Stock.application.Models.ApproveAdminsModel;
+import Stock.application.Controllers.SceneController;
 import Stock.classes.Users.PendingAdmins;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static Stock.classes.Users.Admins.approveAdminByID;
 import static Stock.classes.Users.PendingAdmins.FetchPending;
 
 public class ApproveAdminsController implements Initializable {
-//    public ApproveAdminsModel approveAdminsModel = new ApproveAdminsModel();
 
     @FXML TableView<PendingAdmins> unApprovedAdminsTable;
     @FXML TableColumn<PendingAdmins, Integer> user_id;

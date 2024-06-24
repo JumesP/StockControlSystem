@@ -12,7 +12,6 @@ import java.util.List;
 
 import static Stock.application.SqliteConnection.Select;
 import static Stock.classes.Misc.Clock.formatDateForUser;
-import static java.sql.DriverManager.getConnection;
 
 public class Deliveries {
     static Connection connection;

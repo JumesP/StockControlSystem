@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import static Stock.application.SqliteConnection.connection;
-import static Stock.classes.Misc.Clock.getSortableDateInAWeek;
 
 public class Fruits extends Chilled{
     static Connection connection;

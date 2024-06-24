@@ -1,19 +1,14 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.Delivery;
 
+import Stock.application.Controllers.SceneController;
 import Stock.classes.Deliveries.Deliveries;
 import Stock.classes.Deliveries.Ordered_Items;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
 import java.net.URL;
@@ -36,8 +31,6 @@ public class SpecificDeliveryController implements Initializable {
         Product_ID.setCellValueFactory(new PropertyValueFactory<Ordered_Items, String>("Product_ID"));
         Product_Name.setCellValueFactory(new PropertyValueFactory<Ordered_Items, String>("Product_Name"));
         Product_Quantity.setCellValueFactory(new PropertyValueFactory<Ordered_Items, String>("Viewable_Quantity"));
-
-//        tableView.getItems().setAll(specificDeliveryModel.FetchData(delivery.getDelivery_ID()));
     }
 
     @FXML private Label Delivery_ID;

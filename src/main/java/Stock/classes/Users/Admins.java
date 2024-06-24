@@ -1,11 +1,5 @@
 package Stock.classes.Users;
 
-import Stock.classes.Users.Users;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class Admins extends Users{
     private Boolean isAdmin = true;
     String FilePath = "src/main/java/Stock/backend/cookie.txt";

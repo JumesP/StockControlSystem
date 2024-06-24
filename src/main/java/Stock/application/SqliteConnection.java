@@ -1,7 +1,6 @@
 package Stock.application;
-import java.io.Closeable;
+
 import java.sql.*;
-import org.sqlite.JDBC;
 
 public class SqliteConnection {
     public static Connection Connector() {
@@ -22,14 +21,6 @@ public class SqliteConnection {
     public static void connection() {
         Connection connection = Connector();
         if (connection == null) System.exit(1);
-    }
-
-    public static void closeConnection(Connection connection) {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void Insert(String query) {

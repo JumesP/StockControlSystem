@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import static Stock.application.SqliteConnection.Select;
 import static Stock.application.SqliteConnection.SelectAd;
 
 public class Users {
@@ -50,9 +49,6 @@ public class Users {
     }
 
     // SETTERS
-    public void setUser_ID(int User_ID) {
-        this.User_ID = User_ID;
-    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -98,7 +94,7 @@ public class Users {
     public Boolean isLogin() {
         // Login using the username and password and return success
         query = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
-        try(ResultSet results = SelectAd(query, username, password)) {
+        try (ResultSet results = SelectAd(query, username, password)) {
             if (results.next()) {
                 FileWriter myWriter = new FileWriter("src/main/java/Stock/backend/cookie.txt");
                 if (results.getString("Admin").equals("1")) {
@@ -111,27 +107,10 @@ public class Users {
             } else {
                 return false;
             }
-        } catch (Exception e) { e.printStackTrace(); return false; }
-
-//        try {
-//            preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setString(1, this.username);
-//            preparedStatement.setString(2, this.password);
-//            resultSet = preparedStatement.executeQuery();
-//            if (resultSet.next()) {
-//                FileWriter myWriter = new FileWriter("src/main/java/Stock/backend/cookie.txt");
-//                if (resultSet.getString("Admin").equals("1")) {
-//                    myWriter.write("admin");
-//                } else {
-//                    myWriter.write("user");
-//                }
-//                myWriter.close();
-//                connection.close();
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (Exception e) { e.printStackTrace(); return false; }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

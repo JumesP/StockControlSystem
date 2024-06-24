@@ -1,4 +1,4 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.MainPages;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import Stock.application.Controllers.Products.SpecificProductController;
+import Stock.application.Controllers.SceneController;
 import Stock.classes.All_Products;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,11 +81,7 @@ public class StockTrackerController implements Initializable {
     }
 
     public void exportData(ActionEvent event) {
-        try {
-            printAllToFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try { printAllToFile(); } catch (IOException e) { e.printStackTrace(); }
         exportData.setText("Stock Data Exported");
     }
 

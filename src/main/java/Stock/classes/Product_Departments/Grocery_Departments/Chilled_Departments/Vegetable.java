@@ -42,10 +42,6 @@ public class Vegetable extends Chilled {
     }
 
     // METHODS
-//    public void addVegetable(){
-//        // Add a new vegetable to the database
-//        super.addProduct();
-//    }
 
     public void addVegetable() {
         // Add a new fruit product to the database

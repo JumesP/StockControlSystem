@@ -2,16 +2,12 @@ package Stock.classes.Sales;
 
 import Stock.application.SqliteConnection;
 import Stock.classes.All_Products;
-import Stock.classes.Deliveries.Ordered_Items;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-import static Stock.application.SqliteConnection.Select;
 import static Stock.classes.All_Products.bulkDeleteStock;
 
 public class Transactions {

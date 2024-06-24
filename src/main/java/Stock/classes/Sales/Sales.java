@@ -45,19 +45,13 @@ public class Sales {
 
     public int getSale_ID() {
         return Sale_ID;
-    }
-
-    ;
+    } ;
 
     public void setSale_ID(int Sale_ID) {
         this.Sale_ID = Sale_ID;
     }
 
-    public int getSale_Date() {
-        return Sale_Date;
-    }
-
-    ;
+    public int getSale_Date() { return Sale_Date; };
 
     public void setSale_Date(int Sale_Date) {
         this.Sale_Date = Sale_Date;
@@ -65,9 +59,7 @@ public class Sales {
 
     public int getTotal_Sale_Profit() {
         return Total_Sale_Profit;
-    }
-
-    ;
+    };
 
     public void setTotal_Sale_Profit(int Total_Sale_Profit) {
         this.Total_Sale_Profit = Total_Sale_Profit;
@@ -75,19 +67,13 @@ public class Sales {
 
     public String getViewable_Total_Profit() {
         return Viewable_Total_Profit;
-    }
+    };
 
-    ;
-
-    public void setViewable_Total_Profit(String Viewable_Total_Profit) {
-        this.Viewable_Total_Profit = "£ " + Viewable_Total_Profit;
-    }
+    public void setViewable_Total_Profit(String Viewable_Total_Profit) { this.Viewable_Total_Profit = "£ " + Viewable_Total_Profit; }
 
     public String getViewable_Sales_Date() {
         return Viewable_Sales_Date;
-    }
-
-    ;
+    };
 
     public void setViewable_Sales_Date(String Viewable_Sales_Date) {
         this.Viewable_Sales_Date = Viewable_Sales_Date;
@@ -95,9 +81,7 @@ public class Sales {
 
     public String getMost_Sold_Products() {
         return Most_Sold_Products;
-    }
-
-    ;
+    };
 
     public void setMost_Sold_Products(String Most_Sold_Products) {
         this.Most_Sold_Products = Most_Sold_Products + " units";
@@ -185,7 +169,6 @@ public class Sales {
 
 
 
-
     // STATIC METHODS
     public static int generateSalesID() {
         query = "SELECT COUNT(*) FROM Sales";
@@ -200,16 +183,11 @@ public class Sales {
         query = "SELECT * FROM Sales ORDER BY Sale_Date DESC";
         int date = 0;
         try (ResultSet results = Select(query)) {
-//            if (!results.next()) { return 20240519; }
-//            while (results.next()) {
-//                date = results.getInt("Sale_Date");
-//            }
             if (results.next()) {
                 return getSortableDateInAdjust(results.getInt("Sale_Date"), 7);
             } else {
                 return 20240519;
             }
-//            return getSortableDateInAdjust(date, 7);
         } catch (Exception e) {
             e.printStackTrace();
         }; return 0;

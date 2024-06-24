@@ -1,23 +1,14 @@
-package Stock.application.Tests;
-
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
-import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.junit.jupiter.api.*;
-import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.api.FxAssert;
 import org.testfx.matcher.control.LabeledMatchers;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.concurrent.TimeoutException;
 
 public class LoginButtonTest extends ApplicationTest {
     @Override

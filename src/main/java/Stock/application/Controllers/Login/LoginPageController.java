@@ -1,22 +1,14 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.Login;
 
+import Stock.application.Controllers.SceneController;
 import Stock.classes.Users.Users;
-import javafx.scene.Node;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.awt.*;
-import java.io.FileWriter;
 
 public class LoginPageController {
-//    LoginPageModel loginPageModel = new LoginPageModel();
 
     public AnchorPane AnchorPane;
     public TextField Username;
@@ -30,7 +22,7 @@ public class LoginPageController {
             Result.setText("Login successful");
         } else {
             System.out.println("Login failed");
-            Result.setText("Incorrect Username and Password combination.\nPlease enter a valid Username and Password");
+            Result.setText("Login failed\nPlease enter a valid Username and Password");
         }
     }
 

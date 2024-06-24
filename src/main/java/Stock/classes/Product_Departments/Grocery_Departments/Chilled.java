@@ -34,19 +34,10 @@ public class Chilled extends Grocery {
     }
 
     public int getStorage_Temperature() {
-        return 4;
-//        return Storage_Temperature;
+        return Storage_Temperature;
     }
 
-
-    // METHODS
-//    public Boolean
-
     // STATIC METHODS
-//    public static Boolean ifReorderable(int ID) {
-//        // Chilled products can only be ordered once a week, so check if the product has been ordered in the last week
-//
-//    }
 
     public void addChilled(String department) {
         // Add a new fruit product to the database

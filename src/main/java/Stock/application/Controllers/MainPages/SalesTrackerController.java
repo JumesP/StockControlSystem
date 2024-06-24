@@ -1,7 +1,7 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.MainPages;
 
-import Stock.classes.All_Products;
-import Stock.classes.Deliveries.Deliveries;
+import Stock.application.Controllers.Sales.SpecificSaleController;
+import Stock.application.Controllers.SceneController;
 import Stock.classes.Sales.Sales;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,7 +64,7 @@ public class SalesTrackerController implements Initializable {
     public void viewSpecificSale(MouseEvent event) throws IOException {
         Sales sale = tableView.getSelectionModel().getSelectedItem();
 
-        // Switch to the specific delivery page
+        // Switch to the specific sale page
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SpecificSale.fxml"));
         try {
             root = loader.load();

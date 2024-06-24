@@ -1,5 +1,6 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.Products;
 
+import Stock.application.Controllers.SceneController;
 import Stock.classes.All_Products;
 import Stock.classes.Product_Departments.Grocery_Departments.Ambient_Department.Chocolate;
 import Stock.classes.Product_Departments.Grocery_Departments.Ambient_Department.Crisps;
@@ -82,9 +83,6 @@ public class SpecificProductController {
                 Description.setText(Toilet_Rolls.getDescription());break;
 
         }
-
-
-
 
         Product_Name.setText(product.getProduct_Name());
         Product_Price.setText("£ " + product.getProduct_Restock_Price().toString());

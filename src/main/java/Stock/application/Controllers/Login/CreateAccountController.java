@@ -1,19 +1,13 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.Login;
 
+import Stock.application.Controllers.SceneController;
 import Stock.classes.Users.Users;
 import Stock.classes.Users.Admins;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import static Stock.classes.Users.Users.generateUserID;
 
 
 public class CreateAccountController {

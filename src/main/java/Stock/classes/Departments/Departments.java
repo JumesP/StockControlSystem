@@ -1,7 +1,6 @@
 package Stock.classes.Departments;
 
 import Stock.application.SqliteConnection;
-import Stock.classes.All_Products;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,15 +58,6 @@ public class Departments {
     public void setParent_Department(String Parent_Department) {
         this.Parent_Department = Parent_Department;
     }
-
-
-    // METHODS
-
-
-
-
-
-
 
 
     // STATIC METHODS

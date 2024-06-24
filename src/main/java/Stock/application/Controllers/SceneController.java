@@ -1,20 +1,12 @@
 package Stock.application.Controllers;
 
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class SceneController {
     private static Stage stage;

@@ -1,7 +1,8 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.MainPages;
 
+import Stock.application.Controllers.Delivery.SpecificDeliveryController;
+import Stock.application.Controllers.SceneController;
 import Stock.classes.Deliveries.Deliveries;
-import Stock.classes.Deliveries.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +24,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.net.URL;
 import java.util.ResourceBundle;
 
 import static Stock.classes.Deliveries.Deliveries.*;
@@ -103,7 +103,6 @@ public class UpcomingDeliveriesController implements Initializable {
     }
 
     public void switchDelivery(ActionEvent event) {
-        System.out.println("Switching delivery");
         // get data from menu
         String delivery = DeliverySelect.getValue();
 
@@ -118,9 +117,5 @@ public class UpcomingDeliveriesController implements Initializable {
             case "Todays Deliveries" -> tableView.getItems().setAll(FetchTodaysDeliveryData());
             case "All Deliveries" -> tableView.getItems().setAll(FetchAllDeliveryData());
         }
-
-        System.out.println(delivery);
     }
-
-
 }

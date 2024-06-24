@@ -1,5 +1,6 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.Products;
 
+import Stock.application.Controllers.SceneController;
 import Stock.classes.Misc.Clock;
 import Stock.classes.Misc.Image;
 import Stock.classes.Product_Departments.Grocery_Departments.Ambient_Department.Chocolate;
@@ -97,8 +98,6 @@ public class NewProductController implements Initializable {
                 break;
         }
 
-
-
         try{
             File file = new File("src/main/resources/images/products/" + (generateID()-1) + ".png");
             BufferedImage bi = ImageIO.read(selectFile);
@@ -150,6 +149,7 @@ public class NewProductController implements Initializable {
         }
     }
 
+
     public void selectCategory(ActionEvent event) {
         // provide input boxes for the selected category
         switch (Choicebox2.getValue()) {
@@ -171,6 +171,7 @@ public class NewProductController implements Initializable {
                 break;
         }
     }
+
 
     public void ToiletRollsAmount(ActionEvent event) {
         // provide input boxes for the selected category

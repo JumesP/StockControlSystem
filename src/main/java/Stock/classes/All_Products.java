@@ -106,26 +106,8 @@ public class All_Products{
         return image;
     }
 
-//    public File getImage() { return image; }
-
-//    public String getViewable_Last_Stocked() { return Viewable_Last_Stocked; }
-
-    // SETTERS
-
-//    public void setProduct_Name(String Product_Name) { this.Product_Name = Product_Name; }
-
-//    public void setProduct_ID(Number Product_ID) { this.Product_ID = Product_ID; }
-
-//    public void setProduct_Restock_Price(Number Product_Price) { this.Product_Restock_Price = Product_Price; }
-
-//    public void setProduct_Sale_Price(Number Product_Price) {this.Product_Sale_Price = Product_Price;}
-
     public void setProduct_Quantity(int Product_Quantity) {
         this.Product_Quantity = Product_Quantity;
-    }
-
-    public void setViewable_Last_Stocked(String Viewable_Last_Stocked) {
-        this.Viewable_Last_Stocked = Viewable_Last_Stocked;
     }
 
     public void setImage(File image) { this.image = image; }

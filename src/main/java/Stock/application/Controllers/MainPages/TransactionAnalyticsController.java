@@ -1,11 +1,11 @@
-package Stock.application.Controllers;
+package Stock.application.Controllers.MainPages;
 
+import Stock.application.Controllers.SceneController;
 import Stock.classes.All_Products;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
-import javafx.scene.chart.Chart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -22,9 +22,6 @@ import static Stock.classes.Misc.Clock.splitDates;
 import static Stock.classes.Sales.Sales.getAllSalesDates;
 
 public class TransactionAnalyticsController implements Initializable {
-
-
-
     @FXML Label orderedThisWeek;
     @FXML Label soldThisWeek;
     @FXML Label wasteThisWeek;
@@ -56,6 +53,7 @@ public class TransactionAnalyticsController implements Initializable {
         XYChart.Series sold = new XYChart.Series();
         XYChart.Series deliveries = new XYChart.Series();
 
+        // Sample data, before main data arrives
         deliveries.getData().add(new XYChart.Data(3, 140));
         deliveries.getData().add(new XYChart.Data(4, 150));
         deliveries.getData().add(new XYChart.Data(5, 180));
@@ -79,8 +77,6 @@ public class TransactionAnalyticsController implements Initializable {
             return;
         }
 
-//        Chart.getData().clear();
-
         int Product_ID = Integer.parseInt(IDandProductSplit(productRange.getValue()).get(0));
         String Product_Name = IDandProductSplit(productRange.getValue()).get(1);
 
@@ -99,10 +95,6 @@ public class TransactionAnalyticsController implements Initializable {
 
         System.out.println("Ordered: " + ordered);
         System.out.println("Sales: " + sales);
-
-//        for (int i = Week_start; i < Week_end; i++) {
-//            int waste = product.listOfWasteBetweenTwoDates(i, i+1);
-//        }
 
         XYChart.Series sold = new XYChart.Series();
         XYChart.Series deliveries = new XYChart.Series();
@@ -130,7 +122,6 @@ public class TransactionAnalyticsController implements Initializable {
 
     public void exportToFile(ActionEvent event) {
         // Export data to file
-
         if (productRange.getValue() == null || dateRange.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Export Failed");
@@ -164,6 +155,4 @@ public class TransactionAnalyticsController implements Initializable {
         Chart.getData().clear();
         SceneController.switchToHomepage(event);
     }
-
-
 }

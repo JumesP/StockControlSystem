@@ -1,7 +1,6 @@
 package Stock.classes.Product_Departments;
 
 import Stock.classes.All_Products;
-import Stock.classes.Product_Departments.Grocery_Departments.Chilled;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Stock.application.SqliteConnection.Select;
 import static Stock.classes.Misc.Clock.getSortableDateInAWeek;
 
 public class Grocery extends All_Products {

@@ -67,10 +67,6 @@ public class Frozen extends Grocery{
 
 
     // STATIC METHODS
-//    public static Boolean ifReorderable(int ID) {
-//        // Frozen products can only be ordered once a month, so check if the product has been ordered in the last week
-//
-//    }
     public static Frozen getFrozenByID(int id) {
         query = "SELECT * FROM Products WHERE Product_ID = " + id;
         try (ResultSet results = Select(query)) {
